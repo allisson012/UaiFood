@@ -8,9 +8,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="BancoDeDados\" />
-  </ItemGroup>
-
 </Project>
