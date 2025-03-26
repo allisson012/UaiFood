@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UaiFood")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5adbd0a6f6e427fcd94ae6e545933880ecc8e20c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac8726e210512e98f85fab713651231668a2cb9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("UaiFood")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UaiFood")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

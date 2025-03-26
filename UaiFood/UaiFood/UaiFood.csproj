@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Controller\" />
+    <Folder Include="BancoDeDados\" />
   </ItemGroup>
 
 </Project>
