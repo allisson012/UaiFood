@@ -1,0 +1,17 @@
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\bin\Debug\net8.0-windows\UaiFood.exe
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\bin\Debug\net8.0-windows\UaiFood.deps.json
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\bin\Debug\net8.0-windows\UaiFood.runtimeconfig.json
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\bin\Debug\net8.0-windows\UaiFood.dll
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\bin\Debug\net8.0-windows\UaiFood.pdb
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.Form1.resources
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.csproj.GenerateResource.cache
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.AssemblyInfo.cs
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.sourcelink.json
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.dll
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\refint\UaiFood.dll
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.pdb
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\UaiFood.genruntimeconfig.cache
+C:\Users\User\OneDrive\Área de Trabalho\UaiFood\UaiFood\UaiFood\UaiFood\obj\Debug\net8.0-windows\ref\UaiFood.dll
