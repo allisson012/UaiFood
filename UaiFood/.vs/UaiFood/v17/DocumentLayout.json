@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\fatec\\uaifood\\uaifood\\uaifood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|test{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\test.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|test{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}|solutionrelative:test.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\fatec\\uaifood\\uaifood\\uaifood\\uaifood\\model\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -31,14 +39,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "test.txt",
+              "DocumentMoniker": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\test.txt",
+              "RelativeDocumentMoniker": "test.txt",
+              "ToolTip": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\test.txt",
+              "RelativeToolTip": "test.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-27T19:05:15.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Image.cs",
+              "DocumentMoniker": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\Model\\Image.cs",
+              "RelativeDocumentMoniker": "UaiFood\\Model\\Image.cs",
+              "ToolTip": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\Model\\Image.cs",
+              "RelativeToolTip": "UaiFood\\Model\\Image.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T18:50:31.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TelaLogin.cs [Projeto]",
               "DocumentMoniker": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
               "RelativeDocumentMoniker": "UaiFood\\View\\TelaLogin.cs",
               "ToolTip": "C:\\Fatec\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs [Projeto]",
               "RelativeToolTip": "UaiFood\\View\\TelaLogin.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T17:23:02.1Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2025-03-27T17:23:02.1Z"
             }
           ]
         }
