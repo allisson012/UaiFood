@@ -10,5 +10,12 @@ namespace UaiFood.Model
     class User
     {
         private String nome;
+        private int idade;
+        private byte [] photo;
+        private Address address;
+        public User()
+        {
+
+        }
     }
 }
