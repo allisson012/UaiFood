@@ -14,5 +14,11 @@ namespace UaiFood
             TelaCadastro telaCadastro = new TelaCadastro();
             telaCadastro.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
+            telaLoginRestaurante.Show();
+        }
     }
 }

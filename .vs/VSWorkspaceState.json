@@ -3,8 +3,10 @@
     "",
     "\\UaiFood",
     "\\UaiFood\\UaiFood",
-    "\\UaiFood\\UaiFood\\BancoDeDados"
+    "\\UaiFood\\UaiFood\\UaiFood",
+    "\\UaiFood\\UaiFood\\UaiFood\\UaiFood",
+    "\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View"
   ],
-  "SelectedNode": "\\UaiFood\\UaiFood.sln",
+  "SelectedNode": "\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
   "PreviewInSolutionExplorer": false
 }

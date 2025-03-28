@@ -4,7 +4,13 @@
     <Compile Update="View\TelaCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\TelaCadastroRestaurante.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\TelaLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\TelaLoginRestaurante.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
