@@ -9,6 +9,9 @@ namespace UaiFood.Model
     class Address
     {
         private int cep;
-        // criar um metodo para validar no controller
+        private String cidade;
+        private String rua;
+        private String estado;
+        private int numero;
     }
 }
