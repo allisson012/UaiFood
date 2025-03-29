@@ -8,7 +8,8 @@ namespace UaiFood.Model
 {
     class Cardapio
     {
-        private List<Image> itens;
+        List<Produto> produtos;
+        int idEstabelecimentos;
         // criar classe produto para armazenar titulo descrição e imagem de um item
     }
 }
