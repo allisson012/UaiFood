@@ -8,5 +8,6 @@ namespace UaiFood.Model
 {
     class Image
     {
+        byte[] image;
     }
 }

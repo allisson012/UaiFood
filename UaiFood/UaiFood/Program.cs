@@ -1,3 +1,5 @@
+using UaiFood.Controller;
+
 namespace UaiFood
 {
     internal static class Program
@@ -10,6 +12,8 @@ namespace UaiFood
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            EmailController e = new EmailController();
+            e.ValidarEmail("allisson@gmail.com");
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaLogin());
         }

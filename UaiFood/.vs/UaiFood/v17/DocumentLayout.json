@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\model\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\bancodedados\\bancodados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\bancodedados\\bancodados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\cardapio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\model\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\model\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\controller\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\controller\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,75 +39,65 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Address.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Address.cs",
-              "RelativeDocumentMoniker": "UaiFood\\Model\\Address.cs",
-              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Address.cs",
-              "RelativeToolTip": "UaiFood\\Model\\Address.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
+              "Title": "TelaLogin.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
+              "RelativeDocumentMoniker": "UaiFood\\View\\TelaLogin.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs*",
+              "RelativeToolTip": "UaiFood\\View\\TelaLogin.cs*",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA1wAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T19:08:43.093Z",
+              "WhenOpened": "2025-03-29T19:33:14.458Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BancoDados.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\BancoDeDados\\BancoDados.cs",
-              "RelativeDocumentMoniker": "UaiFood\\BancoDeDados\\BancoDados.cs",
-              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\BancoDeDados\\BancoDados.cs",
-              "RelativeToolTip": "UaiFood\\BancoDeDados\\BancoDados.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Title": "TelaLogin.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
+              "RelativeDocumentMoniker": "UaiFood\\View\\TelaLogin.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs [Projeto]*",
+              "RelativeToolTip": "UaiFood\\View\\TelaLogin.cs [Projeto]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T18:14:06.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T19:32:59.468Z",
+              "EditorCaption": " [Projeto]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Cardapio.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Cardapio.cs",
-              "RelativeDocumentMoniker": "UaiFood\\Model\\Cardapio.cs",
-              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Cardapio.cs",
-              "RelativeToolTip": "UaiFood\\Model\\Cardapio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ImageController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Controller\\ImageController.cs",
+              "RelativeDocumentMoniker": "UaiFood\\Controller\\ImageController.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Controller\\ImageController.cs",
+              "RelativeToolTip": "UaiFood\\Controller\\ImageController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T18:13:59.71Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Image.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Image.cs",
-              "RelativeDocumentMoniker": "UaiFood\\Model\\Image.cs",
-              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Image.cs",
-              "RelativeToolTip": "UaiFood\\Model\\Image.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T18:13:57.578Z"
+              "WhenOpened": "2025-03-29T19:30:25.689Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Produto.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Produto.cs",
-              "RelativeDocumentMoniker": "UaiFood\\Model\\Produto.cs",
-              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Produto.cs",
-              "RelativeToolTip": "UaiFood\\Model\\Produto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Program.cs",
+              "RelativeDocumentMoniker": "UaiFood\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Program.cs",
+              "RelativeToolTip": "UaiFood\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T18:13:54.575Z"
+              "WhenOpened": "2025-03-28T22:33:32.85Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TelaLogin.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
-              "RelativeDocumentMoniker": "UaiFood\\View\\TelaLogin.cs",
-              "ToolTip": "C:\\Users\\User\\OneDrive\\\u00C1rea de Trabalho\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\OneDrive\\\u00C1rea de Trabalho\\UaiFood\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs [Design]",
+              "DocumentIndex": 3,
+              "Title": "EmailController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Controller\\EmailController.cs",
+              "RelativeDocumentMoniker": "UaiFood\\Controller\\EmailController.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Controller\\EmailController.cs",
+              "RelativeToolTip": "UaiFood\\Controller\\EmailController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T17:23:02.1Z"
+              "WhenOpened": "2025-03-28T22:28:42.855Z",
+              "EditorCaption": ""
             }
           ]
         }
