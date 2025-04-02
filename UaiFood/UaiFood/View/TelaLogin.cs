@@ -10,5 +10,9 @@ namespace UaiFood
             InitializeComponent();
         }
 
+        private void TelaLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
