@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using UaiFood.Controller;
+using UaiFood.View;
 
 namespace UaiFood
 {
@@ -10,5 +11,15 @@ namespace UaiFood
             InitializeComponent();
         }
 
+        private void TelaLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaCadastroRestaurante t = new TelaCadastroRestaurante();
+            t.Show();
+        }
     }
 }

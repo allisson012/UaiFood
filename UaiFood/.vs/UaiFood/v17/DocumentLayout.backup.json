@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\view\\telalogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|c:\\users\\user\\downloads\\projeto\\uaifood\\uaifood\\uaifood\\model\\establishment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55375C0B-13A9-46D2-9431-133B1A2C7778}|UaiFood\\UaiFood.csproj|solutionrelative:uaifood\\model\\establishment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +38,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "TelaLogin.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs",
+              "RelativeDocumentMoniker": "UaiFood\\View\\TelaLogin.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\View\\TelaLogin.cs [Projeto]",
+              "RelativeToolTip": "UaiFood\\View\\TelaLogin.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T14:39:19.901Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Address.cs",
               "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Address.cs",
               "RelativeDocumentMoniker": "UaiFood\\Model\\Address.cs",
@@ -42,12 +58,11 @@
               "RelativeToolTip": "UaiFood\\Model\\Address.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T10:20:28.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T10:20:28.052Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Cardapio.cs",
               "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Cardapio.cs",
               "RelativeDocumentMoniker": "UaiFood\\Model\\Cardapio.cs",
@@ -55,12 +70,11 @@
               "RelativeToolTip": "UaiFood\\Model\\Cardapio.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T10:20:26.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T10:20:26.849Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Establishment.cs",
               "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Model\\Establishment.cs",
               "RelativeDocumentMoniker": "UaiFood\\Model\\Establishment.cs",
@@ -73,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ImageController.cs",
               "DocumentMoniker": "C:\\Users\\User\\Downloads\\Projeto\\UaiFood\\UaiFood\\UaiFood\\Controller\\ImageController.cs",
               "RelativeDocumentMoniker": "UaiFood\\Controller\\ImageController.cs",
@@ -81,8 +95,7 @@
               "RelativeToolTip": "UaiFood\\Controller\\ImageController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T20:44:32.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T20:44:32.254Z"
             }
           ]
         }
