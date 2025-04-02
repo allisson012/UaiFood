@@ -32,13 +32,17 @@
             // 
             // TelaLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1350, 729);
+            ClientSize = new Size(1348, 721);
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "TelaLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaLogin_Load;
             ResumeLayout(false);
         }
 
