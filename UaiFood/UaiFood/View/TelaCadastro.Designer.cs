@@ -32,6 +32,7 @@
             textBox1 = new TextBox();
             txtSenha = new TextBox();
             txtRepeteSenha = new TextBox();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -81,12 +82,27 @@
             txtRepeteSenha.TabIndex = 8;
             txtRepeteSenha.UseSystemPasswordChar = true;
             // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(1101, 546);
+            button2.Name = "button2";
+            button2.Size = new Size(192, 47);
+            button2.TabIndex = 9;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // TelaCadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaCadastro;
             ClientSize = new Size(1348, 721);
+            Controls.Add(button2);
             Controls.Add(txtRepeteSenha);
             Controls.Add(txtSenha);
             Controls.Add(textBox1);
@@ -106,5 +122,6 @@
         private TextBox textBox1;
         private TextBox txtSenha;
         private TextBox txtRepeteSenha;
+        private Button button2;
     }
 }
