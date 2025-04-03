@@ -18,8 +18,20 @@ namespace UaiFood
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TelaCadastroRestaurante t = new TelaCadastroRestaurante();
-            t.Show();
+            TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
+            telaLoginRestaurante.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TelaCadastro telaCadastro = new TelaCadastro();
+            telaCadastro.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+            telaPrincipalCliente.Show();
         }
     }
 }

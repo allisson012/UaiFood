@@ -16,5 +16,16 @@ namespace UaiFood.View
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.Show();
+        }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TelaCadastroRestaurante telaCadastroRestaurante = new TelaCadastroRestaurante();
+            telaCadastroRestaurante.Show();
+        }
     }
 }

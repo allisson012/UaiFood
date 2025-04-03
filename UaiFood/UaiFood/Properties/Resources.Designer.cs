@@ -83,6 +83,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaCriarPerfilCliente {
+            get {
+                object obj = ResourceManager.GetObject("TelaCriarPerfilCliente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaLogin {
             get {
                 object obj = ResourceManager.GetObject("TelaLogin", resourceCulture);
@@ -96,6 +106,16 @@ namespace UaiFood.Properties {
         internal static System.Drawing.Bitmap TelaLoginRestaurante {
             get {
                 object obj = ResourceManager.GetObject("TelaLoginRestaurante", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaPrincipalCliente {
+            get {
+                object obj = ResourceManager.GetObject("TelaPrincipalCliente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
