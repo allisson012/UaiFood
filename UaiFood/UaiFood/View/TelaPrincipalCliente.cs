@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace UaiFood.View
 {
-    public partial class TelaCadastro : Form
+    public partial class TelaPrincipalCliente : Form
     {
-        public TelaCadastro()
+        public TelaPrincipalCliente()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
-            telaLoginRestaurante.Show();
         }
     }
 }

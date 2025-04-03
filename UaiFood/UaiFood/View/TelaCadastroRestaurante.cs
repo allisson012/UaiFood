@@ -16,5 +16,16 @@ namespace UaiFood.View
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.Show();
+        }
+
+        public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
