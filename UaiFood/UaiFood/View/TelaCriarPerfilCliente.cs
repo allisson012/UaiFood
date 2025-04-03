@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -15,6 +16,17 @@ namespace UaiFood.View
         public TelaCriarPerfilCliente()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ImageController imageController = new ImageController();
+            byte [] imag = imageController.SelectImage();
+            Image i = imageController.ExibirImage(imag);
+            if (i != null)
+            {
+                picturePerfil.Image = i;
+            }
         }
     }
 }
