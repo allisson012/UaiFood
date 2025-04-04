@@ -22,5 +22,11 @@ namespace UaiFood.View
             TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
             telaLoginRestaurante.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TelaCriarPerfilCliente telaCriarPerfilCliente = new TelaCriarPerfilCliente();
+            telaCriarPerfilCliente.Show();
+        }
     }
 }
