@@ -14,6 +14,7 @@ namespace UaiFood.Model
         private int idade;
         private byte [] photo;
         private Address address;
+        private long cpf;
         public User()
         {
 

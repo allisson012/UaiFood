@@ -33,5 +33,12 @@ namespace UaiFood
             TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
             telaPrincipalCliente.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            EmailController e2 = new EmailController();
+            Boolean t = e2.ValidarEmail("allisson@outlook.com");
+            System.Diagnostics.Debug.WriteLine(t);
+        }
     }
 }
