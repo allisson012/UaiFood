@@ -8,5 +8,9 @@ namespace UaiFood.Controller
 {
     class UserController
     {
+        public void createUser()
+        {
+
+        }
     }
 }
