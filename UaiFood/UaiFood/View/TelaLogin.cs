@@ -36,9 +36,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            UserController userController = new UserController();
-            Boolean t = userController.createUser("allisson@gmail.com", "1234");
-            System.Diagnostics.Debug.WriteLine(t);
+            PasswordController p = new PasswordController();
+            p.gerarHash("allisson1234");
         }
     }
 }
