@@ -36,8 +36,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            EmailController e2 = new EmailController();
-            Boolean t = e2.ValidarEmail("allisson@outlook.com");
+            UserController userController = new UserController();
+            Boolean t = userController.createUser("allisson@gmail.com", "1234");
             System.Diagnostics.Debug.WriteLine(t);
         }
     }
