@@ -37,7 +37,7 @@ namespace UaiFood
         private void button3_Click(object sender, EventArgs e)
         {
             PasswordController p = new PasswordController();
-            p.gerarHash("allisson1234");
+            p.VerificarSenha("Allisson21#");
         }
     }
 }
