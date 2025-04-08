@@ -8,9 +8,16 @@ namespace UaiFood.Controller
 {
     class UserController
     {
-        public void createUser()
+        public Boolean createUser(String email, String senha)
         {
-
+            EmailController emailController = new EmailController();
+            Boolean validoEmail = emailController.ValidarEmail(email);
+            if(senha != null && validoEmail)
+            {
+                System.Diagnostics.Debug.WriteLine("email é valido");
+                return true;
+            }
+            else { return false; }
         }
     }
 }
