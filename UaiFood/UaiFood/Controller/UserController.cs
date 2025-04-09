@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UaiFood.View;
 
 namespace UaiFood.Controller
 {
     class UserController
     {
-        public Boolean createUser(String email, String senha)
+        public void createUser(String email, String senha)
         {
             EmailController emailController = new EmailController();
             Boolean validoEmail = emailController.ValidarEmail(email);
-            if(senha != null && validoEmail)
+            PasswordController passwordController = new PasswordController();
+            Boolean senhaValida = passwordController.VerificarSenha(senha);
+            if(senhaValida && validoEmail)
             {
-                System.Diagnostics.Debug.WriteLine("email é valido");
-                return true;
+                System.Diagnostics.Debug.WriteLine("usuario criado");
+                TelaPrincipalCliente p = new TelaPrincipalCliente();
+                p.Show();
             }
-            else { return false; }
+            else {System.Diagnostics.Debug.WriteLine("usuario não foi criado");}
         }
     }
 }

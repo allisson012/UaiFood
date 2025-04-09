@@ -36,8 +36,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            PasswordController p = new PasswordController();
-            p.VerificarSenha("Allisson21#");
+            var telaCadastro = new TelaCadastro();
+            telaCadastro.Show();
         }
     }
 }
