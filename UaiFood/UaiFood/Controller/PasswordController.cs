@@ -10,7 +10,7 @@ namespace UaiFood.Controller
     class PasswordController
     {
         private Byte[] salt = new byte[16];
-        public void VerificarSenha(String senha)
+        public Boolean VerificarSenha(String senha)
         {
             Boolean caractereEspecial = Regex.IsMatch(senha, "[@#!$%&]");
             Boolean caractereNumerico = Regex.IsMatch(senha, "[0-9]");
@@ -20,11 +20,13 @@ namespace UaiFood.Controller
             {
                 System.Diagnostics.Debug.WriteLine("senha valida");
                 gerarHash(senha);
+                return true;
             }
             else
             {
                 System.Diagnostics.Debug.WriteLine("senha fornecida não atende aos padroes pedidos");
-                // Mensagem de erro 
+                // Mensagem de erro
+                return false;
             }
         }
         private void gerarHash(string senha)
