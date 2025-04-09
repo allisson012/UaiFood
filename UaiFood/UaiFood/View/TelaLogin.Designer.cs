@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // button1
@@ -41,6 +42,17 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(789, 181);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(60, 15);
+            linkLabel1.TabIndex = 1;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "linkLabel1";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // TelaLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -48,6 +60,7 @@
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1180, 541);
+            Controls.Add(linkLabel1);
             Controls.Add(button1);
             MaximizeBox = false;
             Name = "TelaLogin";
@@ -55,10 +68,12 @@
             Text = "UaiFood";
             Load += TelaLogin_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button button1;
+        private LinkLabel linkLabel1;
     }
 }

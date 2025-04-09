@@ -21,5 +21,10 @@ namespace UaiFood
             TelaCadastroRestaurante t = new TelaCadastroRestaurante();
             t.Show();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
