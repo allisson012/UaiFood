@@ -30,7 +30,7 @@
         {
             button1 = new Button();
             txtSenha = new TextBox();
-            textBox1 = new TextBox();
+            txtEmail = new TextBox();
             linkLabel1 = new LinkLabel();
             button2 = new Button();
             button3 = new Button();
@@ -43,9 +43,10 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(842, 40);
+            button1.Location = new Point(845, 37);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(304, 30);
+            button1.Size = new Size(300, 33);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -55,23 +56,21 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(637, 459);
-            txtSenha.Margin = new Padding(3, 2, 3, 2);
+            txtSenha.Location = new Point(634, 449);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(494, 22);
+            txtSenha.Size = new Size(565, 27);
             txtSenha.TabIndex = 4;
             txtSenha.UseSystemPasswordChar = true;
             // 
-            // textBox1
+            // txtEmail
             // 
-            textBox1.BackColor = Color.FromArgb(217, 217, 217);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 12F);
-            textBox1.Location = new Point(637, 340);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(494, 22);
-            textBox1.TabIndex = 5;
+            txtEmail.BackColor = Color.FromArgb(217, 217, 217);
+            txtEmail.BorderStyle = BorderStyle.None;
+            txtEmail.Font = new Font("Segoe UI", 12F);
+            txtEmail.Location = new Point(634, 329);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(565, 27);
+            txtEmail.TabIndex = 5;
             // 
             // linkLabel1
             // 
@@ -79,9 +78,9 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(893, 236);
+            linkLabel1.Location = new Point(888, 230);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(196, 20);
+            linkLabel1.Size = new Size(243, 25);
             linkLabel1.TabIndex = 6;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Clique aqui para se cadastrar";
@@ -94,18 +93,20 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(1100, 517);
+            button2.Location = new Point(1096, 514);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(172, 42);
+            button2.Size = new Size(175, 40);
             button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(431, 197);
+            button3.Location = new Point(493, 263);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(86, 31);
             button3.TabIndex = 8;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
@@ -113,18 +114,19 @@
             // 
             // TelaLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1350, 729);
+            ClientSize = new Size(1348, 721);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
-            Controls.Add(textBox1);
+            Controls.Add(txtEmail);
             Controls.Add(txtSenha);
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "TelaLogin";
             StartPosition = FormStartPosition.CenterScreen;
@@ -138,7 +140,7 @@
 
         private Button button1;
         private TextBox txtSenha;
-        private TextBox textBox1;
+        private TextBox txtEmail;
         private LinkLabel linkLabel1;
         private Button button2;
         private Button button3;

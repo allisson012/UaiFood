@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -26,6 +27,28 @@ namespace UaiFood.View
         {
             TelaCadastroRestaurante telaCadastroRestaurante = new TelaCadastroRestaurante();
             telaCadastroRestaurante.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string cnpj = txtCNPJ.Text;
+            string senha = txtSenha.Text;
+
+            //fazer controller de cnpj
+
+            PasswordController passwordController = new PasswordController();
+            
+                if (passwordController.VerificarSenha(senha) == true)
+                {
+                    TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+                    telaPrincipalCliente.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Senha inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            
         }
     }
 }

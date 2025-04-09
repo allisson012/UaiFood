@@ -30,8 +30,22 @@ namespace UaiFood
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-            telaPrincipalCliente.Show();
+            string email = txtEmail.Text;
+            string senha = txtSenha.Text;
+
+            PasswordController passwordController = new PasswordController();   
+            EmailController emailController = new EmailController();    
+            if (emailController.ValidarEmail(email) == true)
+            {
+                TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+                telaPrincipalCliente.Show();               
+
+            }
+            else
+            {
+                MessageBox.Show("Email inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
