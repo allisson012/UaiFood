@@ -128,6 +128,8 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
+            MaximumSize = new Size(1366, 768);
+            MinimumSize = new Size(1366, 768);
             Name = "TelaLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
