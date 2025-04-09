@@ -36,18 +36,20 @@
             // picturePerfil
             // 
             picturePerfil.Image = Properties.Resources.FotoPerfil;
-            picturePerfil.Location = new Point(77, 149);
+            picturePerfil.Location = new Point(77, 148);
+            picturePerfil.Margin = new Padding(3, 2, 3, 2);
             picturePerfil.Name = "picturePerfil";
-            picturePerfil.Size = new Size(192, 237);
+            picturePerfil.Size = new Size(191, 235);
             picturePerfil.SizeMode = PictureBoxSizeMode.Zoom;
             picturePerfil.TabIndex = 0;
             picturePerfil.TabStop = false;
             // 
             // button1
             // 
-            button1.Location = new Point(77, 392);
+            button1.Location = new Point(77, 387);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(67, 29);
+            button1.Size = new Size(34, 30);
             button1.TabIndex = 1;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -55,13 +57,14 @@
             // 
             // TelaCriarPerfilCliente
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaCriarPerfilCliente;
-            ClientSize = new Size(1348, 721);
+            ClientSize = new Size(1350, 729);
             Controls.Add(button1);
             Controls.Add(picturePerfil);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "TelaCriarPerfilCliente";
             StartPosition = FormStartPosition.CenterScreen;

@@ -41,10 +41,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(905, 38);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(911, 43);
             button1.Name = "button1";
-            button1.Size = new Size(252, 40);
+            button1.Size = new Size(246, 30);
             button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -54,10 +53,11 @@
             maskedTextBox1.BackColor = Color.FromArgb(217, 217, 217);
             maskedTextBox1.BorderStyle = BorderStyle.None;
             maskedTextBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBox1.Location = new Point(641, 351);
+            maskedTextBox1.Location = new Point(645, 356);
+            maskedTextBox1.Margin = new Padding(3, 2, 3, 2);
             maskedTextBox1.Mask = "00,000,000/0000-00";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(557, 27);
+            maskedTextBox1.Size = new Size(487, 22);
             maskedTextBox1.TabIndex = 2;
             // 
             // txtSenha
@@ -65,9 +65,10 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(641, 479);
+            txtSenha.Location = new Point(645, 481);
+            txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(565, 27);
+            txtSenha.Size = new Size(494, 22);
             txtSenha.TabIndex = 3;
             txtSenha.UseSystemPasswordChar = true;
             // 
@@ -77,9 +78,9 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(892, 248);
+            linkLabel1.Location = new Point(899, 250);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(243, 25);
+            linkLabel1.Size = new Size(196, 20);
             linkLabel1.TabIndex = 4;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Clique aqui para se cadastrar";
@@ -87,15 +88,16 @@
             // 
             // TelaLoginRestaurante
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaCadastroRestautrante;
-            ClientSize = new Size(1348, 721);
+            ClientSize = new Size(1350, 729);
             Controls.Add(linkLabel1);
             Controls.Add(txtSenha);
             Controls.Add(maskedTextBox1);
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "TelaLoginRestaurante";
             StartPosition = FormStartPosition.CenterScreen;

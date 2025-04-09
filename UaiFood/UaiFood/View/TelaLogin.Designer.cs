@@ -43,9 +43,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(725, 23);
+            button1.Location = new Point(842, 40);
             button1.Name = "button1";
-            button1.Size = new Size(281, 30);
+            button1.Size = new Size(304, 30);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -55,7 +55,7 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(551, 337);
+            txtSenha.Location = new Point(637, 459);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(494, 22);
@@ -67,7 +67,7 @@
             textBox1.BackColor = Color.FromArgb(217, 217, 217);
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Segoe UI", 12F);
-            textBox1.Location = new Point(551, 247);
+            textBox1.Location = new Point(637, 340);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(494, 22);
@@ -79,7 +79,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(775, 173);
+            linkLabel1.Location = new Point(893, 236);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(196, 20);
             linkLabel1.TabIndex = 6;
@@ -94,16 +94,16 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(957, 385);
+            button2.Location = new Point(1100, 517);
             button2.Name = "button2";
-            button2.Size = new Size(159, 30);
+            button2.Size = new Size(172, 42);
             button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(364, 291);
+            button3.Location = new Point(431, 197);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 8;
@@ -117,7 +117,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1180, 541);
+            ClientSize = new Size(1350, 729);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(linkLabel1);

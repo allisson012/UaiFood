@@ -23,6 +23,16 @@ namespace UaiFood.View
             telaLogin.Show();
         }
 
+        private void TelaCadastroRestaurante_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRepeteSenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
         {
             throw new NotImplementedException();
