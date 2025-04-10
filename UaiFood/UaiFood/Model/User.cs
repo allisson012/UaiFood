@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿/* System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,3 +38,4 @@ namespace UaiFood.Model
         }
     }
 }
+*/
