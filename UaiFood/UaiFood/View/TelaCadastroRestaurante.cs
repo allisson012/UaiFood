@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -31,6 +32,21 @@ namespace UaiFood.View
         private void txtRepeteSenha_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string cnpj = txtCNPJ.Text;
+
+            if(DocumentController.ValidarCNPJ(cnpj))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("CNPJ Inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
