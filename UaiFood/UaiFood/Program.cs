@@ -1,3 +1,5 @@
+using UaiFood.BancoDeDados;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
 
 namespace UaiFood
@@ -12,10 +14,12 @@ namespace UaiFood
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            EmailController e = new EmailController();
-            e.ValidarEmail("allisson@gmail.com");
+            BancoDados bd = new BancoDados();
+            bd.estrutura();
+            bd.tabelas();
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaLogin());
+
         }
     }
 }
