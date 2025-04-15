@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using UaiFood.Model;
 namespace UaiFood.Controller
 {
     class PasswordController
     {
         private Byte[] salt = new byte[16];
-        public Boolean VerificarSenha(String senha)
+        public Boolean VerificarSenha(String senha,User user)
         {
             Boolean caractereEspecial = Regex.IsMatch(senha, "[@#!$%&]");
             Boolean caractereNumerico = Regex.IsMatch(senha, "[0-9]");
@@ -19,7 +20,7 @@ namespace UaiFood.Controller
             if (caractereEspecial && caractereNumerico && caractereMaiusculo && tamanho)
             {
                 System.Diagnostics.Debug.WriteLine("senha valida");
-                gerarHash(senha);
+                gerarHash(senha,user);
                 return true;
             }
             else
@@ -29,12 +30,12 @@ namespace UaiFood.Controller
                 return false;
             }
         }
-        private void gerarHash(string senha)
+        private void gerarHash(string senha , User user)
         {
             gerarSalt();
             var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
             Byte[] hash = pbkdf2.GetBytes(32);
-            // salvar no banco salt e hash 
+            
             System.Diagnostics.Debug.WriteLine(Convert.ToHexString(hash));
         }
         public void gerarSalt()

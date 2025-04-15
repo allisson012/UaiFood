@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace UaiFood.BancoDeDados
 {
+    using global::UaiFood.Model;
     using MySql.Data.MySqlClient;
 
     namespace UaiFood.BancoDeDados
@@ -28,7 +29,7 @@ namespace UaiFood.BancoDeDados
                 }
             }
 
-            public void estrutura()
+            public void createBank()
             {
                 Createconnection();
                 try
@@ -39,18 +40,21 @@ namespace UaiFood.BancoDeDados
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("deu certo");
+                        System.Diagnostics.Debug.WriteLine("banco de dados criado com sucesso");
                     }
 
-                    connection.ChangeDatabase(bancoDados); // muda para o novo banco depois de criar
+                    connection.ChangeDatabase(bancoDados); 
                 }
                 catch (Exception e)
                 {
                     System.Diagnostics.Debug.WriteLine("Erro estrutura: " + e.Message);
+                }finally
+                {
+                    connection.Close();
                 }
             }
 
-            public void tabelas()
+            public void createTable()
             {
                 string sql = @"
 CREATE TABLE IF NOT EXISTS users (
@@ -59,7 +63,8 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
-    cpf VARCHAR(14) NOT NULL UNIQUE
+    image BLOB,
+    cpf VARCHAR(14) UNIQUE
 );";
 
                 try
@@ -70,16 +75,21 @@ CREATE TABLE IF NOT EXISTS users (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("criei tabela");
+                        System.Diagnostics.Debug.WriteLine("tabela criada com sucesso");
                     }
-
-                    connection.Close();
                 }
                 catch (Exception e)
                 {
-                    System.Diagnostics.Debug.WriteLine("Erro tabelas: " + e.Message);
+                    System.Diagnostics.Debug.WriteLine("erro ao tentar criar tabela");
+                }
+                finally
+                {
                     connection.Close();
                 }
+            }
+            public void createUserBank(User user)
+            {
+
             }
         }
     }
