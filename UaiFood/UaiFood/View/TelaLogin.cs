@@ -33,27 +33,49 @@ namespace UaiFood
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
 
-            PasswordController passwordController = new PasswordController();   
-            EmailController emailController = new EmailController();    
+            PasswordController passwordController = new PasswordController();
+            EmailController emailController = new EmailController();
             if (emailController.ValidarEmail(email) == true)
             {
                 TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-                telaPrincipalCliente.Show();               
+                telaPrincipalCliente.Show();
 
             }
             else
             {
                 MessageBox.Show("Email inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //PasswordController p = new PasswordController();
-           // p.VerificarSenha("Allisson21#");
-           TelaCriarPerfilCliente telaCriarPerfilCliente = new TelaCriarPerfilCliente();
+            // p.VerificarSenha("Allisson21#");
+            TelaCriarPerfilCliente telaCriarPerfilCliente = new TelaCriarPerfilCliente();
             telaCriarPerfilCliente.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string codigo = CodigoController.GerarCodigoNumerico();
+            string destinatario = txtEmail.Text;
+            EmailController emailController = new EmailController();
+            Boolean emailValid = emailController.ValidarEmail(destinatario);
+            EmailSender emailSender = new EmailSender();
+            if(destinatario != null && !string.IsNullOrEmpty(destinatario) && emailValid){
+                if (emailSender.EnviarEmail(destinatario, codigo))
+                {
+                    MessageBox.Show("Código de recuperação enviado com sucesso");
+                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta();
+                    telaRecuperacaoDeConta.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Digite um email");
+            }
+          
         }
     }
 }

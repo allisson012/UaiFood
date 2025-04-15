@@ -34,6 +34,7 @@
             linkLabel1 = new LinkLabel();
             button2 = new Button();
             button3 = new Button();
+            linkLabel2 = new LinkLabel();
             SuspendLayout();
             // 
             // button1
@@ -112,6 +113,17 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(639, 493);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(120, 20);
+            linkLabel2.TabIndex = 9;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Esqueceu senha?";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // TelaLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -119,6 +131,7 @@
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1348, 721);
+            Controls.Add(linkLabel2);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
@@ -146,5 +159,6 @@
         private LinkLabel linkLabel1;
         private Button button2;
         private Button button3;
+        private LinkLabel linkLabel2;
     }
 }
