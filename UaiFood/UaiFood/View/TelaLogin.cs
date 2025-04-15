@@ -60,14 +60,22 @@ namespace UaiFood
         {
             string codigo = CodigoController.GerarCodigoNumerico();
             string destinatario = txtEmail.Text;
+            EmailController emailController = new EmailController();
+            Boolean emailValid = emailController.ValidarEmail(destinatario);
             EmailSender emailSender = new EmailSender();
-
-            if(emailSender.EnviarEmail(destinatario, codigo))
-            {
-                MessageBox.Show("Código de recuperação enviado com sucesso");
+            if(destinatario != null && !string.IsNullOrEmpty(destinatario) && emailValid){
+                if (emailSender.EnviarEmail(destinatario, codigo))
+                {
+                    MessageBox.Show("Código de recuperação enviado com sucesso");
+                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta();
+                    telaRecuperacaoDeConta.Show();
+                }
             }
-            TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta();
-            telaRecuperacaoDeConta.Show();
+            else
+            {
+                MessageBox.Show("Digite um email");
+            }
+          
         }
     }
 }
