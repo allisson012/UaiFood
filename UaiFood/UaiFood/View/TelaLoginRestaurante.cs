@@ -34,20 +34,7 @@ namespace UaiFood.View
             string cnpj = txtCNPJ.Text;
             string senha = txtSenha.Text;
 
-            //fazer controller de cnpj
-
-            PasswordController passwordController = new PasswordController();
-            
-                if (passwordController.VerificarSenha(senha) == true)
-                {
-                    TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-                    telaPrincipalCliente.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Senha inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+        
             
         }
     }

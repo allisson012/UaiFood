@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-
+using UaiFood.Model;
 namespace UaiFood.BancoDeDados
 {
-    using global::UaiFood.Model;
+    
     using MySql.Data.MySqlClient;
+   
 
     namespace UaiFood.BancoDeDados
     {
@@ -87,10 +88,39 @@ CREATE TABLE IF NOT EXISTS users (
                     connection.Close();
                 }
             }
-            public void createUserBank(User user)
+         public void CreateUserBank(User u)
             {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
 
+                    string sql = "INSERT INTO users (nome, email, hash, salt) VALUES (@nome, @email, @hash, @salt)";
+
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        String email = u.getEmail();
+                        byte[] hash = u.getHash();
+                        byte[] salt = u.getSalt();
+                        cmd.Parameters.AddWithValue("@nome", "allisson");
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@hash", hash);
+                        cmd.Parameters.AddWithValue("@salt", salt);
+
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("inseriu");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                }
             }
+
         }
     }
 }
