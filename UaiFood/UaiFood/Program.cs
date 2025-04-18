@@ -19,8 +19,8 @@ namespace UaiFood
             bd.createBank();
             bd.createTable();
             ApplicationConfiguration.Initialize();
-            TelaCadastro telaCadastro = new TelaCadastro();
-            Application.Run(telaCadastro);
+            TelaLogin telaLogin = new TelaLogin();
+            Application.Run(telaLogin);
 
         }
     }
