@@ -32,19 +32,8 @@ namespace UaiFood
         {
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
-
-            PasswordController passwordController = new PasswordController();
-            EmailController emailController = new EmailController();
-            if (emailController.ValidarEmail(email) == true)
-            {
-                TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-                telaPrincipalCliente.Show();
-
-            }
-            else
-            {
-                MessageBox.Show("Email inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            var userController = new UserController();
+            userController.UserLogin(email, senha);
 
         }
 

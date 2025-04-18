@@ -63,6 +63,10 @@ namespace UaiFood.Model
         {
             return this.UserId;
         }
+        public void setId(int id)
+        {
+            this.UserId = id;
+        }
         public Address getAddress()
         {
             return this.address;

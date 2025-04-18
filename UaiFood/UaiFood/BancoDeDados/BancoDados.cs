@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using UaiFood.Model;
 namespace UaiFood.BancoDeDados
 {
-    
+    using System.Data;
     using MySql.Data.MySqlClient;
    
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS users (
                     connection.Close();
                 }
             }
-         public void CreateUserBank(User u)
+            public void RegisterUserBank(User u)
             {
                 try
                 {
@@ -104,9 +104,10 @@ CREATE TABLE IF NOT EXISTS users (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         String email = u.getEmail();
+                        String nome = email.Substring(0, email.IndexOf('@'));
                         byte[] hash = u.getHash();
                         byte[] salt = u.getSalt();
-                        cmd.Parameters.AddWithValue("@nome", "allisson");
+                        cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@hash", hash);
                         cmd.Parameters.AddWithValue("@salt", salt);
@@ -120,6 +121,52 @@ CREATE TABLE IF NOT EXISTS users (
                     System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
                 }
             }
+            public User getSenhaUserBank(String email)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "SELECT * FROM users WHERE email = @email";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var user = new User();
+                                user.setId(reader.GetInt32("id"));
+                                user.setNome(reader.GetString("nome"));
+                                user.setEmail(reader.GetString("email"));
+                                user.setHash(GetBytesFromReader(reader, "hash"));
+                                user.setSalt(GetBytesFromReader(reader, "salt"));
+                                return user;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return null;
+                }
+            }
+            private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
+            {
+                long size = reader.GetBytes(reader.GetOrdinal(columnName), 0, null, 0, 0); // pega o tamanho
+                byte[] buffer = new byte[size];
+                reader.GetBytes(reader.GetOrdinal(columnName), 0, buffer, 0, (int)size); // copia os bytes
+                return buffer;
+            }
+
 
         }
     }
