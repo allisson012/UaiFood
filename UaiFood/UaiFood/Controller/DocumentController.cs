@@ -13,10 +13,10 @@ namespace UaiFood.Controller
         {
             cnpj = Regex.Replace(cnpj, "[^0-9]", "");
 
-            if(cnpj.Length != 14)
+            if (cnpj.Length != 14)
                 return false;
 
-            if(new string(cnpj[0], cnpj.Length) == cnpj)
+            if (new string(cnpj[0], cnpj.Length) == cnpj)
                 return false;
 
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -45,5 +45,6 @@ namespace UaiFood.Controller
 
             return cnpj.EndsWith(digito);
         }
+        
     }
 }
