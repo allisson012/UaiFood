@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
 using UaiFood.View;
 
@@ -39,7 +40,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            var userController = new UserController();
+            userController.deleteUser(3);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
