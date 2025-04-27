@@ -30,6 +30,19 @@ namespace UaiFood.Controller
             }
             else { return false; }
         }
+        public void deleteUser(int id)
+        {
+            var bancoDados = new BancoDados();
+            bool deletado = bancoDados.deleteUserBank(id);
+            if(deletado)
+            {
+                MessageBox.Show("Usuario deletado com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("Erro ao deletar usuario");
+            }
+        }
         public Boolean UserLogin(string email , string senha)
         {
             var bancoDados = new BancoDados();

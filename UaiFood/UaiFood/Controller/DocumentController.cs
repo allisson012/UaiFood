@@ -46,10 +46,8 @@ namespace UaiFood.Controller
 
             return cnpj.EndsWith(digito);
         }
-<<<<<<< HEAD
-        
-=======
-     
+
+
         public bool validateCpf(string cpf)
         {
             cpf = Regex.Replace(cpf, "[^0-9]", "");
@@ -145,6 +143,6 @@ namespace UaiFood.Controller
             }
         }
 
->>>>>>> main
+
     }
 }

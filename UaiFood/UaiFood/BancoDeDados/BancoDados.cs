@@ -167,7 +167,38 @@ CREATE TABLE IF NOT EXISTS users (
                 return buffer;
             }
 
-
+         public Boolean deleteUserBank(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "DELETE FROM users WHERE id = @id";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            System.Diagnostics.Debug.WriteLine("Usuário deletado");
+                            return true;
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Nenhum usuário encontrado com esse ID");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("erro " + ex.Message);
+                    return false;
+                }
+            }
         }
     }
 }
