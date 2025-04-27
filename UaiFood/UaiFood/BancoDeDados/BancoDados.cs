@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS users (
                     connection.Close();
                 }
             }
-            public void RegisterUserBank(User u)
+            public Boolean RegisterUserBank(User u)
             {
                 try
                 {
@@ -114,11 +114,13 @@ CREATE TABLE IF NOT EXISTS users (
 
                         cmd.ExecuteNonQuery();
                         System.Diagnostics.Debug.WriteLine("inseriu");
+                        return true;
                     }
                 }
                 catch (MySqlException ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return false;
                 }
             }
             public User getSenhaUserBank(String email)

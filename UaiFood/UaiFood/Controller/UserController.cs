@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Model;
+using UaiFood.View;
 
 namespace UaiFood.Controller
 {
     class UserController
     {
-        public Boolean createUser(String email, String senha)
+        public void createUser(String email, String senha)
         {
             User u = new User();
             EmailController emailController = new EmailController();
@@ -25,10 +26,22 @@ namespace UaiFood.Controller
             {
                 System.Diagnostics.Debug.WriteLine("email é valido");
                 var bancoDados = new BancoDados();
-                bancoDados.RegisterUserBank(u);
-                return true;
+                bool userRegister = bancoDados.RegisterUserBank(u);
+                if(userRegister)
+                {
+                    MessageBox.Show("Usuario cadastrado com sucesso");
+                    var telaPrincipalCliente = new TelaPrincipalCliente();
+                    telaPrincipalCliente.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao cadastrar usuario");
+                }
             }
-            else { return false; }
+            else
+            {
+                MessageBox.Show("Insira um email ou senha Validas");
+            }
         }
         public void deleteUser(int id)
         {
@@ -43,7 +56,7 @@ namespace UaiFood.Controller
                 MessageBox.Show("Erro ao deletar usuario");
             }
         }
-        public Boolean UserLogin(string email , string senha)
+        public void UserLogin(string email , string senha)
         {
             var bancoDados = new BancoDados();
             User u = bancoDados.getSenhaUserBank(email);
@@ -53,21 +66,19 @@ namespace UaiFood.Controller
                 bool senhaValida = passwordController.compareSenha(senha, u);
                 if(senhaValida)
                 {
-                    System.Diagnostics.Debug.WriteLine("login valido");
-                    return true;
+                    MessageBox.Show("Usuario logado com sucesso");
+                    var telaPrincipalCliente = new TelaPrincipalCliente();
+                    telaPrincipalCliente.Show();
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("login invalido");
-                    return false;
+                    MessageBox.Show("erro ao logar usuario email ou senha incorretos");
                 }
             }
             else
             {
                 MessageBox.Show("email do usuario não cadastrado no banco");
             }
-
-                return false;
         }
     }
 }
