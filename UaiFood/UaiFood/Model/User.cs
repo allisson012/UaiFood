@@ -17,7 +17,9 @@ namespace UaiFood.Model
         private byte[] photo;
         private byte[] hash;
         private byte[] salt;
-        private Address address; 
+        private DateOnly data;
+        private Address address;
+        private string telefone;
         private long cpf;
         public String getNome()
         {
@@ -59,6 +61,15 @@ namespace UaiFood.Model
         {
             this.salt = salt;
         }
+        public DateOnly getData()
+        {
+            return this.data;
+        }
+        public void setNome(DateOnly data)
+        {
+            this.data = data;
+        }
+        // pensando em fazer na hora de setar recebendo uma string e um get retorna a data ja em string
         public int getUserId()
         {
             return this.UserId;
@@ -74,6 +85,14 @@ namespace UaiFood.Model
         public void setAddress(Address address)
         {
             this.address = address;
+        }
+        public String getTelefone()
+        {
+            return this.telefone;
+        }
+        public void setTelefone(string telefone)
+        {
+            this.telefone = telefone;
         }
         public long getCpf()
         {

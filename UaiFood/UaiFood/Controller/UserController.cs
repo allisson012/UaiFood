@@ -27,7 +27,7 @@ namespace UaiFood.Controller
                 System.Diagnostics.Debug.WriteLine("email é valido");
                 var bancoDados = new BancoDados();
                 bool userRegister = bancoDados.RegisterUserBank(u);
-                if(userRegister)
+                if (userRegister)
                 {
                     MessageBox.Show("Usuario cadastrado com sucesso");
                     var telaPrincipalCliente = new TelaPrincipalCliente();
@@ -42,6 +42,12 @@ namespace UaiFood.Controller
             {
                 MessageBox.Show("Insira um email ou senha Validas");
             }
+        }
+        public User consultUser(int id)
+        {
+            var bancoDados = new BancoDados();
+            var user = bancoDados.findUserById(id);
+            return user;
         }
         public void deleteUser(int id)
         {

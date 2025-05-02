@@ -40,11 +40,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var imageController = new ImageController();
-            byte[] image = imageController.SelectImage();
-            Image img = imageController.ExibirImage(image);
-            pictureBox1.Image = img;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            var ad = new addressController();
+            ad.viaCepBusca("28950209");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

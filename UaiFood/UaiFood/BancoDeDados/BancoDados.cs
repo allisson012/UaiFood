@@ -44,12 +44,13 @@ namespace UaiFood.BancoDeDados
                         System.Diagnostics.Debug.WriteLine("banco de dados criado com sucesso");
                     }
 
-                    connection.ChangeDatabase(bancoDados); 
+                    connection.ChangeDatabase(bancoDados);
                 }
                 catch (Exception e)
                 {
                     System.Diagnostics.Debug.WriteLine("Erro estrutura: " + e.Message);
-                }finally
+                }
+                finally
                 {
                     connection.Close();
                 }
@@ -168,8 +169,9 @@ CREATE TABLE IF NOT EXISTS users (
                 reader.GetBytes(reader.GetOrdinal(columnName), 0, buffer, 0, (int)size); // copia os bytes
                 return buffer;
             }
-
-         public Boolean deleteUserBank(int id)
+            // editUser
+            // Consulat user
+            public Boolean deleteUserBank(int id)
             {
                 try
                 {
@@ -200,6 +202,47 @@ CREATE TABLE IF NOT EXISTS users (
                     System.Diagnostics.Debug.WriteLine("erro " + ex.Message);
                     return false;
                 }
+            }
+
+            public User findUserById(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    String sql = "SELECT * FROM users WHERE id = @id";
+                    using(var cmd = new MySqlCommand(sql,connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using(var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var user = new User();
+                                user.setId(reader.GetInt32("id"));
+                                user.setNome(reader.GetString("nome"));
+                                user.setEmail(reader.GetString("email"));
+                                user.setHash(GetBytesFromReader(reader, "hash"));
+                                user.setSalt(GetBytesFromReader(reader, "salt"));
+                                String cpf = reader.GetString("cep");
+                                user.setCpf(long.Parse(cpf));
+                                return user;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+                return null;
             }
         }
     }

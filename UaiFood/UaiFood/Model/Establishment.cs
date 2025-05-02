@@ -16,7 +16,5 @@ namespace UaiFood.Model
         private int cep;
         private Cardapio cardapio;
         private long telefone;
-
-
     }
 }
