@@ -32,14 +32,16 @@
             // 
             // TelaPrincipalCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalCliente;
             ClientSize = new Size(1350, 729);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
+            MaximumSize = new Size(1366, 768);
+            MinimumSize = new Size(1366, 768);
             Name = "TelaPrincipalCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

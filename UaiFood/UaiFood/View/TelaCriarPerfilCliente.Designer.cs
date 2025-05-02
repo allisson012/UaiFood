@@ -57,8 +57,8 @@
             // 
             // TelaCriarPerfilCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCriarPerfilCliente;
             ClientSize = new Size(1350, 729);
             Controls.Add(button1);

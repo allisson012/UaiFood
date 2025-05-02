@@ -43,9 +43,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(747, 27);
+            button1.Location = new Point(855, 45);
             button1.Name = "button1";
-            button1.Size = new Size(269, 30);
+            button1.Size = new Size(300, 30);
             button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -112,8 +112,8 @@
             // 
             // TelaCadastro
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastro;
             ClientSize = new Size(1350, 729);
             Controls.Add(button3);
