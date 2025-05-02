@@ -32,11 +32,15 @@
             // 
             // TelaRecuperacaoDeConta
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.Salvar_nova_senha;
-            ClientSize = new Size(782, 833);
+            ClientSize = new Size(784, 841);
+            Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(800, 880);
+            MinimumSize = new Size(800, 880);
             Name = "TelaRecuperacaoDeConta";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaRecuperacaoDeConta";
             ResumeLayout(false);
         }

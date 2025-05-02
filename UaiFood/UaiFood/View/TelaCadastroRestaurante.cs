@@ -38,7 +38,7 @@ namespace UaiFood.View
         {
             string cnpj = txtCNPJ.Text;
 
-            if(DocumentController.ValidarCNPJ(cnpj))
+            if (DocumentController.ValidarCNPJ(cnpj))
             {
 
             }
@@ -46,7 +46,22 @@ namespace UaiFood.View
             {
                 MessageBox.Show("CNPJ Inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
+        }
+
+        private void txtRepeteSenha_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtSenha_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)

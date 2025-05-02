@@ -42,10 +42,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(902, 39);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(916, 44);
             button1.Name = "button1";
-            button1.Size = new Size(257, 40);
+            button1.Size = new Size(234, 30);
             button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -55,10 +54,11 @@
             txtCNPJ.BackColor = Color.FromArgb(217, 217, 217);
             txtCNPJ.BorderStyle = BorderStyle.None;
             txtCNPJ.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCNPJ.Location = new Point(637, 353);
+            txtCNPJ.Location = new Point(641, 355);
+            txtCNPJ.Margin = new Padding(3, 2, 3, 2);
             txtCNPJ.Mask = "00,000,000/0000-00";
             txtCNPJ.Name = "txtCNPJ";
-            txtCNPJ.Size = new Size(557, 27);
+            txtCNPJ.Size = new Size(487, 22);
             txtCNPJ.TabIndex = 2;
             // 
             // txtSenha
@@ -66,9 +66,10 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(637, 476);
+            txtSenha.Location = new Point(641, 482);
+            txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(565, 27);
+            txtSenha.Size = new Size(494, 22);
             txtSenha.TabIndex = 3;
             txtSenha.UseSystemPasswordChar = true;
             // 
@@ -78,9 +79,9 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(902, 245);
+            linkLabel1.Location = new Point(900, 248);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(243, 25);
+            linkLabel1.Size = new Size(196, 20);
             linkLabel1.TabIndex = 4;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Clique aqui para se cadastrar";
@@ -93,27 +94,29 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(1047, 543);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(1049, 546);
             button2.Name = "button2";
-            button2.Size = new Size(174, 47);
+            button2.Size = new Size(170, 48);
             button2.TabIndex = 5;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // TelaLoginRestaurante
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastroRestautrante;
-            ClientSize = new Size(1348, 721);
+            ClientSize = new Size(1350, 729);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
             Controls.Add(txtSenha);
             Controls.Add(txtCNPJ);
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
+            MaximumSize = new Size(1366, 768);
+            MinimumSize = new Size(1366, 768);
             Name = "TelaLoginRestaurante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

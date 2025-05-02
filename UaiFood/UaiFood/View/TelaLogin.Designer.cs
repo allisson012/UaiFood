@@ -46,9 +46,9 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(739, 28);
+            button1.Location = new Point(842, 44);
             button1.Name = "button1";
-            button1.Size = new Size(262, 25);
+            button1.Size = new Size(309, 25);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -58,7 +58,7 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(555, 337);
+            txtSenha.Location = new Point(628, 460);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(494, 22);
@@ -70,7 +70,7 @@
             txtEmail.BackColor = Color.FromArgb(217, 217, 217);
             txtEmail.BorderStyle = BorderStyle.None;
             txtEmail.Font = new Font("Segoe UI", 12F);
-            txtEmail.Location = new Point(555, 247);
+            txtEmail.Location = new Point(628, 335);
             txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(494, 22);
@@ -82,7 +82,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(777, 172);
+            linkLabel1.Location = new Point(889, 233);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(196, 20);
             linkLabel1.TabIndex = 6;
@@ -97,9 +97,9 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(959, 386);
+            button2.Location = new Point(1099, 515);
             button2.Name = "button2";
-            button2.Size = new Size(153, 30);
+            button2.Size = new Size(174, 46);
             button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -117,7 +117,7 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(559, 370);
+            linkLabel2.Location = new Point(628, 495);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(96, 15);
             linkLabel2.TabIndex = 9;
@@ -136,12 +136,13 @@
             // 
             // TelaLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1180, 545);
-            Controls.Add(pictureBox1);
+
+            ClientSize = new Size(1350, 729);
+
             Controls.Add(linkLabel2);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -151,8 +152,8 @@
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            MaximumSize = new Size(1197, 586);
-            MinimumSize = new Size(1196, 584);
+            MaximumSize = new Size(1366, 768);
+            MinimumSize = new Size(1366, 768);
             Name = "TelaLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
