@@ -35,6 +35,8 @@
             button2 = new Button();
             button3 = new Button();
             linkLabel2 = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -104,7 +106,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(428, 230);
+            button3.Location = new Point(555, 169);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 8;
@@ -123,13 +125,24 @@
             linkLabel2.Text = "Esqueceu senha?";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(317, 157);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(110, 136);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // TelaLogin
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaLogin;
             BackgroundImageLayout = ImageLayout.Stretch;
+
             ClientSize = new Size(1350, 729);
+
             Controls.Add(linkLabel2);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -145,6 +158,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
             Load += TelaLogin_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +172,6 @@
         private Button button2;
         private Button button3;
         private LinkLabel linkLabel2;
+        private PictureBox pictureBox1;
     }
 }

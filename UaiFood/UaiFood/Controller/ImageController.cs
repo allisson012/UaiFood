@@ -37,17 +37,18 @@ namespace UaiFood.Controller
         {
             try
             {
-                using (MemoryStream ms = new MemoryStream(image))
-                {
-                    return Image.FromStream(ms);
-                }
-            }catch(Exception e)
-            {
-                return null; 
+                MemoryStream ms = new MemoryStream(image);
+                Image img = Image.FromStream(ms);
+                Image finalImage = new Bitmap(img);
+                ms.Close();
+                return finalImage;
             }
-
+            catch (Exception e)
+            {
+                return null;
+            }
         }
-        
+
 
     }
 }

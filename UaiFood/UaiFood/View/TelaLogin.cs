@@ -40,8 +40,8 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var userController = new UserController();
-            userController.deleteUser(3);
+            var ad = new addressController();
+            ad.viaCepBusca("28950209");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -51,7 +51,8 @@ namespace UaiFood
             EmailController emailController = new EmailController();
             Boolean emailValid = emailController.ValidarEmail(destinatario);
             EmailSender emailSender = new EmailSender();
-            if(destinatario != null && !string.IsNullOrEmpty(destinatario) && emailValid){
+            if (destinatario != null && !string.IsNullOrEmpty(destinatario) && emailValid)
+            {
                 if (emailSender.EnviarEmail(destinatario, codigo))
                 {
                     MessageBox.Show("Código de recuperação enviado com sucesso");
@@ -63,7 +64,12 @@ namespace UaiFood
             {
                 MessageBox.Show("Digite um email");
             }
-          
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
