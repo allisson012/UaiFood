@@ -11,8 +11,7 @@ namespace UaiFood.Controller
     class addressController
     {
         public async void viaCepBusca(string cep)
-        {
-            
+        {  
             if (string.IsNullOrWhiteSpace(cep))
             {
                 MessageBox.Show("Campo está vazio", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -36,7 +35,6 @@ namespace UaiFood.Controller
                         MessageBox.Show("CEP não encontrado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
-
                     string estado = retorno.uf;
                     string cidade = retorno.localidade;
                     string bairro = retorno.bairro;
