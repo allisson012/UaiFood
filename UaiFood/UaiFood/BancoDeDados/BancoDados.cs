@@ -91,6 +91,47 @@ CREATE TABLE IF NOT EXISTS users (
                     connection.Close();
                 }
             }
+            public void createTableEstablishment()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS establishment (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    hash BLOB NOT NULL,
+    salt BLOB NOT NULL,
+    cpf VARCHAR(14) UNIQUE,
+    telefone VARCHAR(11),
+    cnpj VARCHAR(14),
+    endereco VARCHAR(100),
+    estado VARCHAR(100),
+    cidade VARCHAR(100),
+    bairro VARCHAR(100),
+    rua VARCHAR(100),
+    numero VARCHAR(100),
+    complemento VARCHAR(100)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("tabela criada com sucesso");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("erro ao tentar criar tabela");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
             public Boolean RegisterUserBank(User u)
             {
                 try
