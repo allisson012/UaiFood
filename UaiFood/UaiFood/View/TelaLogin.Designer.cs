@@ -33,7 +33,6 @@
             txtEmail = new TextBox();
             linkLabel1 = new LinkLabel();
             button2 = new Button();
-            button3 = new Button();
             linkLabel2 = new LinkLabel();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -58,7 +57,7 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(628, 460);
+            txtSenha.Location = new Point(640, 480);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(494, 22);
@@ -70,7 +69,7 @@
             txtEmail.BackColor = Color.FromArgb(217, 217, 217);
             txtEmail.BorderStyle = BorderStyle.None;
             txtEmail.Font = new Font("Segoe UI", 12F);
-            txtEmail.Location = new Point(628, 335);
+            txtEmail.Location = new Point(640, 356);
             txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(494, 22);
@@ -82,7 +81,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(889, 233);
+            linkLabel1.Location = new Point(896, 248);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(196, 20);
             linkLabel1.TabIndex = 6;
@@ -97,27 +96,17 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(1099, 515);
+            button2.Location = new Point(1113, 546);
             button2.Name = "button2";
             button2.Size = new Size(174, 46);
             button2.TabIndex = 7;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
-            // button3
-            // 
-            button3.Location = new Point(555, 169);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 8;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(628, 495);
+            linkLabel2.Location = new Point(628, 521);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(96, 15);
             linkLabel2.TabIndex = 9;
@@ -139,12 +128,8 @@
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaLogin;
-            BackgroundImageLayout = ImageLayout.Stretch;
-
             ClientSize = new Size(1350, 729);
-
             Controls.Add(linkLabel2);
-            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
             Controls.Add(txtEmail);
@@ -170,7 +155,6 @@
         private TextBox txtEmail;
         private LinkLabel linkLabel1;
         private Button button2;
-        private Button button3;
         private LinkLabel linkLabel2;
         private PictureBox pictureBox1;
     }

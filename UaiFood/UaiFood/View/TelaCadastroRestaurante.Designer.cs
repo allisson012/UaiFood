@@ -34,6 +34,7 @@
             txtSenha = new TextBox();
             txtRepeteSenha = new TextBox();
             button2 = new Button();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // txtCNPJ
@@ -114,6 +115,20 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            linkLabel1.LinkColor = Color.Blue;
+            linkLabel1.Location = new Point(1029, 233);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(112, 20);
+            linkLabel1.TabIndex = 12;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Já possui conta?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // TelaCadastroRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -121,6 +136,7 @@
             BackgroundImage = Properties.Resources.TelaLoginRestaurante;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1350, 729);
+            Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(txtRepeteSenha);
             Controls.Add(txtSenha);
@@ -148,5 +164,6 @@
         private TextBox txtSenha;
         private Button button2;
         private TextBox txtRepeteSenha;
+        private LinkLabel linkLabel1;
     }
 }
