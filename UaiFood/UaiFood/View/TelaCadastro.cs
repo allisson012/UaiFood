@@ -26,12 +26,6 @@ namespace UaiFood.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            string email = txtEmail.Text;
-            string senha = txtSenha.Text;
-            string repeteSenha = txtRepeteSenha.Text;
-
-
         }
 
         private void TelaCadastro_Load(object sender, EventArgs e)
@@ -44,6 +38,8 @@ namespace UaiFood.View
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
             string repeteSenha = txtRepeteSenha.Text;
+            PasswordController passwordController = new PasswordController();
+           // if(!passwordController.VerificarSenha(senha)
             if (senha.Equals(repeteSenha) && !String.IsNullOrEmpty(email))
             {
                 UserController uc = new UserController();
@@ -53,6 +49,12 @@ namespace UaiFood.View
             {
                 System.Diagnostics.Debug.WriteLine("senha ou email invalido");
             }
-            }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.Show();
+        }
+    }
 }

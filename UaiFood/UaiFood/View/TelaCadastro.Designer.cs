@@ -34,6 +34,7 @@
             txtRepeteSenha = new TextBox();
             button2 = new Button();
             button3 = new Button();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // button1
@@ -102,13 +103,31 @@
             // 
             // button3
             // 
-            button3.Location = new Point(940, 544);
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1113, 545);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(172, 47);
             button3.TabIndex = 10;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            linkLabel1.LinkColor = Color.Blue;
+            linkLabel1.Location = new Point(917, 216);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(112, 20);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Já possui conta?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // TelaCadastro
             // 
@@ -116,6 +135,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastro;
             ClientSize = new Size(1350, 729);
+            Controls.Add(linkLabel1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(txtRepeteSenha);
@@ -141,5 +161,6 @@
         private TextBox txtRepeteSenha;
         private Button button2;
         private Button button3;
+        private LinkLabel linkLabel1;
     }
 }

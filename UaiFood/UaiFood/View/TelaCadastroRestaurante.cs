@@ -64,6 +64,12 @@ namespace UaiFood.View
 
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
+            telaLoginRestaurante.Show();
+        }
+
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
         {
             throw new NotImplementedException();
