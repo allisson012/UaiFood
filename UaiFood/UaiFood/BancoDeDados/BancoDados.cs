@@ -66,7 +66,9 @@ CREATE TABLE IF NOT EXISTS users (
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
     image BLOB,
-    cpf VARCHAR(14) UNIQUE
+    cpf VARCHAR(14) UNIQUE,
+    telefone VARCHAR(11),
+    data DATE
 );";
 
                 try

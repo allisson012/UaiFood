@@ -14,7 +14,7 @@ namespace UaiFood.Model
         private String senha;
         private long cnpj;
         private int cep;
-        private Cardapio cardapio;
+        private List<Cardapio> cardapio;
         private long telefone;
     }
 }
