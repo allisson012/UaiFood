@@ -22,9 +22,16 @@ namespace UaiFood.Controller
             }
             PasswordController passwordController = new PasswordController();
             u = passwordController.VerificarSenha(senha, u);
+            System.Diagnostics.Debug.WriteLine(u.getHash);
             if (u.getHash() == null)
             {
-                MessageBox.Show("A senha deve conter pelo menos 8 caracteres, 1 letra maiuscula, 1 letra minuscula e 1 número", "Senha inválida", (MessageBoxButtons)MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "A senha deve conter pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula e 1 número",
+                    "Senha inválida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                ); 
+                return;
             }
             if (u.getEmail() != null && u.getHash() != null)
             {

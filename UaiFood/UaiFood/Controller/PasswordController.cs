@@ -31,7 +31,7 @@ namespace UaiFood.Controller
             {
                 System.Diagnostics.Debug.WriteLine("senha fornecida não atende aos padroes pedidos");
                 // Mensagem de erro
-                return null;
+                return userRecebe;
             }
         }
         // faz a criptografia da senha atraves do algoritmo pbkdf2 que recebe como parametro a senha , salt , quantidade de iterações e padrão do algoritmo de criptografia que no caso é sha256 com isso ele gera um hash
