@@ -39,7 +39,6 @@ namespace UaiFood.View
             string senha = txtSenha.Text;
             string repeteSenha = txtRepeteSenha.Text;
             PasswordController passwordController = new PasswordController();
-           // if(!passwordController.VerificarSenha(senha)
             if (senha.Equals(repeteSenha) && !String.IsNullOrEmpty(email))
             {
                 UserController uc = new UserController();
