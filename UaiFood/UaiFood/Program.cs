@@ -18,6 +18,8 @@ namespace UaiFood
             BancoDados bd = new BancoDados();
             bd.createBank();
             bd.createTable();
+            bd.createProductTable();
+            bd.createCardapioTable();
             bd.createTableEstablishment();
             ApplicationConfiguration.Initialize();
             TelaLogin telaLogin = new TelaLogin();
