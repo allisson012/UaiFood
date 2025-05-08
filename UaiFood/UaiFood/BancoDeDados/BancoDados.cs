@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using UaiFood.Model;
+using System.Data;
+using UaiFood.BancoDeDados;
+using UaiFood.Controller;
+
 namespace UaiFood.BancoDeDados
 {
-    using System.Data;
-    using MySql.Data.MySqlClient;
-   
-
     namespace UaiFood.BancoDeDados
     {
         class BancoDados
@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -216,10 +216,10 @@ CREATE TABLE IF NOT EXISTS users (
                         connection.Open();
                     }
                     String sql = "SELECT * FROM users WHERE id = @id";
-                    using(var cmd = new MySqlCommand(sql,connection))
+                    using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        using(var reader = cmd.ExecuteReader())
+                        using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
@@ -246,9 +246,70 @@ CREATE TABLE IF NOT EXISTS users (
                 }
                 return null;
             }
+            public Boolean RegisterNewPassword(User user)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string email = user.getEmail();
+                    byte[] newPassword = user.getHash();
+                    byte[] newSalt = user.getSalt();
+
+                    string sql = "SELECT * FROM users WHERE email = @email";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                reader.Close(); // Fecha o reader antes de executar outro comando
+
+                                string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
+                                using (var updateCmd = new MySqlCommand(updateSql, connection))
+                                {
+                                    updateCmd.Parameters.AddWithValue("@hash", newPassword);
+                                    updateCmd.Parameters.AddWithValue("@salt", newSalt); // ESSENCIAL
+                                    updateCmd.Parameters.AddWithValue("@email", email);
+
+                                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                                    if (rowsAffected > 0)
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Senha atualizada com sucesso.");
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Erro ao atualizar a senha.");
+                                        return false;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Usuário não encontrado.");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+
         }
     }
 }
+
 
 
 

@@ -56,7 +56,7 @@
             txtEmail.BackColor = Color.FromArgb(217, 217, 217);
             txtEmail.BorderStyle = BorderStyle.None;
             txtEmail.Font = new Font("Segoe UI", 12F);
-            txtEmail.Location = new Point(637, 309);
+            txtEmail.Location = new Point(637, 315);
             txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(494, 22);
