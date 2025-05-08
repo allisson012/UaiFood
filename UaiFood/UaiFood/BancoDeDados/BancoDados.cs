@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS users (
             {
                 string sql = @"
 CREATE TABLE IF NOT EXISTS establishment (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    idRestaurante INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     hash BLOB NOT NULL,
