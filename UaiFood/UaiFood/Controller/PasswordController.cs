@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using UaiFood.Model;
 using System.Security.Policy;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 namespace UaiFood.Controller
 {
     class PasswordController
@@ -69,5 +70,6 @@ namespace UaiFood.Controller
             Byte[] hashCompare = pbkdf2.GetBytes(32);
             return hashCompare;
         }
+
     }
 }

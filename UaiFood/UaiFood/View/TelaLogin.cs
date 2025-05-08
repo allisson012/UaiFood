@@ -56,7 +56,7 @@ namespace UaiFood
                 if (emailSender.EnviarEmail(destinatario, codigo))
                 {
                     MessageBox.Show("Código de recuperação enviado com sucesso");
-                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta();
+                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta(codigo, destinatario);
                     telaRecuperacaoDeConta.Show();
                 }
             }
