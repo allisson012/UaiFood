@@ -63,6 +63,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap comida {
+            get {
+                object obj = ResourceManager.GetObject("comida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FotoPerfil {
             get {
                 object obj = ResourceManager.GetObject("FotoPerfil", resourceCulture);
@@ -83,9 +93,29 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaAdicionarProduto {
+            get {
+                object obj = ResourceManager.GetObject("TelaAdicionarProduto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaCadastro {
             get {
                 object obj = ResourceManager.GetObject("TelaCadastro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaCadastroRestaurante {
+            get {
+                object obj = ResourceManager.GetObject("TelaCadastroRestaurante", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
