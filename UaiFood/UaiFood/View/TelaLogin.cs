@@ -40,8 +40,6 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var ad = new addressController();
-            ad.viaCepBusca("28950209");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

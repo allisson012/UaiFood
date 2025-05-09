@@ -10,19 +10,19 @@ namespace UaiFood.Controller
 {
     class addressController
     {
-        public async void viaCepBusca(string cep)
-        {  
+        public async Task<Address> viaCepBuscaAsync(string cep)
+         {
             if (string.IsNullOrWhiteSpace(cep))
             {
                 MessageBox.Show("Campo está vazio", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                return null;
             }
 
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                     cep = cep.Trim().Replace("-", "");
+                    cep = cep.Trim().Replace("-", "");
                     string url = $"https://viacep.com.br/ws/{cep}/json/";
 
                     HttpResponseMessage response = await client.GetAsync(url);
@@ -30,26 +30,19 @@ namespace UaiFood.Controller
 
                     string json = await response.Content.ReadAsStringAsync();
                     var retorno = JsonSerializer.Deserialize<Address>(json);
-                    if (retorno.cep == null)
+                    if (retorno.Cep == null)
                     {
                         MessageBox.Show("CEP não encontrado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
+                        return null;
                     }
-                    string estado = retorno.uf;
-                    string cidade = retorno.localidade;
-                    string bairro = retorno.bairro;
-                    string complemento = retorno.complemento;
-                    string endereco = retorno.logradouro;
-                    System.Diagnostics.Debug.WriteLine(estado);
-                    System.Diagnostics.Debug.WriteLine(cidade);
-                    System.Diagnostics.Debug.WriteLine(bairro);
-                    System.Diagnostics.Debug.WriteLine(complemento);
-                    System.Diagnostics.Debug.WriteLine(endereco);
+
+                    return retorno;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro: " + ex.Message);
+                return null;
             }
         }
     }
