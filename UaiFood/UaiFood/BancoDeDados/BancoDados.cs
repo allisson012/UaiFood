@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -56,7 +56,7 @@ namespace UaiFood.BancoDeDados
                 }
             }
 
-            public void createTable()
+            public void createTableUser()
             {
                 string sql = @"
 CREATE TABLE IF NOT EXISTS users (
@@ -89,6 +89,75 @@ CREATE TABLE IF NOT EXISTS users (
                 finally
                 {
                     connection.Close();
+                }
+            }
+            public void createTableEstablishment()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS establishment (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    hash BLOB NOT NULL,
+    salt BLOB NOT NULL,
+    telefone VARCHAR(11) UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
+    estado VARCHAR(100),
+    cidade VARCHAR(100),
+    rua VARCHAR(100),
+    numero VARCHAR(100)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("tabela criada com sucesso");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("erro ao tentar criar tabela");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            public void RegisterEstablishmentBank()
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "INSERT INTO establishment (nome,email) VALUES(@nome,@email)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        string email = "a@gmail.com";
+                        string nome = "a veiculos";
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        if(cmd.ExecuteNonQuery() != 0)
+                        {
+                            long idRestaurante = cmd.LastInsertedId;
+                            // pega o ultimo id gerado
+                            // chamaria o metodo para criar cardapio e passaria o id do restaurante
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+
                 }
             }
             public Boolean RegisterUserBank(User u)
@@ -246,6 +315,104 @@ CREATE TABLE IF NOT EXISTS users (
                 }
                 return null;
             }
+
+            public void createCardapioTable()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS cardapio (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idRestaurante INT UNIQUE NOT NULL,
+    FOREIGN KEY (idRestaurante) REFERENCES establishment(id)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("Tabela criada com sucesso.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao tentar criar tabela: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public void createProductTable()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS produtos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    descricao VARCHAR(500),
+    preco DECIMAL(10, 2) NOT NULL,
+    categoria VARCHAR(100),
+    imagem BLOB,
+    idCardapio INT UNIQUE NOT NULL,
+    FOREIGN KEY (idCardapio) REFERENCES cardapio(id)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("Tabela criada com sucesso.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao tentar criar tabela: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public bool CadastrarProduto(Produto produto)
+            {
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+                    // para cadastrar o produto tenho que saber o id do restaurante e apartir desse id eu sei qual é o cardapio e do id do cardapio eu sei quais são os produtos do restaurante
+                    string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
+                                 "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", produto.Nome);
+                        cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
+                        cmd.Parameters.AddWithValue("@preco", produto.Preco);
+                        cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
+                        cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
+
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao cadastrar produto: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
             public Boolean RegisterNewPassword(User user)
             {
                 try
@@ -306,9 +473,127 @@ CREATE TABLE IF NOT EXISTS users (
                 }
             }
 
+
+        
+
+        public Produto ConsultarProdutoPorId(int id)
+        {
+            try
+            {
+                Createconnection();
+                connection.ChangeDatabase(bancoDados);
+
+                string sql = "SELECT * FROM produtos WHERE id = @id";
+
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Produto
+                            {
+                                Id = reader.GetInt32("id"),
+                                Nome = reader.GetString("nome"),
+                                Descricao = reader.GetString("descricao"),
+                                Preco = reader.GetDecimal("preco"),
+                                Categoria = reader.GetString("categoria"),
+                                Imagem = reader["imagem"] as byte[]
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Erro ao consultar produto: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return null;
         }
+
+        public List<Produto> ListarProdutos()
+        {
+            List<Produto> produtos = new List<Produto>();
+
+            try
+            {
+                Createconnection();
+                connection.ChangeDatabase(bancoDados);
+
+                string sql = "SELECT * FROM produtos";
+
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    connection.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            produtos.Add(new Produto
+                            {
+                                Id = reader.GetInt32("id"),
+                                Nome = reader.GetString("nome"),
+                                Descricao = reader.GetString("descricao"),
+                                Preco = reader.GetDecimal("preco"),
+                                Categoria = reader.GetString("categoria"),
+                                Imagem = reader["imagem"] as byte[]
+                                
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Erro ao listar produtos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return produtos;
+        }
+
+        public bool DeletarProduto(int id)
+        {
+            try
+            {
+                Createconnection();
+                connection.ChangeDatabase(bancoDados);
+
+                string sql = "DELETE FROM produtos WHERE id = @id";
+
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
     }
 }
+    }
+
 
 
 

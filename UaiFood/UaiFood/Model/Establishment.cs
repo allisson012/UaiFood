@@ -8,13 +8,15 @@ namespace UaiFood.Model
 {
     class Establishment
     {
-        private int id;
-        private String nome;
-        private String email;
-        private String senha;
-        private long cnpj;
-        private int cep;
-        private List<Cardapio> cardapio;
-        private long telefone;
+        private int id { set; get;}
+        private String nome { set; get;}
+        private String email { set; get; }
+        private byte [] hash { set; get; }
+        private byte [] salt { set; get; }
+        private String cnpj { set; get; }
+        private Address address { set; get; }
+        private List<Cardapio> cardapio { set; get; }
+        private String telefone { set; get; }
+        
     }
 }

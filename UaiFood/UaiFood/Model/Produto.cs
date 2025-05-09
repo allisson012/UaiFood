@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace UaiFood.Model
 {
-    class Produto
+    internal class Produto
     {
-        private List<Image> images;
-        private int idProduto;
-        private int preço;
-        private String title;
-        private String description;
-        // private estabelicimento 
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public decimal Preco { get; set; }
+        public string Categoria { get; set; }
+        public byte[] Imagem { get; set; }
+
+        public Produto() { }
+
+        public Produto(int id, string nome, string descricao, decimal preco, string categoria, byte[] imagem)
+        {
+            Id = id;
+            Nome = nome;
+            Descricao = descricao;
+            Preco = preco;
+            Categoria = categoria;
+            Imagem = imagem;
+        }
     }
 }
+
