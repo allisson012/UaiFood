@@ -1,54 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
 
-namespace UaiFood.Controller
-{
-    class ImageController
+    namespace UaiFood.Controller
     {
-        public byte [] SelectImage()
+        class ImageController
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.InitialDirectory = "c:\\";
-            openFile.Filter = "Imagens (*.png; *.jpeg; *.jpg) |*.png; *.jpeg; *.jpg";
+            public byte [] SelectImage()
+            {
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.InitialDirectory = "c:\\";
+                openFile.Filter = "Imagens (*.png; *.jpeg; *.jpg) |*.png; *.jpeg; *.jpg";
             
-            if(openFile.ShowDialog() == DialogResult.OK)
-            {
-                string caminho = openFile.FileName;
-                System.Diagnostics.Debug.WriteLine(caminho);
-                return ConvertImage(caminho);
+                if(openFile.ShowDialog() == DialogResult.OK)
+                {
+                    string caminho = openFile.FileName;
+                    System.Diagnostics.Debug.WriteLine(caminho);
+                    return ConvertImage(caminho);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            public byte[] ConvertImage(string caminho)
             {
-                return null;
+                byte[] ImageBytes = File.ReadAllBytes(caminho);
+                System.Diagnostics.Debug.WriteLine("Tamanho do array de bytes: " + ImageBytes.Length + " bytes");
+                return ImageBytes;
             }
-        }
-        public byte[] ConvertImage(string caminho)
-        {
-            byte[] ImageBytes = File.ReadAllBytes(caminho);
-            System.Diagnostics.Debug.WriteLine("Tamanho do array de bytes: " + ImageBytes.Length + " bytes");
-            return ImageBytes;
-        }
-        public Image ExibirImage(byte[] image)
-        {
-            try
+            public Image ExibirImage(byte[] image)
             {
-                MemoryStream ms = new MemoryStream(image);
-                Image img = Image.FromStream(ms);
-                Image finalImage = new Bitmap(img);
-                ms.Close();
-                return finalImage;
+                try
+                {
+                    MemoryStream ms = new MemoryStream(image);
+                    Image img = Image.FromStream(ms);
+                    Image finalImage = new Bitmap(img);
+                    ms.Close();
+                    return finalImage;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
 
 
+        }
     }
-}
