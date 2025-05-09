@@ -30,7 +30,6 @@
         {
             txtCNPJ = new MaskedTextBox();
             button1 = new Button();
-            textBox1 = new TextBox();
             txtSenha = new TextBox();
             txtRepeteSenha = new TextBox();
             button2 = new Button();
@@ -64,23 +63,12 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(217, 217, 217);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 12F);
-            textBox1.Location = new Point(628, 379);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(494, 22);
-            textBox1.TabIndex = 6;
-            // 
             // txtSenha
             // 
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(628, 445);
+            txtSenha.Location = new Point(628, 394);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(494, 22);
@@ -93,7 +81,7 @@
             txtRepeteSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtRepeteSenha.BorderStyle = BorderStyle.None;
             txtRepeteSenha.Font = new Font("Segoe UI", 12F);
-            txtRepeteSenha.Location = new Point(628, 528);
+            txtRepeteSenha.Location = new Point(628, 475);
             txtRepeteSenha.Margin = new Padding(3, 2, 3, 2);
             txtRepeteSenha.Name = "txtRepeteSenha";
             txtRepeteSenha.Size = new Size(494, 22);
@@ -108,9 +96,9 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(958, 445);
+            button2.Location = new Point(1083, 511);
             button2.Name = "button2";
-            button2.Size = new Size(151, 34);
+            button2.Size = new Size(167, 40);
             button2.TabIndex = 10;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -121,7 +109,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(1029, 233);
+            linkLabel1.Location = new Point(1029, 234);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(112, 20);
             linkLabel1.TabIndex = 12;
@@ -133,14 +121,13 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaLoginRestaurante;
+            BackgroundImage = Properties.Resources.TelaCadastroRestaurante;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1350, 729);
             Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(txtRepeteSenha);
             Controls.Add(txtSenha);
-            Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(txtCNPJ);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -160,7 +147,6 @@
 
         private MaskedTextBox txtCNPJ;
         private Button button1;
-        private TextBox textBox1;
         private TextBox txtSenha;
         private Button button2;
         private TextBox txtRepeteSenha;

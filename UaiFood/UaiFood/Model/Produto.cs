@@ -9,6 +9,8 @@ namespace UaiFood.Model
     class Produto
     {
         private List<Image> images;
+        private int idProduto;
+        private int preço;
         private String title;
         private String description;
         // private estabelicimento 
