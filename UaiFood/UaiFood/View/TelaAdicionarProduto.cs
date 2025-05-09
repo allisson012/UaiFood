@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -19,17 +20,20 @@ namespace UaiFood.View
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            string productName = txtNome.Text;
+            string price = txtPreco.Text;
+            string description = txtDescricao.Text;
+            string category = cbCategoria.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.bmp";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            ImageController imageController = new ImageController();
+            byte[] imag = imageController.SelectImage();
+            Image i = imageController.ExibirImage(imag);
+            if (i != null)
             {
-                pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
+                pictureBox1.Image = i;
             }
         }
     }

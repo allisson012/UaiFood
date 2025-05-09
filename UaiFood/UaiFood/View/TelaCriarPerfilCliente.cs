@@ -54,5 +54,10 @@ namespace UaiFood.View
             }
 
         }
+
+        private void txtCep_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 }

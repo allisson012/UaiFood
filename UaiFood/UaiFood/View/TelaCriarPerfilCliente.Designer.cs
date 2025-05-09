@@ -83,11 +83,12 @@
             // txtCpf
             // 
             txtCpf.BackColor = SystemColors.ControlLight;
+            txtCpf.BorderStyle = BorderStyle.None;
             txtCpf.Font = new Font("Segoe UI", 12F);
             txtCpf.Location = new Point(327, 286);
             txtCpf.Mask = "000,000,000-00";
             txtCpf.Name = "txtCpf";
-            txtCpf.Size = new Size(350, 29);
+            txtCpf.Size = new Size(350, 22);
             txtCpf.TabIndex = 3;
             // 
             // txtRua
@@ -133,32 +134,35 @@
             // txtCep
             // 
             txtCep.BackColor = SystemColors.ControlLight;
+            txtCep.BorderStyle = BorderStyle.None;
             txtCep.Font = new Font("Segoe UI", 12F);
             txtCep.Location = new Point(857, 181);
             txtCep.Mask = "00000-000";
             txtCep.Name = "txtCep";
-            txtCep.Size = new Size(159, 29);
+            txtCep.Size = new Size(159, 22);
             txtCep.TabIndex = 8;
             // 
             // txtDataNascimento
             // 
             txtDataNascimento.BackColor = SystemColors.ControlLight;
+            txtDataNascimento.BorderStyle = BorderStyle.None;
             txtDataNascimento.Font = new Font("Segoe UI", 12F);
             txtDataNascimento.Location = new Point(327, 394);
             txtDataNascimento.Mask = "00/00/0000";
             txtDataNascimento.Name = "txtDataNascimento";
-            txtDataNascimento.Size = new Size(350, 29);
-            txtDataNascimento.TabIndex = 8;
+            txtDataNascimento.Size = new Size(350, 22);
+            txtDataNascimento.TabIndex = 9;
             // 
             // txtTelefone
             // 
             txtTelefone.BackColor = SystemColors.ControlLight;
+            txtTelefone.BorderStyle = BorderStyle.None;
             txtTelefone.Font = new Font("Segoe UI", 12F);
             txtTelefone.Location = new Point(327, 489);
             txtTelefone.Mask = "(00) 00000-0000";
             txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(350, 29);
-            txtTelefone.TabIndex = 9;
+            txtTelefone.Size = new Size(350, 22);
+            txtTelefone.TabIndex = 10;
             // 
             // button2
             // 
@@ -171,7 +175,7 @@
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
             button2.Size = new Size(137, 45);
-            button2.TabIndex = 10;
+            button2.TabIndex = 11;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 

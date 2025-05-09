@@ -32,10 +32,11 @@
             button1 = new Button();
             button2 = new Button();
             pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txtNome = new TextBox();
+            txtDescricao = new TextBox();
+            txtPreco = new TextBox();
             label1 = new Label();
+            cbCategoria = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -90,37 +91,37 @@
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.BackColor = SystemColors.ControlLight;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 16F);
-            textBox1.Location = new Point(373, 190);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(502, 29);
-            textBox1.TabIndex = 17;
+            txtNome.BackColor = SystemColors.ControlLight;
+            txtNome.BorderStyle = BorderStyle.None;
+            txtNome.Font = new Font("Segoe UI", 16F);
+            txtNome.Location = new Point(373, 190);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(502, 29);
+            txtNome.TabIndex = 17;
             // 
-            // textBox3
+            // txtDescricao
             // 
-            textBox3.BackColor = SystemColors.ControlLight;
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Segoe UI", 16F);
-            textBox3.Location = new Point(373, 507);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.ScrollBars = ScrollBars.Vertical;
-            textBox3.Size = new Size(740, 188);
-            textBox3.TabIndex = 19;
+            txtDescricao.BackColor = SystemColors.ControlLight;
+            txtDescricao.BorderStyle = BorderStyle.None;
+            txtDescricao.Font = new Font("Segoe UI", 16F);
+            txtDescricao.Location = new Point(373, 507);
+            txtDescricao.Multiline = true;
+            txtDescricao.Name = "txtDescricao";
+            txtDescricao.ScrollBars = ScrollBars.Vertical;
+            txtDescricao.Size = new Size(740, 188);
+            txtDescricao.TabIndex = 19;
             // 
-            // textBox2
+            // txtPreco
             // 
-            textBox2.BackColor = SystemColors.ControlLight;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Segoe UI", 16F);
-            textBox2.Location = new Point(373, 299);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(84, 29);
-            textBox2.TabIndex = 18;
+            txtPreco.BackColor = SystemColors.ControlLight;
+            txtPreco.BorderStyle = BorderStyle.None;
+            txtPreco.Font = new Font("Segoe UI", 16F);
+            txtPreco.Location = new Point(373, 299);
+            txtPreco.Name = "txtPreco";
+            txtPreco.Size = new Size(84, 29);
+            txtPreco.TabIndex = 18;
             // 
             // label1
             // 
@@ -133,16 +134,27 @@
             label1.TabIndex = 20;
             label1.Text = "R$";
             // 
+            // cbCategoria
+            // 
+            cbCategoria.BackColor = SystemColors.ControlLight;
+            cbCategoria.Font = new Font("Segoe UI", 16F);
+            cbCategoria.FormattingEnabled = true;
+            cbCategoria.Location = new Point(373, 408);
+            cbCategoria.Name = "cbCategoria";
+            cbCategoria.Size = new Size(502, 38);
+            cbCategoria.TabIndex = 21;
+            // 
             // TelaAdicionarProduto
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaAdicionarProduto;
             ClientSize = new Size(1350, 729);
+            Controls.Add(cbCategoria);
             Controls.Add(label1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtDescricao);
+            Controls.Add(txtPreco);
+            Controls.Add(txtNome);
             Controls.Add(pictureBox1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -164,9 +176,10 @@
         private Button button1;
         private Button button2;
         private PictureBox pictureBox1;
-        private TextBox textBox1;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txtNome;
+        private TextBox txtDescricao;
+        private TextBox txtPreco;
         private Label label1;
+        private ComboBox cbCategoria;
     }
 }

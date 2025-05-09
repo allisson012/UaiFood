@@ -19,8 +19,7 @@ namespace UaiFood
             bd.createBank();
             bd.createTable();
             ApplicationConfiguration.Initialize();
-            TelaLogin telaLogin = new TelaLogin();
-            Application.Run(telaLogin);
+            Application.Run(new TelaCriarPerfilRestaurante());
 
         }
     }
