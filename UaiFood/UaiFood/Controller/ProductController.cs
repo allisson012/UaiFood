@@ -20,7 +20,8 @@ namespace UaiFood.Controller
             };
 
             var banco = new BancoDados();
-            bool cadastrado = banco.CadastrarProduto(produto);
+            bool cadastrado = true; // resolvendo conflito 
+            //= banco.CadastrarProduto(produto);
 
             if (cadastrado)
                 MessageBox.Show("Produto cadastrado com sucesso!");
@@ -31,7 +32,10 @@ namespace UaiFood.Controller
         public Produto consultProduct(int id)
         {
             var banco = new BancoDados();
-            Produto produto = banco.ConsultarProdutoPorId(id);
+            Produto produto = new Produto(); // resolvendo conflito
+                                             //banco.ConsultarProdutoPorId(id);
+
+
 
             if (produto == null)
                 MessageBox.Show("Produto não encontrado.");
@@ -42,7 +46,8 @@ namespace UaiFood.Controller
         public void deleteProduct(int id)
         {
             var banco = new BancoDados();
-            bool deletado = banco.DeletarProduto(id);
+            bool deletado = true;
+            //banco.DeletarProduto(id);
 
             if (deletado)
                 MessageBox.Show("Produto deletado com sucesso!");
@@ -52,13 +57,15 @@ namespace UaiFood.Controller
 
         public List<Produto> listProducts()
         {
-            var banco = new BancoDados();
-            List<Produto> produtos = banco.ListarProdutos();
+            // var banco = new BancoDados();
+            //   List<Produto> produtos = banco.ListarProdutos();
 
-            if (produtos.Count == 0)
-                MessageBox.Show("Nenhum produto encontrado.");
+            // if (produtos.Count == 0)
+            //   MessageBox.Show("Nenhum produto encontrado.");
 
-            return produtos;
+            //  return produtos;
+            //  }
+            return null;
         }
     }
 }

@@ -97,5 +97,31 @@ namespace UaiFood.Controller
                 MessageBox.Show("email do usuario não cadastrado no banco");
             }
         }
+
+        public Boolean UpdatePassword(string email, string password)
+        {
+            var bancoDados = new BancoDados();
+            PasswordController passwordController = new PasswordController();
+            User u = bancoDados.getSenhaUserBank(email);
+            byte[] hash = u.getHash();
+            u = passwordController.VerificarSenha(password, u);
+            if (hash != u.getHash())
+            {
+                bool sucesso = bancoDados.RegisterNewPassword(u);
+                if (sucesso)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("A senha não pode ser a mesma da anterior!");
+                }
+            }
+
+            return false;                  
+
+
+
+        }
     }
 }

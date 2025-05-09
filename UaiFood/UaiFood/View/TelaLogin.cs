@@ -40,8 +40,6 @@ namespace UaiFood
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var ad = new addressController();
-            ad.viaCepBusca("28950209");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -56,7 +54,7 @@ namespace UaiFood
                 if (emailSender.EnviarEmail(destinatario, codigo))
                 {
                     MessageBox.Show("Código de recuperação enviado com sucesso");
-                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta();
+                    TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta(codigo, destinatario);
                     telaRecuperacaoDeConta.Show();
                 }
             }

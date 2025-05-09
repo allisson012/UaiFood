@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using UaiFood.Model;
+using System.Data;
+using UaiFood.BancoDeDados;
+using UaiFood.Controller;
+
 namespace UaiFood.BancoDeDados
 {
-    using System.Data;
-    using MySql.Data.MySqlClient;
-   
-
     namespace UaiFood.BancoDeDados
     {
         class BancoDados
@@ -315,6 +315,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
                 return null;
             }
+
             public void createCardapioTable()
             {
                 string sql = @"
@@ -378,39 +379,102 @@ CREATE TABLE IF NOT EXISTS produtos (
                     connection.Close();
                 }
             }
-        public bool CadastrarProduto(Produto produto)
-        {
-            try
+            public bool CadastrarProduto(Produto produto)
             {
-                Createconnection();
-                connection.ChangeDatabase(bancoDados);
-                    // para cadastrar o produto tenho que saber o id do restaurante e apartir desse id eu sei qual é o cardapio e do id do cardapio eu sei quais são os produtos do restaurante
-                string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
-                             "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
-
-                using (var cmd = new MySqlCommand(sql, connection))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@nome", produto.Nome);
-                    cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
-                    cmd.Parameters.AddWithValue("@preco", produto.Preco);
-                    cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
-                    cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+                    // para cadastrar o produto tenho que saber o id do restaurante e apartir desse id eu sei qual é o cardapio e do id do cardapio eu sei quais são os produtos do restaurante
+                    string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
+                                 "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
 
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-                    return true;
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", produto.Nome);
+                        cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
+                        cmd.Parameters.AddWithValue("@preco", produto.Preco);
+                        cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
+                        cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
+
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao cadastrar produto: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
-            catch (Exception ex)
+
+            public Boolean RegisterNewPassword(User user)
             {
-                System.Diagnostics.Debug.WriteLine("Erro ao cadastrar produto: " + ex.Message);
-                return false;
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string email = user.getEmail();
+                    byte[] newPassword = user.getHash();
+                    byte[] newSalt = user.getSalt();
+
+                    string sql = "SELECT * FROM users WHERE email = @email";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                reader.Close(); // Fecha o reader antes de executar outro comando
+
+                                string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
+                                using (var updateCmd = new MySqlCommand(updateSql, connection))
+                                {
+                                    updateCmd.Parameters.AddWithValue("@hash", newPassword);
+                                    updateCmd.Parameters.AddWithValue("@salt", newSalt); // ESSENCIAL
+                                    updateCmd.Parameters.AddWithValue("@email", email);
+
+                                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                                    if (rowsAffected > 0)
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Senha atualizada com sucesso.");
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Erro ao atualizar a senha.");
+                                        return false;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Usuário não encontrado.");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
+                }
             }
-            finally
-            {
-                connection.Close();
-            }
-        }
+
+
+        
 
         public Produto ConsultarProdutoPorId(int id)
         {
@@ -529,6 +593,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     }
 }
     }
+
 
 
 
