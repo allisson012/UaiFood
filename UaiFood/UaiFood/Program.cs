@@ -17,7 +17,7 @@ namespace UaiFood
             // see https://aka.ms/applicationconfiguration.
             BancoDados bd = new BancoDados();
             bd.createBank();
-            bd.createTable();
+            bd.createTableUser();
             bd.createProductTable();
             bd.createCardapioTable();
             bd.createTableEstablishment();

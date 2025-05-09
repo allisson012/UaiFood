@@ -10,7 +10,7 @@ namespace UaiFood.Controller
     {
         public void createEstablishment()
         {
-
+            
         }
     }
 }

@@ -56,7 +56,7 @@ namespace UaiFood.BancoDeDados
                 }
             }
 
-            public void createTable()
+            public void createTableUser()
             {
                 string sql = @"
 CREATE TABLE IF NOT EXISTS users (
@@ -96,20 +96,16 @@ CREATE TABLE IF NOT EXISTS users (
                 string sql = @"
 CREATE TABLE IF NOT EXISTS establishment (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
-    cpf VARCHAR(14) UNIQUE,
-    telefone VARCHAR(11),
-    cnpj VARCHAR(14),
-    endereco VARCHAR(100),
+    telefone VARCHAR(11) UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
     estado VARCHAR(100),
     cidade VARCHAR(100),
-    bairro VARCHAR(100),
     rua VARCHAR(100),
-    numero VARCHAR(100),
-    complemento VARCHAR(100)
+    numero VARCHAR(100)
 );";
 
                 try
@@ -130,6 +126,38 @@ CREATE TABLE IF NOT EXISTS establishment (
                 finally
                 {
                     connection.Close();
+                }
+            }
+
+            public void RegisterEstablishmentBank()
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "INSERT INTO establishment (nome,email) VALUES(@nome,@email)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        string email = "a@gmail.com";
+                        string nome = "a veiculos";
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        if(cmd.ExecuteNonQuery() != 0)
+                        {
+                            long idRestaurante = cmd.LastInsertedId;
+                            // pega o ultimo id gerado
+                            // chamaria o metodo para criar cardapio e passaria o id do restaurante
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+
                 }
             }
             public Boolean RegisterUserBank(User u)
@@ -356,7 +384,7 @@ CREATE TABLE IF NOT EXISTS produtos (
             {
                 Createconnection();
                 connection.ChangeDatabase(bancoDados);
-
+                    // para cadastrar o produto tenho que saber o id do restaurante e apartir desse id eu sei qual é o cardapio e do id do cardapio eu sei quais são os produtos do restaurante
                 string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
                              "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
 
@@ -452,6 +480,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                                 Preco = reader.GetDecimal("preco"),
                                 Categoria = reader.GetString("categoria"),
                                 Imagem = reader["imagem"] as byte[]
+                                
                             });
                         }
                     }
