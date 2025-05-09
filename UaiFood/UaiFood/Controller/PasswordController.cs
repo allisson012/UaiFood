@@ -13,6 +13,7 @@ namespace UaiFood.Controller
     class PasswordController
     {
         private Byte[] salt = new byte[16];
+        private Establishment establishmentRecebe;
         private User userRecebe; // variavel para receber o valor de user , para que consiga modificar essa variavel atraves dos metodos
         // metodo para verificar se a senha tem caractere especial letra maiuscula caractere numero e se tem oito ou mais caracteres
         public User VerificarSenha(String senha, User user)
@@ -25,7 +26,7 @@ namespace UaiFood.Controller
             if (caractereEspecial && caractereNumerico && caractereMaiusculo && tamanho)
             {
                 System.Diagnostics.Debug.WriteLine("senha valida");
-                gerarHash(senha, userRecebe);
+                gerarHash(senha);
                 return userRecebe;
             }
             else
@@ -36,7 +37,7 @@ namespace UaiFood.Controller
             }
         }
         // faz a criptografia da senha atraves do algoritmo pbkdf2 que recebe como parametro a senha , salt , quantidade de iterações e padrão do algoritmo de criptografia que no caso é sha256 com isso ele gera um hash
-        private void gerarHash(string senha, User user)
+        private void gerarHash(string senha)
         {
             gerarSalt();
             var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
@@ -65,10 +66,40 @@ namespace UaiFood.Controller
         }
         private byte[] gerarHashAtravesDaSalt(string senha, byte[] saltSalvo)
         {
-            
+
             var pbkdf2 = new Rfc2898DeriveBytes(senha, saltSalvo, 10000, HashAlgorithmName.SHA256);
             Byte[] hashCompare = pbkdf2.GetBytes(32);
             return hashCompare;
+        }
+        public Establishment VerificarSenha(String senha, Establishment establishment)
+        {
+            establishmentRecebe = establishment;
+            Boolean caractereEspecial = Regex.IsMatch(senha, "[@#!$%&]");
+            Boolean caractereNumerico = Regex.IsMatch(senha, "[0-9]");
+            Boolean caractereMaiusculo = Regex.IsMatch(senha, "[A-Z]");
+            Boolean tamanho = senha.Length >= 8 ? true : false;
+            
+            if (caractereEspecial && caractereNumerico && caractereMaiusculo && tamanho)
+            {
+                System.Diagnostics.Debug.WriteLine("senha valida");
+                gerarHashForEstablishment(senha);
+                return establishmentRecebe;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("senha fornecida não atende aos padroes pedidos");
+                // Mensagem de erro
+                return establishment;
+            }
+        }
+        private void gerarHashForEstablishment(string senha)
+        {
+            gerarSalt();
+            var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
+            Byte[] hash = pbkdf2.GetBytes(32);
+            establishmentRecebe.SetSalt(salt);
+            establishmentRecebe.SetHash(hash);
+            System.Diagnostics.Debug.WriteLine(Convert.ToHexString(hash));
         }
 
     }
