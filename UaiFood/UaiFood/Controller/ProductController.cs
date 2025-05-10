@@ -20,8 +20,7 @@ namespace UaiFood.Controller
             };
 
             var banco = new BancoDados();
-            bool cadastrado = true; // resolvendo conflito 
-            //= banco.CadastrarProduto(produto);
+            bool cadastrado = banco.CadastrarProduto(produto);
 
             if (cadastrado)
                 MessageBox.Show("Produto cadastrado com sucesso!");

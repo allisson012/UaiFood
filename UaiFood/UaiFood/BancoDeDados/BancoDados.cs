@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS users (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("tabela criada com sucesso");
+                        System.Diagnostics.Debug.WriteLine("tabela users criada com sucesso");
                     }
                 }
                 catch (Exception e)
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("tabela criada com sucesso");
+                        System.Diagnostics.Debug.WriteLine("tabela establishment criada com sucesso");
                     }
                 }
                 catch (Exception e)
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                                 user.setEmail(reader.GetString("email"));
                                 user.setHash(GetBytesFromReader(reader, "hash"));
                                 user.setSalt(GetBytesFromReader(reader, "salt"));
-                                String cpf = reader.GetString("cep");
+                                String cpf = reader.GetString("cpf");
                                 user.setCpf(long.Parse(cpf));
                                 return user;
                             }
@@ -358,7 +358,7 @@ CREATE TABLE IF NOT EXISTS cardapio (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("Tabela criada com sucesso.");
+                        System.Diagnostics.Debug.WriteLine("Tabela cardapio criada com sucesso.");
                     }
                 }
                 catch (Exception e)
@@ -380,7 +380,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     preco DECIMAL(10, 2) NOT NULL,
     categoria VARCHAR(100),
     imagem BLOB,
-    idCardapio INT UNIQUE NOT NULL,
+    idCardapio INT NOT NULL,
     FOREIGN KEY (idCardapio) REFERENCES cardapio(id)
 );";
 
@@ -392,7 +392,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("Tabela criada com sucesso.");
+                        System.Diagnostics.Debug.WriteLine("Tabela produto criada com sucesso.");
                     }
                 }
                 catch (Exception e)
@@ -409,8 +409,15 @@ CREATE TABLE IF NOT EXISTS produtos (
                 try
                 {
                     Createconnection();
+
+                    // Verifique se a conexão já está aberta antes de abrir
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open(); // Só abre se a conexão não estiver aberta
+                    }
+
                     connection.ChangeDatabase(bancoDados);
-                    // para cadastrar o produto tenho que saber o id do restaurante e apartir desse id eu sei qual é o cardapio e do id do cardapio eu sei quais são os produtos do restaurante
+
                     string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
                                  "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
 
@@ -422,21 +429,27 @@ CREATE TABLE IF NOT EXISTS produtos (
                         cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
                         cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
 
-                        connection.Open();
                         cmd.ExecuteNonQuery();
                         return true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("Erro ao cadastrar produto: " + ex.Message);
+                    System.Diagnostics.Debug.WriteLine($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}");
+                    MessageBox.Show($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 finally
                 {
-                    connection.Close();
+                    // Garante que a conexão será fechada
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
                 }
             }
+
+
 
             public Boolean RegisterNewPassword(User user)
             {
