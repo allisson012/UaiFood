@@ -38,13 +38,14 @@ namespace UaiFood.View
         {
             string cnpj = txtCNPJ.Text;
 
-            if (DocumentController.ValidarCNPJ(cnpj))
+            if (txtSenha.Text.Equals(txtRepeteSenha.Text))
             {
-
+                var establishmentController = new EstablishmentController();
+                establishmentController.createEstablishment(txtCNPJ.Text, txtSenha.Text);
             }
             else
             {
-                MessageBox.Show("CNPJ Inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("CNPJ Inválido ou senha invalida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

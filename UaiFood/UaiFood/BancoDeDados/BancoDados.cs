@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
             }
 
-            public void RegisterEstablishmentBank()
+            public void CreateEstablishmentBank(Establishment establishment)
             {
                 try
                 {
@@ -138,26 +138,51 @@ CREATE TABLE IF NOT EXISTS establishment (
                     {
                         connection.Open();
                     }
-                    string sql = "INSERT INTO establishment (nome,email) VALUES(@nome,@email)";
+                    string sql = "INSERT INTO establishment (nome,hash,salt,cnpj) VALUES(@nome,@hash,@salt,@cnpj)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        string email = "a@gmail.com";
-                        string nome = "a veiculos";
+                        byte[] hash = establishment.GetHash();
+                        byte[] salt = establishment.GetSalt();
+                        string cnpj = establishment.GetCnpj();
+                        string nome = "Casa da vo";
                         cmd.Parameters.AddWithValue("@nome", nome);
-                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@hash", hash);
+                        cmd.Parameters.AddWithValue("@salt", salt);
+                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
 
-                        if(cmd.ExecuteNonQuery() != 0)
+                        if (cmd.ExecuteNonQuery() != 0)
                         {
                             long idRestaurante = cmd.LastInsertedId;
-                            // pega o ultimo id gerado
-                            // chamaria o metodo para criar cardapio e passaria o id do restaurante
+                            createCardapio(idRestaurante);
                         }
                     }
                 }
                 catch (MySqlException ex)
                 {
 
+                }
+            }
+            private void createCardapio(long id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "INSERT INTO cardapio (idRestaurante) VALUES(@idRestaurante)";
+                    int idrestaurante = (int)id;
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idRestaurante", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    
                 }
             }
             public Boolean RegisterUserBank(User u)
@@ -355,8 +380,8 @@ CREATE TABLE IF NOT EXISTS produtos (
     preco DECIMAL(10, 2) NOT NULL,
     categoria VARCHAR(100),
     imagem BLOB,
-    idCardapio INT UNIQUE NOT NULL,
-    FOREIGN KEY (idCardapio) REFERENCES cardapio(id)
+    idCardapio INT NOT NULL,
+    FOREIGN KEY (idCardapio) REFERENCES cardapio(id)
 );";
 
                 try

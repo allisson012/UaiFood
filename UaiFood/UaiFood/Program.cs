@@ -24,7 +24,6 @@ namespace UaiFood
             
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaLogin());
-
         }
     }
 }
