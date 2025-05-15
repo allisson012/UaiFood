@@ -29,14 +29,33 @@ namespace UaiFood.Controller
 
         public bool createPerfilEstablishment(string nameRestaurante, string email, string street, string state, string city, string cep, string telephone, string numberAddress)
         {
-
             return false;
         }
 
         public bool loginEstablishment(string cnpj,string senha)
         {
-
-            return false;
+            var bancoDados = new BancoDados();
+            Establishment establishment = bancoDados.getSenhaEstablishmentBank(cnpj);
+            if(establishment != null)
+            {
+                var passwordController = new PasswordController();
+                bool senhaValida = passwordController.compareSenhaForEstablishment(senha, establishment);
+                if (senhaValida)
+                {
+                    MessageBox.Show("Usuario logado com sucesso");
+                    IdController.SetIdUser(establishment.GetId());
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("erro ao logar usuario email ou senha incorretos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("estabelecimento não encontrado");
+            }
+                return false;
         }
 
     }

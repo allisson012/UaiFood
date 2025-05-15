@@ -18,10 +18,12 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
+            // ordem da classe banco de dados
+            // estrutura do banco -> user -> establishment -> cardapio -> product -> outros
             public static void Createconnection()
             {
                 if (connection == null)
@@ -55,7 +57,7 @@ namespace UaiFood.BancoDeDados
                     connection.Close();
                 }
             }
-
+            //user
             public void createTableUser()
             {
                 string sql = @"
@@ -91,100 +93,7 @@ CREATE TABLE IF NOT EXISTS users (
                     connection.Close();
                 }
             }
-            public void createTableEstablishment()
-            {
-                string sql = @"
-CREATE TABLE IF NOT EXISTS establishment (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    hash BLOB NOT NULL,
-    salt BLOB NOT NULL,
-    telefone VARCHAR(11) UNIQUE,
-    cnpj VARCHAR(14) NOT NULL UNIQUE,
-    estado VARCHAR(100),
-    cidade VARCHAR(100),
-    rua VARCHAR(100),
-    numero VARCHAR(100)
-);";
 
-                try
-                {
-                    if (connection.State != System.Data.ConnectionState.Open)
-                        connection.Open();
-
-                    using (var cmd = new MySqlCommand(sql, connection))
-                    {
-                        cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("tabela establishment criada com sucesso");
-                    }
-                }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine("erro ao tentar criar tabela");
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-
-            public void CreateEstablishmentBank(Establishment establishment)
-            {
-                try
-                {
-                    Createconnection();
-                    if (connection.State != System.Data.ConnectionState.Open)
-                    {
-                        connection.Open();
-                    }
-                    string sql = "INSERT INTO establishment (nome,hash,salt,cnpj) VALUES(@nome,@hash,@salt,@cnpj)";
-
-                    using (var cmd = new MySqlCommand(sql, connection))
-                    {
-                        byte[] hash = establishment.GetHash();
-                        byte[] salt = establishment.GetSalt();
-                        string cnpj = establishment.GetCnpj();
-                        string nome = "Casa da vo";
-                        cmd.Parameters.AddWithValue("@nome", nome);
-                        cmd.Parameters.AddWithValue("@hash", hash);
-                        cmd.Parameters.AddWithValue("@salt", salt);
-                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
-
-                        if (cmd.ExecuteNonQuery() != 0)
-                        {
-                            long idRestaurante = cmd.LastInsertedId;
-                            createCardapio(idRestaurante);
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-
-                }
-            }
-            private void createCardapio(long id)
-            {
-                try
-                {
-                    Createconnection();
-                    if (connection.State != System.Data.ConnectionState.Open)
-                    {
-                        connection.Open();
-                    }
-                    string sql = "INSERT INTO cardapio (idRestaurante) VALUES(@idRestaurante)";
-                    int idrestaurante = (int)id;
-                    using (var cmd = new MySqlCommand(sql, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@idRestaurante", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    
-                }
-            }
             public Boolean RegisterUserBank(User u)
             {
                 try
@@ -258,52 +167,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                     return null;
                 }
             }
-            public Establishment getSenhaEstablishmentBank(String cnpj)
-            {
-                try
-                {
-                    Createconnection();
-                    if (connection.State != System.Data.ConnectionState.Open)
-                    {
-                        connection.Open();
-                    }
-                    string sql = "SELECT * FROM establishment WHERE cnpj = @cnpj";
-                    using (var cmd = new MySqlCommand(sql, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                var establishment = new Establishment();
-                                establishment.SetId(reader.GetInt32("id"));
-                                establishment.SetNome(reader.GetString("nome"));
-                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
-                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
-                                return establishment;
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
-                    return null;
-                }
-            }
-            private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
-            {
-                long size = reader.GetBytes(reader.GetOrdinal(columnName), 0, null, 0, 0); // pega o tamanho
-                byte[] buffer = new byte[size];
-                reader.GetBytes(reader.GetOrdinal(columnName), 0, buffer, 0, (int)size); // copia os bytes
-                return buffer;
-            }
-            // editUser
-            // Consulat user
+
             public Boolean deleteUserBank(int id)
             {
                 try
@@ -378,6 +242,180 @@ CREATE TABLE IF NOT EXISTS establishment (
                 return null;
             }
 
+            public Boolean RegisterNewPassword(User user)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string email = user.getEmail();
+                    byte[] newPassword = user.getHash();
+                    byte[] newSalt = user.getSalt();
+
+                    string sql = "SELECT * FROM users WHERE email = @email";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                reader.Close(); // Fecha o reader antes de executar outro comando
+
+                                string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
+                                using (var updateCmd = new MySqlCommand(updateSql, connection))
+                                {
+                                    updateCmd.Parameters.AddWithValue("@hash", newPassword);
+                                    updateCmd.Parameters.AddWithValue("@salt", newSalt); // ESSENCIAL
+                                    updateCmd.Parameters.AddWithValue("@email", email);
+
+                                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                                    if (rowsAffected > 0)
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Senha atualizada com sucesso.");
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        System.Diagnostics.Debug.WriteLine("Erro ao atualizar a senha.");
+                                        return false;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Usuário não encontrado.");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+            //establishment
+            public void createTableEstablishment()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS establishment (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    hash BLOB NOT NULL,
+    salt BLOB NOT NULL,
+    telefone VARCHAR(11) UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
+    estado VARCHAR(100),
+    cidade VARCHAR(100),
+    rua VARCHAR(100),
+    numero VARCHAR(100)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("tabela establishment criada com sucesso");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("erro ao tentar criar tabela");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            public void CreateEstablishmentBank(Establishment establishment)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "INSERT INTO establishment (nome,hash,salt,cnpj) VALUES(@nome,@hash,@salt,@cnpj)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        byte[] hash = establishment.GetHash();
+                        byte[] salt = establishment.GetSalt();
+                        string cnpj = establishment.GetCnpj();
+                        string nome = "Casa da vo";
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@hash", hash);
+                        cmd.Parameters.AddWithValue("@salt", salt);
+                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
+
+                        if (cmd.ExecuteNonQuery() != 0)
+                        {
+                            long idRestaurante = cmd.LastInsertedId;
+                            createCardapio(idRestaurante);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+
+                }
+            }
+
+            public Establishment getSenhaEstablishmentBank(String cnpj)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "SELECT * FROM establishment WHERE cnpj = @cnpj";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var establishment = new Establishment();
+                                establishment.SetId(reader.GetInt32("id"));
+                                establishment.SetCnpj(reader.GetString("cnpj"));
+                                establishment.SetNome(reader.GetString("nome"));
+                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
+                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
+                                return establishment;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return null;
+                }
+            }
+
+            //cardapio
+
             public void createCardapioTable()
             {
                 string sql = @"
@@ -407,6 +445,31 @@ CREATE TABLE IF NOT EXISTS cardapio (
                     connection.Close();
                 }
             }
+            private void createCardapio(long id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "INSERT INTO cardapio (idRestaurante) VALUES(@idRestaurante)";
+                    int idrestaurante = (int)id;
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idRestaurante", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    
+                }
+            }
+
+            //produtos
+
             public void createProductTable()
             {
                 string sql = @"
@@ -485,72 +548,6 @@ CREATE TABLE IF NOT EXISTS produtos (
                     }
                 }
             }
-
-
-
-            public Boolean RegisterNewPassword(User user)
-            {
-                try
-                {
-                    Createconnection();
-                    if (connection.State != System.Data.ConnectionState.Open)
-                    {
-                        connection.Open();
-                    }
-
-                    string email = user.getEmail();
-                    byte[] newPassword = user.getHash();
-                    byte[] newSalt = user.getSalt();
-
-                    string sql = "SELECT * FROM users WHERE email = @email";
-                    using (var cmd = new MySqlCommand(sql, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@email", email);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                reader.Close(); // Fecha o reader antes de executar outro comando
-
-                                string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
-                                using (var updateCmd = new MySqlCommand(updateSql, connection))
-                                {
-                                    updateCmd.Parameters.AddWithValue("@hash", newPassword);
-                                    updateCmd.Parameters.AddWithValue("@salt", newSalt); // ESSENCIAL
-                                    updateCmd.Parameters.AddWithValue("@email", email);
-
-                                    int rowsAffected = updateCmd.ExecuteNonQuery();
-
-                                    if (rowsAffected > 0)
-                                    {
-                                        System.Diagnostics.Debug.WriteLine("Senha atualizada com sucesso.");
-                                        return true;
-                                    }
-                                    else
-                                    {
-                                        System.Diagnostics.Debug.WriteLine("Erro ao atualizar a senha.");
-                                        return false;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                System.Diagnostics.Debug.WriteLine("Usuário não encontrado.");
-                                return false;
-                            }
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
-                    return false;
-                }
-            }
-
-
-        
-
         public Produto ConsultarProdutoPorId(int id)
         {
             try
@@ -635,38 +632,46 @@ CREATE TABLE IF NOT EXISTS produtos (
             }
 
             return produtos;
-        }
+            }
 
-        public bool DeletarProduto(int id)
-        {
-            try
+            public bool DeletarProduto(int id)
             {
-                Createconnection();
-                connection.ChangeDatabase(bancoDados);
-
-                string sql = "DELETE FROM produtos WHERE id = @id";
-
-                using (var cmd = new MySqlCommand(sql, connection))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    connection.Open();
-                    return cmd.ExecuteNonQuery() > 0;
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = "DELETE FROM produtos WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        connection.Open();
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
-            catch (Exception ex)
+            //outros
+            private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
             {
-                System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
-                return false;
+                long size = reader.GetBytes(reader.GetOrdinal(columnName), 0, null, 0, 0); // pega o tamanho
+                byte[] buffer = new byte[size];
+                reader.GetBytes(reader.GetOrdinal(columnName), 0, buffer, 0, (int)size); // copia os bytes
+                return buffer;
             }
-            finally
-            {
-                connection.Close();
-            }
+
+
         }
-
-
     }
-}
     }
 
 

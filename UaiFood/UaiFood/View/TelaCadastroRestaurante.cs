@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.Controller;
@@ -38,11 +39,14 @@ namespace UaiFood.View
         private void button2_Click(object sender, EventArgs e)
         {
             string cnpj = txtCNPJ.Text;
+            cnpj = Regex.Replace(cnpj, @"[^\d]", "");
 
-            if (txtSenha.Text.Equals(txtRepeteSenha.Text))
+            string senha = txtSenha.Text;
+            string repeteSenha = txtRepeteSenha.Text;
+            if (senha.Equals(repeteSenha) && cnpj.Length == 14)
             {
                 var establishmentController = new EstablishmentController();
-                establishmentController.createEstablishment(txtCNPJ.Text, txtSenha.Text);
+                establishmentController.createEstablishment(cnpj, txtSenha.Text);
             }
             else
             {

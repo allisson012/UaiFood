@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.Controller;
@@ -34,10 +35,17 @@ namespace UaiFood.View
         private void button2_Click(object sender, EventArgs e)
         {
             string cnpj = txtCNPJ.Text;
+            cnpj = Regex.Replace(cnpj, @"[^\d]", "");
             string senha = txtSenha.Text;
-
-        
-            
+            if(!String.IsNullOrEmpty(cnpj) && !String.IsNullOrEmpty(senha))
+            {
+                var establishmentController = new EstablishmentController();
+                bool loginValido = establishmentController.loginEstablishment(cnpj, senha);
+                if (loginValido)
+                {
+                    // colocar a proxima tela 
+                }
+            }
         }
     }
 }

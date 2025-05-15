@@ -92,18 +92,16 @@ namespace UaiFood.Controller
                 return establishment;
             }
         }
-        private void gerarHashForEstablishment(string senha)
+        private byte[] gerarHashForEstablishment(string senha)
         {
             gerarSalt();
             var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
             Byte[] hash = pbkdf2.GetBytes(32);
-            establishmentRecebe.SetSalt(salt);
-            establishmentRecebe.SetHash(hash);
-            System.Diagnostics.Debug.WriteLine(Convert.ToHexString(hash));
+            return hash;
         }
-        public Boolean compareSenha(String senha, Establishment establishmentCompare)
+        public Boolean compareSenhaForEstablishment(String senha, Establishment establishmentCompare)
         {
-            byte[] hashCompare = gerarHashAtravesDaSalt(senha, establishmentCompare.GetHash());
+            byte[] hashCompare = gerarHashAtravesDaSalt(senha, establishmentCompare.GetSalt());
             string hex = BitConverter.ToString(hashCompare).Replace("-", "").ToLower();
             string hexOriginal = BitConverter.ToString(establishmentCompare.GetHash()).Replace("-", "").ToLower();
             System.Diagnostics.Debug.WriteLine("hash salva = " + hexOriginal);
