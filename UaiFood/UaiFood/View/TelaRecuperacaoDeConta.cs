@@ -36,6 +36,7 @@ namespace UaiFood.View
                         MessageBox.Show("Senha atualizada com sucesso!");
                         TelaLogin telaLogin = new TelaLogin();
                         telaLogin.Show();
+                        this.Close();
                     }
                     else
                     {

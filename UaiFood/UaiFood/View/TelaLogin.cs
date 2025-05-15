@@ -21,18 +21,21 @@ namespace UaiFood
         {
             TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
             telaLoginRestaurante.Show();
+            this.Close();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             TelaCadastro telaCadastro = new TelaCadastro();
             telaCadastro.Show();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
+
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(senha))
             {
                 var userController = new UserController();
@@ -42,6 +45,7 @@ namespace UaiFood
             {
                 MessageBox.Show("preencha os campos de email e senha");
             }
+
             
 
         }
@@ -64,6 +68,7 @@ namespace UaiFood
                     MessageBox.Show("Código de recuperação enviado com sucesso");
                     TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta(codigo, destinatario);
                     telaRecuperacaoDeConta.Show();
+                    this.Close();
                 }
             }
             else
