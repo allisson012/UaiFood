@@ -8,39 +8,39 @@ namespace UaiFood.Model
 {
     class Establishment
     {
-        private int _id;
-        private string _nome;
-        private string _email;
-        private byte[] _hash;
-        private byte[] _salt;
-        private string _cnpj;
-        private Address _address;
-        private List<Cardapio> _cardapio;
+        private int id;
+        private string nome;
+        private string email;
+        private byte[] hash;
+        private byte[] salt;
+        private string cnpj;
+        private Address address;
+        private List<Cardapio> cardapio;
         private string _telefone;
 
-        public int GetId() => _id;
-        public void SetId(int value) => _id = value;
+        public int GetId() => id;
+        public void SetId(int value) => id = value;
 
-        public string GetNome() => _nome;
-        public void SetNome(string value) => _nome = value;
+        public string GetNome() => nome;
+        public void SetNome(string value) => nome = value;
 
-        public string GetEmail() => _email;
-        public void SetEmail(string value) => _email = value;
+        public string GetEmail() => email;
+        public void SetEmail(string value) => email = value;
 
-        public byte[] GetHash() => _hash;
-        public void SetHash(byte[] value) => _hash = value;
+        public byte[] GetHash() => hash;
+        public void SetHash(byte[] value) => hash = value;
 
-        public byte[] GetSalt() => _salt;
-        public void SetSalt(byte[] value) => _salt = value;
+        public byte[] GetSalt() => salt;
+        public void SetSalt(byte[] value) => salt = value;
 
-        public string GetCnpj() => _cnpj;
-        public void SetCnpj(string value) => _cnpj = value;
+        public string GetCnpj() => cnpj;
+        public void SetCnpj(string value) => cnpj = value;
 
-        public Address GetAddress() => _address;
-        public void SetAddress(Address value) => _address = value;
+        public Address GetAddress() => address;
+        public void SetAddress(Address value) => address = value;
 
-        public List<Cardapio> GetCardapio() => _cardapio;
-        public void SetCardapio(List<Cardapio> value) => _cardapio = value;
+        public List<Cardapio> GetCardapio() => cardapio;
+        public void SetCardapio(List<Cardapio> value) => cardapio = value;
 
         public string GetTelefone() => _telefone;
         public void SetTelefone(string value) => _telefone = value;

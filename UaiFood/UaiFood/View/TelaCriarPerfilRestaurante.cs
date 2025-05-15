@@ -32,6 +32,7 @@ namespace UaiFood.View
         private void button2_Click(object sender, EventArgs e)
         {
             string restaurantName = txtNome.Text;
+
             string email = txtEmail.Text;
             string street = txtRua.Text;
             string state = txtEstado.Text;
@@ -40,12 +41,13 @@ namespace UaiFood.View
             string telephone = txtNumero.Text;
             string numberAdress = txtNumero.Text;
 
-            EmailController emailController = new EmailController();
-            if (!emailController.ValidarEmail(email))
+            if (!String.IsNullOrEmpty(restaurantName) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(street) && !String.IsNullOrEmpty(state) && !String.IsNullOrEmpty(state) && !String.IsNullOrEmpty(city) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telephone) && !String.IsNullOrEmpty(numberAdress))
             {
-                MessageBox.Show("Insira um email válido!");
-                return;
+                var establishmentController = new EstablishmentController();
+                establishmentController.createPerfilEstablishment(restaurantName, email, street, state, city, cep, telephone, numberAdress);
             }
+            //MessageBox.Show("Insira um email válido!");
+
         }
 
         private async void txtCep_Leave(object sender, EventArgs e)
