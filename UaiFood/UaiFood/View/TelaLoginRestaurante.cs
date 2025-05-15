@@ -22,11 +22,13 @@ namespace UaiFood.View
         {
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.Show();
+            this.Close();
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             TelaCadastroRestaurante telaCadastroRestaurante = new TelaCadastroRestaurante();
             telaCadastroRestaurante.Show();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

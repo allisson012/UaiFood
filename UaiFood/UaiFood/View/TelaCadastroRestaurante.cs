@@ -22,6 +22,7 @@ namespace UaiFood.View
         {
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.Show();
+            this.Close();
         }
 
         private void TelaCadastroRestaurante_Load(object sender, EventArgs e)
@@ -69,6 +70,7 @@ namespace UaiFood.View
         {
             TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
             telaLoginRestaurante.Show();
+            this.Close();
         }
 
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
