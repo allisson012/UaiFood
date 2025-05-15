@@ -16,7 +16,7 @@ namespace UaiFood.Model
         private string cnpj;
         private Address address;
         private List<Cardapio> cardapio;
-        private string _telefone;
+        private string telefone;
 
         public int GetId() => id;
         public void SetId(int value) => id = value;
@@ -42,7 +42,7 @@ namespace UaiFood.Model
         public List<Cardapio> GetCardapio() => cardapio;
         public void SetCardapio(List<Cardapio> value) => cardapio = value;
 
-        public string GetTelefone() => _telefone;
-        public void SetTelefone(string value) => _telefone = value;
+        public string GetTelefone() => telefone;
+        public void SetTelefone(string value) => telefone = value;
     }
 }
