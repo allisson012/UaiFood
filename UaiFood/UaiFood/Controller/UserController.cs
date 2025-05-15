@@ -84,6 +84,7 @@ namespace UaiFood.Controller
                 if(senhaValida)
                 {
                     MessageBox.Show("Usuario logado com sucesso");
+                    IdController.SetIdUser(u.getUserId());
                     var telaPrincipalCliente = new TelaPrincipalCliente();
                     telaPrincipalCliente.Show();
                 }
