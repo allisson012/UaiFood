@@ -10,6 +10,5 @@ namespace UaiFood.Model
     {
         List<Produto> produtos;
         int idEstabelecimentos;
-        // criar classe produto para armazenar titulo descrição preço e imagem de um item
     }
 }

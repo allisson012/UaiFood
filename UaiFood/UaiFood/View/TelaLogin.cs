@@ -35,8 +35,17 @@ namespace UaiFood
         {
             string email = txtEmail.Text;
             string senha = txtSenha.Text;
-            var userController = new UserController();
-            userController.UserLogin(email, senha);
+
+            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(senha))
+            {
+                var userController = new UserController();
+                userController.UserLogin(email, senha);
+            }
+            else
+            {
+                MessageBox.Show("preencha os campos de email e senha");
+            }
+
             
 
         }

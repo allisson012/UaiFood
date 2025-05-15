@@ -101,6 +101,19 @@ namespace UaiFood.Controller
             establishmentRecebe.SetHash(hash);
             System.Diagnostics.Debug.WriteLine(Convert.ToHexString(hash));
         }
+        public Boolean compareSenha(String senha, Establishment establishmentCompare)
+        {
+            byte[] hashCompare = gerarHashAtravesDaSalt(senha, establishmentCompare.GetHash());
+            string hex = BitConverter.ToString(hashCompare).Replace("-", "").ToLower();
+            string hexOriginal = BitConverter.ToString(establishmentCompare.GetHash()).Replace("-", "").ToLower();
+            System.Diagnostics.Debug.WriteLine("hash salva = " + hexOriginal);
+            System.Diagnostics.Debug.WriteLine("hash gerada = " + hex);
+            bool areEqual = CryptographicOperations.FixedTimeEquals(
+                establishmentCompare.GetHash(),
+                hashCompare
+            );
+            return areEqual;
+        }
 
     }
 }
