@@ -258,6 +258,43 @@ CREATE TABLE IF NOT EXISTS establishment (
                     return null;
                 }
             }
+            public Establishment getSenhaEstablishmentBank(String cnpj)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "SELECT * FROM establishment WHERE cnpj = @cnpj";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cnpj", cnpj);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var establishment = new Establishment();
+                                establishment.SetId(reader.GetInt32("id"));
+                                establishment.SetNome(reader.GetString("nome"));
+                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
+                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
+                                return establishment;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return null;
+                }
+            }
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
             {
                 long size = reader.GetBytes(reader.GetOrdinal(columnName), 0, null, 0, 0); // pega o tamanho

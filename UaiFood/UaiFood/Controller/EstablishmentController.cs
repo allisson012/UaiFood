@@ -27,9 +27,17 @@ namespace UaiFood.Controller
             }
         }
 
-        public bool createPerfilEstablishment(string nameRestaurante ,string email, string street , string state , string city,string cep,string telephone,string numberAddress)
+        public bool createPerfilEstablishment(string nameRestaurante, string email, string street, string state, string city, string cep, string telephone, string numberAddress)
         {
+
             return false;
         }
+
+        public bool loginEstablishment(string cnpj,string senha)
+        {
+
+            return false;
+        }
+
     }
 }
