@@ -43,6 +43,8 @@ namespace UaiFood.Controller
                     MessageBox.Show("Usuario cadastrado com sucesso");
                     var telaPrincipalCliente = new TelaPrincipalCliente();
                     telaPrincipalCliente.Show();
+                    var telaCadastro = new TelaCadastro();
+                    telaCadastro.Close();
                 }
                 else
                 {
@@ -87,6 +89,8 @@ namespace UaiFood.Controller
                     IdController.SetIdUser(u.getUserId());
                     var telaPrincipalCliente = new TelaPrincipalCliente();
                     telaPrincipalCliente.Show();
+                    var telaLogin = new TelaLogin();
+                    telaLogin.Close();
                 }
                 else
                 {

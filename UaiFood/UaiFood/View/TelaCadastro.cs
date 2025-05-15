@@ -22,6 +22,7 @@ namespace UaiFood.View
         {
             TelaLoginRestaurante telaLoginRestaurante = new TelaLoginRestaurante();
             telaLoginRestaurante.Show();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace UaiFood.View
         {
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.Show();
+            this.Close();
         }
     }
 }

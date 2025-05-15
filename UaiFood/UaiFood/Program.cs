@@ -23,7 +23,7 @@ namespace UaiFood
             bd.createProductTable();            
             
             ApplicationConfiguration.Initialize();
-            Application.Run(new TelaLogin());
+            Application.Run(new TelaInicial());
         }
     }
 }
