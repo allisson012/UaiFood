@@ -97,6 +97,10 @@ namespace UaiFood.Controller
             gerarSalt();
             var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
             Byte[] hash = pbkdf2.GetBytes(32);
+            establishmentRecebe.SetSalt(salt);
+            establishmentRecebe.SetHash(hash);
+            System.Diagnostics.Debug.WriteLine("Hash establishment: " + BitConverter.ToString(hash));
+            System.Diagnostics.Debug.WriteLine("Salt establishment: " + BitConverter.ToString(salt));
             return hash;
         }
         public Boolean compareSenhaForEstablishment(String senha, Establishment establishmentCompare)

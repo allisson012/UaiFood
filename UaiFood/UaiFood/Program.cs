@@ -20,8 +20,8 @@ namespace UaiFood
             bd.createTableUser();
             bd.createTableEstablishment();
             bd.createCardapioTable();
-            bd.createProductTable();            
-            
+            bd.createProductTable();
+
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaInicial());
         }

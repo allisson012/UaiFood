@@ -11,10 +11,11 @@ namespace UaiFood.Model
         private int id;
         private string nome;
         private string email;
+        private byte[] image;
         private byte[] hash;
         private byte[] salt;
         private string cnpj;
-        private Address address;
+        private AddressEstablishment addressEstablishment;
         private List<Cardapio> cardapio;
         private string telefone;
 
@@ -33,11 +34,14 @@ namespace UaiFood.Model
         public byte[] GetSalt() => salt;
         public void SetSalt(byte[] value) => salt = value;
 
+        public byte[] GetImage() => image;
+        public void SetImage(byte[] value) => image = value;
+
         public string GetCnpj() => cnpj;
         public void SetCnpj(string value) => cnpj = value;
 
-        public Address GetAddress() => address;
-        public void SetAddress(Address value) => address = value;
+        public AddressEstablishment GetAddressEstablishment() => addressEstablishment;
+        public void SetAddressEstablishment(AddressEstablishment value) => addressEstablishment = value;
 
         public List<Cardapio> GetCardapio() => cardapio;
         public void SetCardapio(List<Cardapio> value) => cardapio = value;

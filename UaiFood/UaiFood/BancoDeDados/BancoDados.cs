@@ -311,8 +311,10 @@ CREATE TABLE IF NOT EXISTS establishment (
     email VARCHAR(100) UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
+    image BLOB,
     telefone VARCHAR(11) UNIQUE,
     cnpj VARCHAR(14) NOT NULL UNIQUE,
+    cep VARCHAR(8),
     estado VARCHAR(100),
     cidade VARCHAR(100),
     rua VARCHAR(100),
@@ -340,7 +342,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
             }
 
-            public void CreateEstablishmentBank(Establishment establishment)
+            public bool CreateEstablishmentBank(Establishment establishment)
             {
                 try
                 {
@@ -349,30 +351,33 @@ CREATE TABLE IF NOT EXISTS establishment (
                     {
                         connection.Open();
                     }
-                    string sql = "INSERT INTO establishment (nome,hash,salt,cnpj) VALUES(@nome,@hash,@salt,@cnpj)";
+                    string sql = "INSERT INTO establishment (hash,salt,cnpj) VALUES(@hash,@salt,@cnpj)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         byte[] hash = establishment.GetHash();
                         byte[] salt = establishment.GetSalt();
                         string cnpj = establishment.GetCnpj();
-                        string nome = "Casa da vo";
-                        cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@hash", hash);
                         cmd.Parameters.AddWithValue("@salt", salt);
                         cmd.Parameters.AddWithValue("@cnpj", cnpj);
-
                         if (cmd.ExecuteNonQuery() != 0)
                         {
                             long idRestaurante = cmd.LastInsertedId;
+                            int idRestauranteForIdController = (int)idRestaurante;
+                            IdController.SetIdEstablishment(idRestauranteForIdController);
+                            System.Diagnostics.Debug.WriteLine("ID setado no IdController = " + IdController.GetIdEstablishment());
                             createCardapio(idRestaurante);
+                            return true;
                         }
                     }
                 }
                 catch (MySqlException ex)
                 {
-
+                    Console.WriteLine("Erro MySQL: " + ex.Message);
+                    return false;
                 }
+                return false;
             }
 
             public Establishment getSenhaEstablishmentBank(String cnpj)
@@ -395,7 +400,6 @@ CREATE TABLE IF NOT EXISTS establishment (
                                 var establishment = new Establishment();
                                 establishment.SetId(reader.GetInt32("id"));
                                 establishment.SetCnpj(reader.GetString("cnpj"));
-                                establishment.SetNome(reader.GetString("nome"));
                                 establishment.SetHash(GetBytesFromReader(reader, "hash"));
                                 establishment.SetSalt(GetBytesFromReader(reader, "salt"));
                                 return establishment;
@@ -412,6 +416,93 @@ CREATE TABLE IF NOT EXISTS establishment (
                     System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
                     return null;
                 }
+            }
+
+            public bool completePerfilRestaurante(Establishment establishment)
+            {
+                System.Diagnostics.Debug.WriteLine("ID recuperado no IdController = " + IdController.GetIdEstablishment());
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "UPDATE establishment SET nome = @nome, email = @email, image = @image, telefone = @telefone, cep = @cep, estado = @estado, cidade = @cidade, rua = @rua, numero = @numero WHERE id = @id";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        byte[] image = establishment.GetImage();
+                        string nome = establishment.GetNome();
+                        string email = establishment.GetEmail();
+                        string telefone = establishment.GetTelefone();
+                        string cep = establishment.GetAddressEstablishment().getCep();
+                        string estado = establishment.GetAddressEstablishment().getState();
+                        string cidade = establishment.GetAddressEstablishment().getCity();
+                        string rua = establishment.GetAddressEstablishment().getStreet();
+                        string numero = establishment.GetAddressEstablishment().getNumberAddress();
+                        int id = IdController.GetIdEstablishment();
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@image", image);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@telefone", telefone);
+                        cmd.Parameters.AddWithValue("@cep", cep);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+                        cmd.Parameters.AddWithValue("@cidade", cidade);
+                        cmd.Parameters.AddWithValue("@rua", rua);
+                        cmd.Parameters.AddWithValue("@numero", numero);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    return false;
+                }
+                return false;
+            }
+
+            public bool EstabelecimentoCadastroCompleto(int idEstablishment)
+            {
+                Createconnection();
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                    string query = @"
+            SELECT nome, email, image, telefone, cep, estado, cidade, rua, numero
+            FROM establishment
+            WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(query,connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idEstablishment);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                
+                                string[] campos = new string[]
+                                {
+                        reader["nome"]?.ToString(),
+                        reader["email"]?.ToString(),
+                        reader["image"]?.ToString(),
+                        reader["telefone"]?.ToString(),
+                        reader["cep"]?.ToString(),
+                        reader["estado"]?.ToString(),
+                        reader["cidade"]?.ToString(),
+                        reader["rua"]?.ToString(),
+                        reader["numero"]?.ToString(),
+                                };
+
+                                return campos.All(c => !string.IsNullOrWhiteSpace(c));
+                            }
+                        }
+                    }
+                
+
+                return false; // Se não encontrar ou houver erro, assume que está incompleto
             }
 
             //cardapio
