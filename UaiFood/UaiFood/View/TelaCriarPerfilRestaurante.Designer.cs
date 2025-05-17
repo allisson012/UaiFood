@@ -94,6 +94,7 @@
             txtCidade.Name = "txtCidade";
             txtCidade.Size = new Size(393, 19);
             txtCidade.TabIndex = 12;
+            txtCidade.TextChanged += txtCidade_TextChanged;
             // 
             // txtNumero
             // 
@@ -185,7 +186,7 @@
             Controls.Add(txtNome);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaCriarPerfilRestaurante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

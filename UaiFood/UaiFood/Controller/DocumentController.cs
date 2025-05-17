@@ -12,7 +12,15 @@ namespace UaiFood.Controller
     {
         public static bool ValidarCNPJ(string cnpj)
         {
+            cnpj = cnpj.Trim();
             cnpj = Regex.Replace(cnpj, "[^0-9]", "");
+
+            System.Diagnostics.Debug.WriteLine($"CNPJ recebido: [{cnpj}]");
+            System.Diagnostics.Debug.WriteLine($"Tamanho: {cnpj.Length}");
+            foreach (char c in cnpj)
+            {
+                System.Diagnostics.Debug.WriteLine($"'{c}' -> {(int)c}");
+            }
 
             if (cnpj.Length != 14)
                 return false;

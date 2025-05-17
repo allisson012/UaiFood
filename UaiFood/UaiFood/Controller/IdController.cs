@@ -22,7 +22,7 @@ namespace UaiFood.Controller
         }
         public static void SetIdEstablishment(int establishmentId)
         {
-            usuarioLogado = establishmentId;
+            establishmentLogado = establishmentId;
         }
 
         public static int GetIdEstablishment()
