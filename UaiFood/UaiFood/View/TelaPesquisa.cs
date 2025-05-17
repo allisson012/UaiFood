@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace UaiFood.View
 {
-    public partial class TelaPrincipalCliente : Form
+    public partial class TelaPesquisa : Form
     {
-        public TelaPrincipalCliente()
+        public TelaPesquisa()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TelaPesquisa telaPesquisa = new TelaPesquisa();
-            telaPesquisa.Show();
-            this.Close();
         }
     }
 }
