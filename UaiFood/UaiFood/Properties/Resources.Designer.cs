@@ -173,6 +173,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaExibirRestaurante {
+            get {
+                object obj = ResourceManager.GetObject("TelaExibirRestaurante", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaLogin {
             get {
                 object obj = ResourceManager.GetObject("TelaLogin", resourceCulture);
@@ -193,9 +203,29 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaPesquisa {
+            get {
+                object obj = ResourceManager.GetObject("TelaPesquisa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaPrincipalCliente {
             get {
                 object obj = ResourceManager.GetObject("TelaPrincipalCliente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaPrincipalCliente1 {
+            get {
+                object obj = ResourceManager.GetObject("TelaPrincipalCliente1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

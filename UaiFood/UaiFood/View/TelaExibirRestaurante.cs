@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UaiFood.View
 {
-    public partial class TelaPrincipalCliente : Form
+    public partial class TelaExibirRestaurante : Form
     {
-        public TelaPrincipalCliente()
+        public TelaExibirRestaurante()
         {
             InitializeComponent();
         }

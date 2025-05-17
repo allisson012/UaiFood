@@ -1,6 +1,6 @@
 ﻿namespace UaiFood.View
 {
-    partial class TelaPrincipalCliente
+    partial class TelaExibirRestaurante
     {
         /// <summary>
         /// Required designer variable.
@@ -38,27 +38,22 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(360, 36);
+            button1.Location = new Point(301, 36);
             button1.Name = "button1";
             button1.Size = new Size(591, 40);
-            button1.TabIndex = 0;
+            button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // TelaPrincipalCliente
+            // TelaExibirRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaPrincipalCliente1;
+            BackgroundImage = Properties.Resources.TelaExibirRestaurante;
             ClientSize = new Size(1350, 729);
             Controls.Add(button1);
-            DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
-            Name = "TelaPrincipalCliente";
+            Name = "TelaExibirRestaurante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
             ResumeLayout(false);
