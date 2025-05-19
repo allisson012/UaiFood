@@ -99,7 +99,7 @@ namespace UaiFood.Controller
                     {
                         var telaCriarPerfilRestaurante = new TelaCriarPerfilRestaurante();
                         telaCriarPerfilRestaurante.Show();
-                        return true;
+                        return false;
                     }
                 }
                 else
