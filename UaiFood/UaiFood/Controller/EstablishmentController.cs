@@ -67,8 +67,8 @@ namespace UaiFood.Controller
             if (criadoPerfil)
             {
                 MessageBox.Show("Perfil concluido com sucesso!");
-                var telaPrincipal = new TelaPrincipalCliente();
-                telaPrincipal.Show();
+                var telaPrincipalRestaurante = new TelaPrincipalRestaurante();
+                telaPrincipalRestaurante.Show();
             }
             else
             {
