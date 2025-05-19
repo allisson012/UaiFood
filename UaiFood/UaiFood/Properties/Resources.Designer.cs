@@ -283,6 +283,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaPrincipalRestaurante {
+            get {
+                object obj = ResourceManager.GetObject("TelaPrincipalRestaurante", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaPrincipalUsuario {
             get {
                 object obj = ResourceManager.GetObject("TelaPrincipalUsuario", resourceCulture);
