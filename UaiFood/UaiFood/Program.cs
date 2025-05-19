@@ -21,7 +21,6 @@ namespace UaiFood
             bd.createTableEstablishment();
             bd.createCardapioTable();
             bd.createProductTable();
-
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaInicial());
         }
