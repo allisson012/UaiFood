@@ -46,7 +46,7 @@ namespace UaiFood.View
         {
             ImageController imageController = new ImageController();
             imagemSelecionada = imageController.SelectImage();
-            Image imagem = imageController.ExibirImage(imagemSelecionada); 
+            Image imagem = imageController.ExibirImage(imagemSelecionada);
             if (imagem != null)
             {
                 pictureBox1.Image = imagem; // exibe na tela
@@ -55,6 +55,11 @@ namespace UaiFood.View
             {
                 MessageBox.Show("Não foi possível carregar a imagem.");
             }
+        }
+
+        private void TelaAdicionarProduto_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

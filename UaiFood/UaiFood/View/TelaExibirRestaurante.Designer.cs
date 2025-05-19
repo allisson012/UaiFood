@@ -49,7 +49,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaExibirRestaurante;
+            BackgroundImage = Properties.Resources.TelaExibirRestaurante1;
             ClientSize = new Size(1350, 729);
             Controls.Add(button1);
             MaximizeBox = false;

@@ -81,7 +81,7 @@
             txtCep.Location = new Point(327, 395);
             txtCep.Mask = "00000-000";
             txtCep.Name = "txtCep";
-            txtCep.Size = new Size(159, 19);
+            txtCep.Size = new Size(120, 19);
             txtCep.TabIndex = 11;
             txtCep.Leave += txtCep_Leave;
             // 

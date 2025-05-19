@@ -71,7 +71,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaPesquisa;
+            BackgroundImage = Properties.Resources.TelaPesquisa1;
             ClientSize = new Size(1350, 729);
             Controls.Add(txtPesquisa);
             Controls.Add(cbFiltro);

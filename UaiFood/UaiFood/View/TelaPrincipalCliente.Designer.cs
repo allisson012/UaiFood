@@ -49,7 +49,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaPrincipalCliente1;
+            BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
             Controls.Add(button1);
             DoubleBuffered = true;

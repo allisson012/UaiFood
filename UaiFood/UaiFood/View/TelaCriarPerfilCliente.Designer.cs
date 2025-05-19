@@ -96,7 +96,7 @@
             txtRua.BackColor = SystemColors.ControlLight;
             txtRua.BorderStyle = BorderStyle.None;
             txtRua.Font = new Font("Segoe UI", 12F);
-            txtRua.Location = new Point(857, 293);
+            txtRua.Location = new Point(857, 286);
             txtRua.Name = "txtRua";
             txtRua.Size = new Size(393, 22);
             txtRua.TabIndex = 4;
@@ -150,7 +150,7 @@
             txtDataNascimento.Location = new Point(327, 394);
             txtDataNascimento.Mask = "00/00/0000";
             txtDataNascimento.Name = "txtDataNascimento";
-            txtDataNascimento.Size = new Size(350, 22);
+            txtDataNascimento.Size = new Size(113, 22);
             txtDataNascimento.TabIndex = 9;
             // 
             // txtTelefone
