@@ -30,5 +30,11 @@ namespace UaiFood.View
             telaEditarProduto.Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TelaEditarPerfilRestaurante telaEditarPerfilRestaurante = new TelaEditarPerfilRestaurante();
+            telaEditarPerfilRestaurante.Show();
+        }
     }
 }

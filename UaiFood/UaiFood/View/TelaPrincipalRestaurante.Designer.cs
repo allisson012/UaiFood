@@ -88,6 +88,7 @@
             button4.Size = new Size(338, 30);
             button4.TabIndex = 4;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
@@ -145,7 +146,7 @@
             Controls.Add(button1);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaPrincipalRestaurante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

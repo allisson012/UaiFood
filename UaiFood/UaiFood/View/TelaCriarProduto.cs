@@ -38,7 +38,11 @@ namespace UaiFood.View
             }
 
             ProductController productController = new ProductController();
-            productController.createProduct(productName, description, price, category, imagemSelecionada);
+         //   if (String.IsNullOrEmpty(productName) && String.IsNullOrEmpty(category) && String.IsNullOrEmpty(description) && price != null && imagemSelecionada != null)
+         //   {
+                productController.createProduct(productName, description, price, category, imagemSelecionada);
+           
+           // productController.createProduct(productName, description, price, category, imagemSelecionada);
         }
 
 

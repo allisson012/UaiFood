@@ -469,22 +469,22 @@ CREATE TABLE IF NOT EXISTS establishment (
                 {
                     connection.Open();
                 }
-                    string query = @"
+                string query = @"
             SELECT nome, email, image, telefone, cep, estado, cidade, rua, numero
             FROM establishment
             WHERE id = @id";
 
-                    using (var cmd = new MySqlCommand(query,connection))
-                    {
-                        cmd.Parameters.AddWithValue("@id", idEstablishment);
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", idEstablishment);
 
-                        using (var reader = cmd.ExecuteReader())
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+
+                            string[] campos = new string[]
                             {
-                                
-                                string[] campos = new string[]
-                                {
                         reader["nome"]?.ToString(),
                         reader["email"]?.ToString(),
                         reader["image"]?.ToString(),
@@ -494,15 +494,64 @@ CREATE TABLE IF NOT EXISTS establishment (
                         reader["cidade"]?.ToString(),
                         reader["rua"]?.ToString(),
                         reader["numero"]?.ToString(),
-                                };
+                            };
 
-                                return campos.All(c => !string.IsNullOrWhiteSpace(c));
+                            return campos.All(c => !string.IsNullOrWhiteSpace(c));
+                        }
+                    }
+                }
+
+
+                return false; // Se não encontrar ou houver erro, assume que está incompleto
+            }
+
+            public Establishment findEstablishmentById(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    String sql = "SELECT * FROM establishment WHERE id = @id";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var addressEstablishment = new AddressEstablishment();
+                                var establishment = new Establishment();
+                                establishment.SetId(reader.GetInt32("id"));
+                                establishment.SetNome(reader.GetString("nome"));
+                                establishment.SetEmail(reader.GetString("email"));
+                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
+                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
+                                establishment.SetImage(GetBytesFromReader(reader, "image"));
+                                establishment.SetTelefone(reader.GetString("telefone"));
+                                establishment.SetCnpj(reader.GetString("cnpj"));
+                                addressEstablishment.setCep(reader.GetString("cep"));
+                                addressEstablishment.setState(reader.GetString("estado"));
+                                addressEstablishment.setCity(reader.GetString("cidade"));
+                                addressEstablishment.setStreet(reader.GetString("rua"));
+                                addressEstablishment.setNumberAddress(reader.GetString("numero"));
+                                establishment.SetAddressEstablishment(addressEstablishment);
+                                return establishment;
+                            }
+                            else
+                            {
+                                return null;
                             }
                         }
                     }
-                
-
-                return false; // Se não encontrar ou houver erro, assume que está incompleto
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+                return null;
             }
 
             //cardapio
@@ -604,13 +653,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                     // Verifique se a conexão já está aberta antes de abrir
                     if (connection.State != System.Data.ConnectionState.Open)
                     {
-                        connection.Open(); // Só abre se a conexão não estiver aberta
+                        connection.Open(); 
                     }
 
                     connection.ChangeDatabase(bancoDados);
 
-                    string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem) " +
-                                 "VALUES (@nome, @descricao, @preco, @categoria, @imagem)";
+                    string sql = "INSERT INTO produtos (nome, descricao, preco, categoria, imagem ,idCardapio) " +
+                                 "VALUES (@nome, @descricao, @preco, @categoria, @imagem , @idCardapio)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
@@ -619,7 +668,8 @@ CREATE TABLE IF NOT EXISTS produtos (
                         cmd.Parameters.AddWithValue("@preco", produto.Preco);
                         cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
                         cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
-
+                        // passar o idController do establishment
+                        cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
                         cmd.ExecuteNonQuery();
                         return true;
                     }
@@ -632,7 +682,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                 }
                 finally
                 {
-                    // Garante que a conexão será fechada
+                    
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
                         connection.Close();

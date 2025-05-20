@@ -43,7 +43,7 @@ namespace UaiFood.View
                 bool loginValido = establishmentController.loginEstablishment(cnpj, senha);
                 if (loginValido)
                 {
-                    var telaPrincipalRestaurante = new TelaPrincipalCliente();
+                    var telaPrincipalRestaurante = new TelaPrincipalRestaurante();
                     telaPrincipalRestaurante.Show();
                     // tela errada esta faltando a tela principal restaurante
                 }
