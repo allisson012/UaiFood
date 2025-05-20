@@ -68,7 +68,6 @@ namespace UaiFood
                     MessageBox.Show("Código de recuperação enviado com sucesso");
                     TelaRecuperacaoDeConta telaRecuperacaoDeConta = new TelaRecuperacaoDeConta(codigo, destinatario);
                     telaRecuperacaoDeConta.Show();
-                    this.Close();
                 }
             }
             else

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -15,6 +16,34 @@ namespace UaiFood.View
         public TelaEditarPerfilRestaurante()
         {
             InitializeComponent();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalRestaurante telaPrincipalRestaurante = new TelaPrincipalRestaurante();
+            telaPrincipalRestaurante.Show();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picturePerfil_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ImageController imageController = new ImageController();
+            byte[] imag = imageController.SelectImage();
+            Image i = imageController.ExibirImage(imag);
+            if (i != null)
+            {
+                picturePerfil.Image = i;
+            }
         }
     }
 }

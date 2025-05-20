@@ -66,6 +66,7 @@
             button1.Size = new Size(115, 47);
             button1.TabIndex = 13;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 

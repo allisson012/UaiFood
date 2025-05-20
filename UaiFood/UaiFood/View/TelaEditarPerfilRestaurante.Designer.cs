@@ -53,6 +53,7 @@
             picturePerfil.SizeMode = PictureBoxSizeMode.Zoom;
             picturePerfil.TabIndex = 19;
             picturePerfil.TabStop = false;
+            picturePerfil.Click += picturePerfil_Click;
             // 
             // button1
             // 
@@ -67,6 +68,7 @@
             button1.Size = new Size(30, 30);
             button1.TabIndex = 20;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -81,6 +83,7 @@
             button2.Size = new Size(137, 45);
             button2.TabIndex = 21;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -95,6 +98,7 @@
             button3.Size = new Size(104, 37);
             button3.TabIndex = 22;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // txtNome
             // 
