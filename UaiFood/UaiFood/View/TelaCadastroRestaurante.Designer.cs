@@ -41,7 +41,7 @@
             txtCNPJ.BackColor = Color.FromArgb(217, 217, 217);
             txtCNPJ.BorderStyle = BorderStyle.None;
             txtCNPJ.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCNPJ.Location = new Point(628, 315);
+            txtCNPJ.Location = new Point(628, 330);
             txtCNPJ.Margin = new Padding(3, 2, 3, 2);
             txtCNPJ.Mask = "00,000,000/0000-00";
             txtCNPJ.Name = "txtCNPJ";
@@ -56,7 +56,7 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(896, 39);
+            button1.Location = new Point(910, 40);
             button1.Name = "button1";
             button1.Size = new Size(245, 30);
             button1.TabIndex = 1;
@@ -68,7 +68,7 @@
             txtSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 12F);
-            txtSenha.Location = new Point(628, 394);
+            txtSenha.Location = new Point(628, 416);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(494, 22);
@@ -81,7 +81,7 @@
             txtRepeteSenha.BackColor = Color.FromArgb(217, 217, 217);
             txtRepeteSenha.BorderStyle = BorderStyle.None;
             txtRepeteSenha.Font = new Font("Segoe UI", 12F);
-            txtRepeteSenha.Location = new Point(628, 475);
+            txtRepeteSenha.Location = new Point(628, 501);
             txtRepeteSenha.Margin = new Padding(3, 2, 3, 2);
             txtRepeteSenha.Name = "txtRepeteSenha";
             txtRepeteSenha.Size = new Size(494, 22);
@@ -96,7 +96,7 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(1083, 511);
+            button2.Location = new Point(1099, 540);
             button2.Name = "button2";
             button2.Size = new Size(167, 40);
             button2.TabIndex = 10;
@@ -109,7 +109,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Blue;
-            linkLabel1.Location = new Point(1029, 234);
+            linkLabel1.Location = new Point(1029, 247);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(112, 20);
             linkLabel1.TabIndex = 12;
@@ -122,7 +122,6 @@
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastroRestaurante;
-            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1350, 729);
             Controls.Add(linkLabel1);
             Controls.Add(button2);

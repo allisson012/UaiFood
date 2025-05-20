@@ -31,6 +31,10 @@
             button1 = new Button();
             cbFiltro = new ComboBox();
             txtPesquisa = new TextBox();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -67,12 +71,70 @@
             txtPesquisa.Size = new Size(535, 27);
             txtPesquisa.TabIndex = 3;
             // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(12, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(81, 69);
+            button2.TabIndex = 4;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1009, 32);
+            button3.Name = "button3";
+            button3.Size = new Size(53, 49);
+            button3.TabIndex = 5;
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(1270, 12);
+            button4.Name = "button4";
+            button4.Size = new Size(68, 69);
+            button4.TabIndex = 6;
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button5.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(1098, 32);
+            button5.Name = "button5";
+            button5.Size = new Size(123, 43);
+            button5.TabIndex = 7;
+            button5.UseVisualStyleBackColor = false;
+            // 
             // TelaPesquisa
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPesquisa1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(txtPesquisa);
             Controls.Add(cbFiltro);
             Controls.Add(button1);
@@ -89,5 +151,9 @@
         private Button button1;
         private ComboBox cbFiltro;
         private TextBox txtPesquisa;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
     }
 }

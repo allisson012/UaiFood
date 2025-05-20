@@ -116,6 +116,7 @@
             button2.Size = new Size(33, 29);
             button2.TabIndex = 24;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -142,6 +143,7 @@
             button1.Size = new Size(110, 47);
             button1.TabIndex = 26;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // TelaEditarProduto
             // 
