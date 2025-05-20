@@ -30,5 +30,10 @@ namespace UaiFood.View
             var imageController = new ImageController();
             picturePerfil.Image = imageController.ExibirImage(establishment.GetImage());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

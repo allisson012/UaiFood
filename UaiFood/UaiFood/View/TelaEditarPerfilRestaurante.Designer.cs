@@ -81,6 +81,7 @@
             button2.Size = new Size(137, 45);
             button2.TabIndex = 21;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -197,7 +198,7 @@
             Controls.Add(button1);
             Controls.Add(picturePerfil);
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaEditarPerfilRestaurante";
             Text = "UaiFood";
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
