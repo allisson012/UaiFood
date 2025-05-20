@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -38,12 +41,51 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(360, 36);
+            button1.Location = new Point(265, 34);
             button1.Name = "button1";
             button1.Size = new Size(591, 40);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(1273, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(65, 74);
+            button2.TabIndex = 1;
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(978, 34);
+            button3.Name = "button3";
+            button3.Size = new Size(62, 52);
+            button3.TabIndex = 2;
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(1093, 34);
+            button4.Name = "button4";
+            button4.Size = new Size(125, 52);
+            button4.TabIndex = 3;
+            button4.UseVisualStyleBackColor = false;
             // 
             // TelaPrincipalCliente
             // 
@@ -51,6 +93,9 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(button1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -67,5 +112,8 @@
         #endregion
 
         private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

@@ -16,5 +16,25 @@ namespace UaiFood.View
         {
             InitializeComponent();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TelaAdicionarProduto telaAdicionarProduto = new TelaAdicionarProduto();
+            telaAdicionarProduto.Show();
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaEditarProduto telaEditarProduto = new TelaEditarProduto();
+            telaEditarProduto.Show();
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TelaEditarPerfilRestaurante telaEditarPerfilRestaurante = new TelaEditarPerfilRestaurante();
+            telaEditarPerfilRestaurante.Show();
+        }
     }
 }

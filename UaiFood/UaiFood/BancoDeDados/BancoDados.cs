@@ -669,7 +669,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                         cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
                         cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
                         // passar o idController do establishment
-                        cmd.Parameters.AddWithValue("@idCardapio", 1);
+                        cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
                         cmd.ExecuteNonQuery();
                         return true;
                     }

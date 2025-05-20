@@ -65,5 +65,12 @@ namespace UaiFood.View
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalRestaurante telaPrincipalRestaurante = new TelaPrincipalRestaurante();
+            telaPrincipalRestaurante.Show();
+            this.Close();
+        }
     }
 }
