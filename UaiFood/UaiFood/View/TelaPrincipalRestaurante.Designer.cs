@@ -35,6 +35,11 @@
             button5 = new Button();
             button6 = new Button();
             button7 = new Button();
+            lblNome = new Label();
+            lblTelefone = new Label();
+            lblCep = new Label();
+            lblCidade = new Label();
+            lblEstado = new Label();
             SuspendLayout();
             // 
             // button1
@@ -131,12 +136,72 @@
             button7.TabIndex = 7;
             button7.UseVisualStyleBackColor = false;
             // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.BackColor = Color.Transparent;
+            lblNome.Font = new Font("Segoe UI", 12F);
+            lblNome.Location = new Point(286, 215);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(52, 21);
+            lblNome.TabIndex = 8;
+            lblNome.Text = "label1";
+            // 
+            // lblTelefone
+            // 
+            lblTelefone.AutoSize = true;
+            lblTelefone.BackColor = Color.Transparent;
+            lblTelefone.Font = new Font("Segoe UI", 12F);
+            lblTelefone.Location = new Point(286, 309);
+            lblTelefone.Name = "lblTelefone";
+            lblTelefone.Size = new Size(52, 21);
+            lblTelefone.TabIndex = 9;
+            lblTelefone.Text = "label1";
+            // 
+            // lblCep
+            // 
+            lblCep.AutoSize = true;
+            lblCep.BackColor = Color.Transparent;
+            lblCep.Font = new Font("Segoe UI", 12F);
+            lblCep.Location = new Point(286, 400);
+            lblCep.Name = "lblCep";
+            lblCep.Size = new Size(52, 21);
+            lblCep.TabIndex = 10;
+            lblCep.Text = "label1";
+            // 
+            // lblCidade
+            // 
+            lblCidade.AutoSize = true;
+            lblCidade.BackColor = Color.Transparent;
+            lblCidade.Font = new Font("Segoe UI", 12F);
+            lblCidade.Location = new Point(286, 488);
+            lblCidade.Name = "lblCidade";
+            lblCidade.Size = new Size(52, 21);
+            lblCidade.TabIndex = 11;
+            lblCidade.Text = "label1";
+            // 
+            // lblEstado
+            // 
+            lblEstado.AutoSize = true;
+            lblEstado.BackColor = Color.Transparent;
+            lblEstado.Font = new Font("Segoe UI", 12F);
+            lblEstado.Location = new Point(286, 593);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(52, 21);
+            lblEstado.TabIndex = 12;
+            lblEstado.Text = "label1";
+            // 
             // TelaPrincipalRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalRestaurante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(lblEstado);
+            Controls.Add(lblCidade);
+            Controls.Add(lblCep);
+            Controls.Add(lblTelefone);
+            Controls.Add(lblNome);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
@@ -150,7 +215,9 @@
             Name = "TelaPrincipalRestaurante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaPrincipalRestaurante_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -162,5 +229,10 @@
         private Button button5;
         private Button button6;
         private Button button7;
+        private Label lblNome;
+        private Label lblTelefone;
+        private Label lblCep;
+        private Label lblCidade;
+        private Label lblEstado;
     }
 }

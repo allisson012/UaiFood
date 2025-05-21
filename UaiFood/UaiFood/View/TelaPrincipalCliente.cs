@@ -23,5 +23,12 @@ namespace UaiFood.View
             telaPesquisa.Show();
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TelaPerfilCliente telaPerfilCliente = new TelaPerfilCliente();
+            telaPerfilCliente.Show();
+            this.Close();
+        }
     }
 }
