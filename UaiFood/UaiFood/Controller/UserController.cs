@@ -87,6 +87,7 @@ namespace UaiFood.Controller
                 {
                     MessageBox.Show("Usuario logado com sucesso");
                     IdController.SetIdUser(u.getUserId());
+                    System.Diagnostics.Debug.WriteLine("Id logado: " + u.getUserId());
                     var telaPrincipalCliente = new TelaPrincipalCliente();
                     telaPrincipalCliente.Show();
                     var telaLogin = new TelaLogin();

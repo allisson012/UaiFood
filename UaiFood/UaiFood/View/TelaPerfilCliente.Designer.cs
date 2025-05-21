@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "TelaPerfilCliente";
+            lblNome = new Label();
+            lblTelefone = new Label();
+            SuspendLayout();
+            // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.Location = new Point(235, 124);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(38, 15);
+            lblNome.TabIndex = 0;
+            lblNome.Text = "label1";
+            // 
+            // lblTelefone
+            // 
+            lblTelefone.AutoSize = true;
+            lblTelefone.Location = new Point(235, 170);
+            lblTelefone.Name = "lblTelefone";
+            lblTelefone.Size = new Size(38, 15);
+            lblTelefone.TabIndex = 1;
+            lblTelefone.Text = "label2";
+            // 
+            // TelaPerfilCliente
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(lblTelefone);
+            Controls.Add(lblNome);
+            Name = "TelaPerfilCliente";
+            Text = "TelaPerfilCliente";
+            Load += TelaPerfilCliente_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblNome;
+        private Label lblTelefone;
     }
 }
