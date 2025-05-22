@@ -33,19 +33,25 @@
             // 
             // button1
             // 
-            button1.Location = new Point(359, 199);
+            button1.BackColor = Color.Transparent;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(312, 333);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(129, 40);
             button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // TelaInicial
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackgroundImage = Properties.Resources.TelaInicial;
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(751, 450);
             Controls.Add(button1);
             Name = "TelaInicial";
             StartPosition = FormStartPosition.CenterScreen;

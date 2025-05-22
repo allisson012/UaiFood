@@ -118,17 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TelaEditarPerfilUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaEditarPerfilUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TelaCriarPerfilCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaCriarPerfilCliente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TelaPrincipalCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaPrincipalCliente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaEditarProduto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaEditarProduto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FotoPerfil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FotoPerfil1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TelaPrincipalRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaPrincipalRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaCadastro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaCadastro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,14 +136,14 @@
   <data name="TelaPesquisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaPesquisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaAdicionarProduto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaAdicionarProduto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Salvar nova senha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Salvar nova senha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaEditarPerfilRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaEditarPerfilRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TelaCadastroRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaCadastroRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaCriarPerfilRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaCriarPerfilRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +154,8 @@
   <data name="TelaCriarPerfilCliente1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaCriarPerfilCliente1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaEditarPerfilUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaEditarPerfilUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TelaPrincipalCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaPrincipalCliente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaExibirRestaurante1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaExibirRestaurante1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,14 +169,17 @@
   <data name="restaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TelaPrincipalCliente1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaPrincipalCliente1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TelaLogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaLogin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaPrincipalUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaPrincipalUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaPrincipalCliente1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaPrincipalCliente1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TelaAdicionarProduto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaAdicionarProduto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelaPesquisa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaPesquisa1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,10 +187,10 @@
   <data name="TelaExibirRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelaExibirRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaCadastroRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaCadastroRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FotoPerfil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FotoPerfil1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelaPrincipalRestaurante" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaPrincipalRestaurante.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TelaInicial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TelaInicial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

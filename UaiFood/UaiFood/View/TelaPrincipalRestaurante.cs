@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
     public partial class TelaPrincipalRestaurante : Form
     {
+        int? establishmentId = IdController.GetIdEstablishment();
         public TelaPrincipalRestaurante()
         {
             InitializeComponent();
@@ -35,6 +38,20 @@ namespace UaiFood.View
         {
             TelaEditarPerfilRestaurante telaEditarPerfilRestaurante = new TelaEditarPerfilRestaurante();
             telaEditarPerfilRestaurante.Show();
+        }
+
+        private void TelaPrincipalRestaurante_Load(object sender, EventArgs e)
+        {
+            BancoDados bd = new BancoDados();
+            var establishment = bd.findEstablishmentById(establishmentId.Value);
+            lblNome.Text = establishment.GetNome();
+            lblTelefone.Text = establishment.GetTelefone();
+
+            var establishmentAddress = establishment.GetAddressEstablishment();
+            lblCep.Text = establishmentAddress.getCep();
+            lblCidade.Text = establishmentAddress.getCity();
+            lblEstado.Text = establishmentAddress.getState();
+
         }
     }
 }
