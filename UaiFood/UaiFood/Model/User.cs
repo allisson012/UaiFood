@@ -20,7 +20,7 @@ namespace UaiFood.Model
         private DateOnly data;
         private Address address;
         private string telefone;
-        private long cpf;
+        private string cpf;
         public String getNome()
         {
             return this.nome;
@@ -61,6 +61,14 @@ namespace UaiFood.Model
         {
             this.salt = salt;
         }
+        public void setPhoto(byte[] photo)
+        {
+            this.photo = photo;
+        }
+        public byte[] getPhoto()
+        {
+            return this.photo;
+        }
         public DateOnly getData()
         {
             return this.data;
@@ -94,11 +102,11 @@ namespace UaiFood.Model
         {
             this.telefone = telefone;
         }
-        public long getCpf()
+        public string getCpf()
         {
             return this.cpf;
         }
-        public void setCpf(long cpf)
+        public void setCpf(string cpf)
         {
             this.cpf = cpf;
         }

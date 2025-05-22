@@ -70,6 +70,11 @@ CREATE TABLE IF NOT EXISTS users (
     image BLOB,
     cpf VARCHAR(14) UNIQUE,
     telefone VARCHAR(11),
+    cep VARCHAR(8),
+    estado VARCHAR(100),
+    cidade VARCHAR(100),
+    rua VARCHAR(100),
+    numero VARCHAR(100),
     data DATE
 );";
 
@@ -104,23 +109,27 @@ CREATE TABLE IF NOT EXISTS users (
                         connection.Open();
                     }
 
-                    string sql = "INSERT INTO users (nome, email, hash, salt) VALUES (@nome, @email, @hash, @salt)";
+                    string sql = "INSERT INTO users (email, hash, salt) VALUES (@email, @hash, @salt)";
 
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         String email = u.getEmail();
-                        String nome = email.Substring(0, email.IndexOf('@'));
                         byte[] hash = u.getHash();
                         byte[] salt = u.getSalt();
-                        cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@hash", hash);
                         cmd.Parameters.AddWithValue("@salt", salt);
+                        if (cmd.ExecuteNonQuery() != 0)
+                        {
+                            long idUser = cmd.LastInsertedId;
+                            int idUserForId = (int)idUser;
+                            IdController.SetIdUser(idUserForId);
 
-                        cmd.ExecuteNonQuery();
-                        System.Diagnostics.Debug.WriteLine("inseriu");
-                        return true;
+                            System.Diagnostics.Debug.WriteLine("inseriu");
+                            return true;
+                        }
+                        return false;
                     }
                 }
                 catch (MySqlException ex)
@@ -224,8 +233,9 @@ CREATE TABLE IF NOT EXISTS users (
                                 user.setEmail(reader.GetString("email"));
                                 user.setHash(GetBytesFromReader(reader, "hash"));
                                 user.setSalt(GetBytesFromReader(reader, "salt"));
-                                String cpf = reader.GetString("cpf");
-                                user.setCpf(long.Parse(cpf));
+                                user.setPhoto(GetBytesFromReader(reader, "image"));
+                                user.setCpf(reader.GetString("cpf"));
+                               
                                 return user;
                             }
                             else
@@ -264,7 +274,7 @@ CREATE TABLE IF NOT EXISTS users (
                         {
                             if (reader.Read())
                             {
-                                reader.Close(); // Fecha o reader antes de executar outro comando
+                                reader.Close();
 
                                 string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
                                 using (var updateCmd = new MySqlCommand(updateSql, connection))
@@ -689,36 +699,41 @@ CREATE TABLE IF NOT EXISTS produtos (
                     }
                 }
             }
-        public Produto ConsultarProdutoPorId(int id)
+        public List<Produto> ConsultarProdutoPorIdCardapio()
         {
-            try
-            {
-                Createconnection();
-                connection.ChangeDatabase(bancoDados);
-
-                string sql = "SELECT * FROM produtos WHERE id = @id";
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    
+                    List<Produto> produtos = new List<Produto>();
+                string sql = "SELECT * FROM produtos WHERE idCardapio = @id";
 
                 using (var cmd = new MySqlCommand(sql, connection))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    connection.Open();
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
+                    cmd.Parameters.AddWithValue("@id", 1);
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            return new Produto
+                            while(reader.Read())
                             {
-                                Id = reader.GetInt32("id"),
-                                Nome = reader.GetString("nome"),
-                                Descricao = reader.GetString("descricao"),
-                                Preco = reader.GetDecimal("preco"),
-                                Categoria = reader.GetString("categoria"),
-                                Imagem = reader["imagem"] as byte[]
-                            };
+                                var produto = new Produto
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Nome = reader.GetString("nome"),
+                                    Descricao = reader.GetString("descricao"),
+                                    Preco = reader.GetDecimal("preco"),
+                                    Categoria = reader.GetString("categoria"),
+                                    Imagem = reader["imagem"] as byte[]
+                                };
+                                produtos.Add(produto);
+                            }
                         }
+                        return produtos;
                     }
                 }
-            }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Erro ao consultar produto: " + ex.Message);
@@ -731,49 +746,51 @@ CREATE TABLE IF NOT EXISTS produtos (
             return null;
         }
 
-        public List<Produto> ListarProdutos()
-        {
-            List<Produto> produtos = new List<Produto>();
-
-            try
+            public Produto ConsultarProdutoPorId(int id)
             {
-                Createconnection();
-                connection.ChangeDatabase(bancoDados);
-
-                string sql = "SELECT * FROM produtos";
-
-                using (var cmd = new MySqlCommand(sql, connection))
+                try
                 {
-                    connection.Open();
-                    using (var reader = cmd.ExecuteReader())
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
                     {
-                        while (reader.Read())
+                        connection.Open();
+                    }
+
+                   
+                    string sql = "SELECT * FROM produtos WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            produtos.Add(new Produto
+                            if (reader.Read())
                             {
-                                Id = reader.GetInt32("id"),
-                                Nome = reader.GetString("nome"),
-                                Descricao = reader.GetString("descricao"),
-                                Preco = reader.GetDecimal("preco"),
-                                Categoria = reader.GetString("categoria"),
-                                Imagem = reader["imagem"] as byte[]
-                                
-                            });
+                                return new Produto
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Nome = reader.GetString("nome"),
+                                    Descricao = reader.GetString("descricao"),
+                                    Preco = reader.GetDecimal("preco"),
+                                    Categoria = reader.GetString("categoria"),
+                                    Imagem = reader["imagem"] as byte[]
+                                };
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Erro ao listar produtos: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao consultar produto: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return null;
             }
 
-            return produtos;
-            }
 
             public bool DeletarProduto(int id)
             {

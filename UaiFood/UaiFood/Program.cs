@@ -1,6 +1,7 @@
 using UaiFood.BancoDeDados;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
+using UaiFood.Model;
 using UaiFood.View;
 
 namespace UaiFood
