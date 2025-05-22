@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -63,7 +63,7 @@ namespace UaiFood.BancoDeDados
                 string sql = @"
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
@@ -890,6 +890,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                                 est.SetNome(reader.GetString("nome"));
                                 est.SetEmail(reader.GetString("email"));
                                 est.SetTelefone(reader.GetString("telefone"));
+                                est.SetImage(GetBytesFromReader(reader, "image"));
                                 estabelecimentos.Add(est);
                             }
                         }
@@ -906,7 +907,55 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 return estabelecimentos;
             }
-            public List<Produto> BuscarProdutos(int idCardapio, string termo)
+            public List<Produto> BuscarTodosProdutos(string termo)
+            {
+                var produtos = new List<Produto>();
+
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"
+            SELECT id, nome, descricao, preco, categoria, imagem
+            FROM produtos
+            AND (LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@termo", $"%{termo.ToLower()}%");
+                        connection.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var produto = new Produto
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Nome = reader.GetString("nome"),
+                                    Descricao = reader.GetString("descricao"),
+                                    Preco = reader.GetDecimal("preco"),
+                                    Categoria = reader.GetString("categoria"),
+                                    Imagem = reader["imagem"] as byte[]
+                                };
+                                produtos.Add(produto);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar produtos: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return produtos;
+            }
+            public List<Produto> BuscarProdutosRestaurante(int idCardapio, string termo)
             {
                 var produtos = new List<Produto>();
 
@@ -956,6 +1005,47 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 return produtos;
             }
+            public List<Establishment> ExibirRestaurantes()
+            {
+                var estabelecimentos = new List<Establishment>();
+
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"SELECT id, nome, email, telefone FROM establishment";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        connection.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var est = new Establishment();
+                                est.SetId(reader.GetInt32("id"));
+                                est.SetNome(reader.GetString("nome"));
+                                est.SetEmail(reader.GetString("email"));
+                                est.SetTelefone(reader.GetString("telefone"));
+                                est.SetImage(GetBytesFromReader(reader, "image"));
+                                estabelecimentos.Add(est);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar restaurantes: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return estabelecimentos;
+            }
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
@@ -967,6 +1057,7 @@ CREATE TABLE IF NOT EXISTS produtos (
             }
         }
     }
+
     }
 
 

@@ -16,7 +16,6 @@ namespace UaiFood.Model
         public byte[] Imagem { get; set; }
 
         public Produto() { }
-
         public Produto(int id, string nome, string descricao, decimal preco, string categoria, byte[] imagem)
         {
             Id = id;
