@@ -801,6 +801,100 @@ CREATE TABLE IF NOT EXISTS produtos (
                     connection.Close();
                 }
             }
+
+            //pesquisar
+            public List<Establishment> BuscarRestaurantes(string nome)
+            {
+                var estabelecimentos = new List<Establishment>();
+
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"SELECT id, nome, email, telefone FROM establishment WHERE LOWER(nome) LIKE @nome";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", $"%{nome.ToLower()}%");
+                        connection.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var est = new Establishment();
+                                est.SetId(reader.GetInt32("id"));
+                                est.SetNome(reader.GetString("nome"));
+                                est.SetEmail(reader.GetString("email"));
+                                est.SetTelefone(reader.GetString("telefone"));
+                                estabelecimentos.Add(est);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar restaurantes: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return estabelecimentos;
+            }
+            public List<Produto> BuscarProdutos(int idCardapio, string termo)
+            {
+                var produtos = new List<Produto>();
+
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"
+            SELECT id, nome, descricao, preco, categoria, imagem
+            FROM produtos
+            WHERE idCardapio = @idCardapio
+            AND (LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCardapio", idCardapio);
+                        cmd.Parameters.AddWithValue("@termo", $"%{termo.ToLower()}%");
+                        connection.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var produto = new Produto
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Nome = reader.GetString("nome"),
+                                    Descricao = reader.GetString("descricao"),
+                                    Preco = reader.GetDecimal("preco"),
+                                    Categoria = reader.GetString("categoria"),
+                                    Imagem = reader["imagem"] as byte[]
+                                };
+                                produtos.Add(produto);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar produtos: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return produtos;
+            }
+
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
             {
@@ -809,8 +903,6 @@ CREATE TABLE IF NOT EXISTS produtos (
                 reader.GetBytes(reader.GetOrdinal(columnName), 0, buffer, 0, (int)size); // copia os bytes
                 return buffer;
             }
-
-
         }
     }
     }
