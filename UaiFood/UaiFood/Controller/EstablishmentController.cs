@@ -123,7 +123,7 @@ namespace UaiFood.Controller
         public List<Produto> PesquisarProdutos(int idCardapio, string termo)
         {
             var banco = new BancoDados();
-            return banco.BuscarProdutos(idCardapio, termo);
+            return banco.BuscarProdutosRestaurante(idCardapio, termo);
         }
 
     }

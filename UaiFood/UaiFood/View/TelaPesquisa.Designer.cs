@@ -35,6 +35,7 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
+            flpRestaurantes = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // button1
@@ -49,6 +50,7 @@
             button1.Size = new Size(123, 40);
             button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // cbFiltro
             // 
@@ -59,7 +61,7 @@
             cbFiltro.Location = new Point(159, 112);
             cbFiltro.Name = "cbFiltro";
             cbFiltro.Size = new Size(144, 36);
-            cbFiltro.TabIndex = 2;
+            cbFiltro.TabIndex = 0;
             // 
             // txtPesquisa
             // 
@@ -125,12 +127,22 @@
             button5.TabIndex = 7;
             button5.UseVisualStyleBackColor = false;
             // 
+            // flpRestaurantes
+            // 
+            flpRestaurantes.AutoScroll = true;
+            flpRestaurantes.BackColor = Color.White;
+            flpRestaurantes.Location = new Point(-3, 154);
+            flpRestaurantes.Name = "flpRestaurantes";
+            flpRestaurantes.Size = new Size(1354, 576);
+            flpRestaurantes.TabIndex = 8;
+            // 
             // TelaPesquisa
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPesquisa1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(flpRestaurantes);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -142,6 +154,7 @@
             Name = "TelaPesquisa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaPesquisa_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -155,5 +168,6 @@
         private Button button3;
         private Button button4;
         private Button button5;
+        private FlowLayoutPanel flpRestaurantes;
     }
 }

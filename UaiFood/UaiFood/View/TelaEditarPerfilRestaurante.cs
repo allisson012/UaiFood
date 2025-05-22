@@ -16,19 +16,7 @@ namespace UaiFood.View
     {
         public TelaEditarPerfilRestaurante()
         {
-            InitializeComponent();
-            var bd = new BancoDados();
-            var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
-            txtEmail.Text = establishment.GetEmail();
-            txtNome.Text = establishment.GetNome();
-            txtTelefone.Text = establishment.GetTelefone();
-            txtCep.Text = establishment.GetAddressEstablishment().getCep();
-            txtCidade.Text = establishment.GetAddressEstablishment().getCity();
-            txtNumero.Text = establishment.GetAddressEstablishment().getNumberAddress();
-            txtEstado.Text = establishment.GetAddressEstablishment().getState();
-            txtRua.Text = establishment.GetAddressEstablishment().getStreet();
-            var imageController = new ImageController();
-            picturePerfil.Image = imageController.ExibirImage(establishment.GetImage());
+            InitializeComponent();            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -57,6 +45,22 @@ namespace UaiFood.View
             {
                 picturePerfil.Image = i;
             }
+        }
+
+        private void TelaEditarPerfilRestaurante_Load(object sender, EventArgs e)
+        {
+            var bd = new BancoDados();
+            var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
+            txtEmail.Text = establishment.GetEmail();
+            txtNome.Text = establishment.GetNome();
+            txtTelefone.Text = establishment.GetTelefone();
+            txtCep.Text = establishment.GetAddressEstablishment().getCep();
+            txtCidade.Text = establishment.GetAddressEstablishment().getCity();
+            txtNumero.Text = establishment.GetAddressEstablishment().getNumberAddress();
+            txtEstado.Text = establishment.GetAddressEstablishment().getState();
+            txtRua.Text = establishment.GetAddressEstablishment().getStreet();
+            var imageController = new ImageController();
+            picturePerfil.Image = imageController.ExibirImage(establishment.GetImage());
         }
     }
 }

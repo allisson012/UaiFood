@@ -218,6 +218,7 @@
             Name = "TelaEditarPerfilCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaEditarPerfilCliente_Load;
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
             ResumeLayout(false);
             PerformLayout();
