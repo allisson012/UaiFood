@@ -13,6 +13,7 @@ namespace UaiFood.View
 {
     public partial class TelaCriarPerfilCliente : Form
     {
+        private byte[] imag;
         public TelaCriarPerfilCliente()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace UaiFood.View
         private void button1_Click(object sender, EventArgs e)
         {
             ImageController imageController = new ImageController();
-            byte[] imag = imageController.SelectImage();
+            imag = imageController.SelectImage();
             Image i = imageController.ExibirImage(imag);
             if (i != null)
             {
@@ -45,12 +46,28 @@ namespace UaiFood.View
             string cpf = txtCpf.Text;
             string estado = txtEstado.Text;
             string dataNasc = txtDataNascimento.Text;
-
+            DateOnly data;
+            string formato = "dd/MM/yyyy";
+            try
+            {
+               data = DateOnly.ParseExact(dataNasc, formato, System.Globalization.CultureInfo.InvariantCulture);
+                System.Diagnostics.Debug.WriteLine($"Data convertida: {data}");
+            }
+            catch (FormatException)
+            {
+                System.Diagnostics.Debug.WriteLine("Formato de data inválido.");
+                return;
+            }
             DocumentController documentController = new DocumentController();
             if (!documentController.validateCpf(cpf))
             {
                 MessageBox.Show("Insira um CPF válido!", "CPF inválido!", (MessageBoxButtons)MessageBoxIcon.Warning);
                 return;
+            }
+            if(!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
+            {
+                var userController = new UserController();
+                userController.createPerfilUser(IdController.GetIdUser(), nome, cpf, rua, estado, cidade, cep, telefone, numero, imag, data);
             }
 
         }

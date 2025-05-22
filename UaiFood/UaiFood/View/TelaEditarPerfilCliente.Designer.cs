@@ -177,6 +177,7 @@
             button2.Size = new Size(137, 45);
             button2.TabIndex = 19;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -214,11 +215,10 @@
             Controls.Add(txtNome);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaEditarPerfilCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
-            Load += TelaEditarPerfilCliente_Load;
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
             ResumeLayout(false);
             PerformLayout();

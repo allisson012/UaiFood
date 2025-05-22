@@ -18,7 +18,7 @@ namespace UaiFood.Model
         private byte[] hash;
         private byte[] salt;
         private DateOnly data;
-        private Address address;
+        private AddressUser addressUser;
         private string telefone;
         private string cpf;
         public String getNome()
@@ -73,7 +73,7 @@ namespace UaiFood.Model
         {
             return this.data;
         }
-        public void setNome(DateOnly data)
+        public void setData(DateOnly data)
         {
             this.data = data;
         }
@@ -86,13 +86,13 @@ namespace UaiFood.Model
         {
             this.UserId = id;
         }
-        public Address getAddress()
+        public AddressUser getAddress()
         {
-            return this.address;
+            return this.addressUser;
         }
-        public void setAddress(Address address)
+        public void setAddress(AddressUser addressUser)
         {
-            this.address = address;
+            this.addressUser = addressUser;
         }
         public String getTelefone()
         {

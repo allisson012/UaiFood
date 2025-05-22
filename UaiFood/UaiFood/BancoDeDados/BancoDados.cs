@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -63,11 +63,11 @@ namespace UaiFood.BancoDeDados
                 string sql = @"
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NULL,
+    nome VARCHAR(100),
     email VARCHAR(100) NOT NULL UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
-    image BLOB,
+    image LONGBLOB,
     cpf VARCHAR(14) UNIQUE,
     telefone VARCHAR(11),
     cep VARCHAR(8),
@@ -157,7 +157,6 @@ CREATE TABLE IF NOT EXISTS users (
                             {
                                 var user = new User();
                                 user.setId(reader.GetInt32("id"));
-                                user.setNome(reader.GetString("nome"));
                                 user.setEmail(reader.GetString("email"));
                                 user.setHash(GetBytesFromReader(reader, "hash"));
                                 user.setSalt(GetBytesFromReader(reader, "salt"));
@@ -235,7 +234,17 @@ CREATE TABLE IF NOT EXISTS users (
                                 user.setSalt(GetBytesFromReader(reader, "salt"));
                                 user.setPhoto(GetBytesFromReader(reader, "image"));
                                 user.setCpf(reader.GetString("cpf"));
-                               
+                                user.setTelefone(reader.GetString("telefone"));
+                                var address = new AddressUser();
+                                address.setCep(reader.GetString("cep"));
+                                address.setState(reader.GetString("estado"));
+                                address.setCity(reader.GetString("cidade"));
+                                address.setStreet(reader.GetString("rua"));
+                                address.setNumberAddress(reader.GetString("numero"));
+                                user.setAddress(address);
+                                DateTime data = reader.GetDateTime("data");
+                                DateOnly data2 = DateOnly.FromDateTime(data);
+                                user.setData(data2);
                                 return user;
                             }
                             else
@@ -312,6 +321,52 @@ CREATE TABLE IF NOT EXISTS users (
                 }
             }
 
+            public bool completePerfilUser(User user)
+            {
+                System.Diagnostics.Debug.WriteLine("ID recuperado no IdController = " + IdController.GetIdUser());
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    string sql = "UPDATE users SET nome = @nome, image = @image, cpf = @cpf, telefone = @telefone, cep = @cep, estado = @estado, cidade = @cidade, rua = @rua, numero = @numero , data = @data WHERE id = @id";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        byte[] image = user.getPhoto();
+                        string nome = user.getNome();
+                        string cpf = user.getCpf();
+                        string telefone = user.getTelefone();
+                        string cep = user.getAddress().getCep();
+                        string estado = user.getAddress().getState();
+                        string cidade = user.getAddress().getCity();
+                        string rua = user.getAddress().getStreet();
+                        string numero = user.getAddress().getNumberAddress();
+                        DateOnly data = user.getData();
+                        int id = IdController.GetIdUser();
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@image", image);
+                        cmd.Parameters.AddWithValue("@telefone", telefone);
+                        cmd.Parameters.AddWithValue("@cpf", cpf);
+                        cmd.Parameters.AddWithValue("@cep", cep);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+                        cmd.Parameters.AddWithValue("@cidade", cidade);
+                        cmd.Parameters.AddWithValue("@rua", rua);
+                        cmd.Parameters.AddWithValue("@numero", numero);
+                        cmd.Parameters.AddWithValue("@data", data.ToString("yyyy-MM-dd"));
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Erro MySQL: " + ex.Message);
+                    return false;
+                }
+            }
+
             public bool UserCadastroCompleto(int userId)
             {
                 Createconnection();
@@ -366,7 +421,7 @@ CREATE TABLE IF NOT EXISTS establishment (
     email VARCHAR(100) UNIQUE,
     hash BLOB NOT NULL,
     salt BLOB NOT NULL,
-    image BLOB,
+    image LONGBLOB,
     telefone VARCHAR(11) UNIQUE,
     cnpj VARCHAR(14) NOT NULL UNIQUE,
     cep VARCHAR(8),
@@ -674,7 +729,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     descricao VARCHAR(500),
     preco DECIMAL(10, 2) NOT NULL,
     categoria VARCHAR(100),
-    imagem BLOB,
+    imagem LONGBLOB,
     idCardapio INT NOT NULL,
     FOREIGN KEY (idCardapio) REFERENCES cardapio(id)
 );";

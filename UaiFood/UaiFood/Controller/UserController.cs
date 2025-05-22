@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Model;
@@ -30,7 +31,7 @@ namespace UaiFood.Controller
                     "Senha inválida",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
-                ); 
+                );
                 return;
             }
             if (u.getEmail() != null && u.getHash() != null)
@@ -41,8 +42,8 @@ namespace UaiFood.Controller
                 if (userRegister)
                 {
                     MessageBox.Show("Usuario cadastrado com sucesso");
-                    var telaPrincipalCliente = new TelaPrincipalCliente();
-                    telaPrincipalCliente.Show();
+                    var telaCriarPerfilCliente = new TelaCriarPerfilCliente();
+                    telaCriarPerfilCliente.Show();
                     var telaCadastro = new TelaCadastro();
                     telaCadastro.Close();
                 }
@@ -66,7 +67,7 @@ namespace UaiFood.Controller
         {
             var bancoDados = new BancoDados();
             bool deletado = bancoDados.deleteUserBank(id);
-            if(deletado)
+            if (deletado)
             {
                 MessageBox.Show("Usuario deletado com sucesso");
             }
@@ -75,15 +76,15 @@ namespace UaiFood.Controller
                 MessageBox.Show("Erro ao deletar usuario");
             }
         }
-        public void UserLogin(string email , string senha)
+        public void UserLogin(string email, string senha)
         {
             var bancoDados = new BancoDados();
             User u = bancoDados.getSenhaUserBank(email);
-            if(u != null)
+            if (u != null)
             {
                 var passwordController = new PasswordController();
                 bool senhaValida = passwordController.compareSenha(senha, u);
-                if(senhaValida)
+                if (senhaValida)
                 {
                     MessageBox.Show("Usuario logado com sucesso");
                     IdController.SetIdUser(u.getUserId());
@@ -134,9 +135,41 @@ namespace UaiFood.Controller
                 }
             }
 
-            return false;                  
+            return false;
 
 
+
+        }
+        public void createPerfilUser(int id, string nome, string cpf, string street, string state, string city, string cep, string telephone, string numberAddress, byte[] image, DateOnly data)
+        {
+            var address = new AddressUser();
+            string cep02 = Regex.Replace(cep, @"\D", "");
+            address.setCep(cep02);
+            address.setState(state);
+            address.setCity(city);
+            address.setStreet(street);
+            address.setNumberAddress(numberAddress);
+            var user = new User();
+            user.setNome(nome);
+            string telefone = Regex.Replace(telephone, @"\D", "");
+            user.setTelefone(telefone);
+            user.setAddress(address);
+            user.setPhoto(image);
+            string cpf02 = Regex.Replace(cpf, @"\D", "");
+            user.setCpf(cpf02);
+            user.setData(data);
+            var bd = new BancoDados();
+            bool criadoPerfil = bd.completePerfilUser(user);
+            if (criadoPerfil)
+            {
+                MessageBox.Show("Perfil concluido com sucesso!");
+                TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+                telaPrincipalCliente.Show();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao concluir cadastrado do perfil");
+            }
 
         }
     }
