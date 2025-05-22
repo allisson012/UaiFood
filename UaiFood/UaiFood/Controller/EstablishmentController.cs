@@ -114,5 +114,17 @@ namespace UaiFood.Controller
                 return false;
         }
 
+        //pesquisar
+        public List<Establishment> PesquisarRestaurantes(string nome)
+        {
+            var banco = new BancoDados();
+            return banco.BuscarRestaurantes(nome);
+        }
+        public List<Produto> PesquisarProdutos(int idCardapio, string termo)
+        {
+            var banco = new BancoDados();
+            return banco.BuscarProdutos(idCardapio, termo);
+        }
+
     }
 }
