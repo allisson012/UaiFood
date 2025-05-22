@@ -29,11 +29,20 @@ namespace UaiFood.View
                 var client = bd.findUserById(clienteLogado.Value);
                 lblNome.Text = client.getNome();
                 lblTelefone.Text = client.getTelefone();
+
+                ImageController imageController = new ImageController();
+                picturePerfil.Image = imageController.ExibirImage(client.getPhoto());
+
             }
             else
             {
                 MessageBox.Show("Nenhum usuário logado");
             }
+        }
+
+        private void picturePerfil_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,37 +29,135 @@
         private void InitializeComponent()
         {
             lblNome = new Label();
+            lblEstado = new Label();
+            lblCep = new Label();
+            lblCidade = new Label();
+            lblNumero = new Label();
             lblTelefone = new Label();
+            lblRua = new Label();
+            picturePerfil = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picturePerfil).BeginInit();
             SuspendLayout();
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(235, 124);
+            lblNome.BackColor = Color.Transparent;
+            lblNome.FlatStyle = FlatStyle.Flat;
+            lblNome.Font = new Font("Segoe UI", 12F);
+            lblNome.Location = new Point(272, 212);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(38, 15);
+            lblNome.Size = new Size(52, 21);
             lblNome.TabIndex = 0;
             lblNome.Text = "label1";
+            // 
+            // lblEstado
+            // 
+            lblEstado.AutoSize = true;
+            lblEstado.BackColor = Color.Transparent;
+            lblEstado.FlatStyle = FlatStyle.Flat;
+            lblEstado.Font = new Font("Segoe UI", 12F);
+            lblEstado.Location = new Point(272, 498);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(52, 21);
+            lblEstado.TabIndex = 1;
+            lblEstado.Text = "label1";
+            // 
+            // lblCep
+            // 
+            lblCep.AutoSize = true;
+            lblCep.BackColor = Color.Transparent;
+            lblCep.FlatStyle = FlatStyle.Flat;
+            lblCep.Font = new Font("Segoe UI", 12F);
+            lblCep.Location = new Point(272, 302);
+            lblCep.Name = "lblCep";
+            lblCep.Size = new Size(52, 21);
+            lblCep.TabIndex = 1;
+            lblCep.Text = "label1";
+            // 
+            // lblCidade
+            // 
+            lblCidade.AutoSize = true;
+            lblCidade.BackColor = Color.Transparent;
+            lblCidade.FlatStyle = FlatStyle.Flat;
+            lblCidade.Font = new Font("Segoe UI", 12F);
+            lblCidade.Location = new Point(272, 393);
+            lblCidade.Name = "lblCidade";
+            lblCidade.Size = new Size(52, 21);
+            lblCidade.TabIndex = 2;
+            lblCidade.Text = "label1";
+            // 
+            // lblNumero
+            // 
+            lblNumero.AutoSize = true;
+            lblNumero.BackColor = Color.Transparent;
+            lblNumero.FlatStyle = FlatStyle.Flat;
+            lblNumero.Font = new Font("Segoe UI", 12F);
+            lblNumero.Location = new Point(755, 393);
+            lblNumero.Name = "lblNumero";
+            lblNumero.Size = new Size(52, 21);
+            lblNumero.TabIndex = 3;
+            lblNumero.Text = "label1";
             // 
             // lblTelefone
             // 
             lblTelefone.AutoSize = true;
-            lblTelefone.Location = new Point(235, 170);
+            lblTelefone.BackColor = Color.Transparent;
+            lblTelefone.FlatStyle = FlatStyle.Flat;
+            lblTelefone.Font = new Font("Segoe UI", 12F);
+            lblTelefone.Location = new Point(755, 212);
             lblTelefone.Name = "lblTelefone";
-            lblTelefone.Size = new Size(38, 15);
-            lblTelefone.TabIndex = 1;
-            lblTelefone.Text = "label2";
+            lblTelefone.Size = new Size(52, 21);
+            lblTelefone.TabIndex = 4;
+            lblTelefone.Text = "label1";
+            // 
+            // lblRua
+            // 
+            lblRua.AutoSize = true;
+            lblRua.BackColor = Color.Transparent;
+            lblRua.FlatStyle = FlatStyle.Flat;
+            lblRua.Font = new Font("Segoe UI", 12F);
+            lblRua.Location = new Point(755, 302);
+            lblRua.Name = "lblRua";
+            lblRua.Size = new Size(52, 21);
+            lblRua.TabIndex = 4;
+            lblRua.Text = "label1";
+            // 
+            // picturePerfil
+            // 
+            picturePerfil.Image = Properties.Resources.FotoPerfil;
+            picturePerfil.Location = new Point(25, 150);
+            picturePerfil.Margin = new Padding(3, 2, 3, 2);
+            picturePerfil.Name = "picturePerfil";
+            picturePerfil.Size = new Size(218, 255);
+            picturePerfil.SizeMode = PictureBoxSizeMode.Zoom;
+            picturePerfil.TabIndex = 5;
+            picturePerfil.TabStop = false;
+            picturePerfil.Click += picturePerfil_Click;
             // 
             // TelaPerfilCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackgroundImage = Properties.Resources.TelaPerfilCliente;
+            ClientSize = new Size(1350, 729);
+            Controls.Add(picturePerfil);
+            Controls.Add(lblRua);
             Controls.Add(lblTelefone);
+            Controls.Add(lblNumero);
+            Controls.Add(lblCidade);
+            Controls.Add(lblCep);
+            Controls.Add(lblEstado);
             Controls.Add(lblNome);
+            MaximizeBox = false;
+            MaximumSize = new Size(1366, 768);
+            MinimumSize = new Size(1366, 768);
             Name = "TelaPerfilCliente";
-            Text = "TelaPerfilCliente";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "UaiFood";
             Load += TelaPerfilCliente_Load;
+            ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -67,6 +165,12 @@
         #endregion
 
         private Label lblNome;
+        private Label lblEstado;
+        private Label lblCep;
+        private Label lblCidade;
+        private Label lblNumero;
         private Label lblTelefone;
+        private Label lblRua;
+        private PictureBox picturePerfil;
     }
 }

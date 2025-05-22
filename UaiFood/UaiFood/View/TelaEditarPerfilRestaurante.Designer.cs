@@ -204,6 +204,7 @@
             MinimumSize = new Size(1364, 766);
             Name = "TelaEditarPerfilRestaurante";
             Text = "UaiFood";
+            Load += TelaEditarPerfilRestaurante_Load;
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
             ResumeLayout(false);
             PerformLayout();

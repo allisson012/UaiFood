@@ -16,6 +16,7 @@ namespace UaiFood.View
 {
     public partial class TelaEditarPerfilCliente : Form
     {
+
         private byte[] imag;
         public TelaEditarPerfilCliente()
         {
@@ -33,6 +34,7 @@ namespace UaiFood.View
             txtDataNascimento.Text = user.getData().ToString();
             ImageController imageController = new ImageController();
             picturePerfil.Image = imageController.ExibirImage(user.getPhoto());
+            imag = user.getPhoto();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -52,7 +54,6 @@ namespace UaiFood.View
                 picturePerfil.Image = i;
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
@@ -85,6 +86,7 @@ namespace UaiFood.View
             if (!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
             {
                 var userController = new UserController();
+                // estou setando o id manualmente por que esta tela não esta sendo acessado pela tela principal
                 IdController.SetIdUser(1);
                 userController.createPerfilUser(IdController.GetIdUser(), nome, cpf, rua, estado, cidade, cep, telefone, numero, imag, data);
             }
