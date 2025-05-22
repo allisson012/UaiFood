@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Model;
@@ -50,7 +51,8 @@ namespace UaiFood.Controller
         public void createPerfilEstablishment(int id ,string nameRestaurante, string email, string street, string state, string city, string cep, string telephone, string numberAddress , byte[] image)
         {
             var address = new AddressEstablishment();
-            address.setCep(cep);
+            string cep02 = Regex.Replace(cep, @"\D", "");
+            address.setCep(cep02);
             address.setState(state);
             address.setCity(city);
             address.setStreet(street);
@@ -59,7 +61,8 @@ namespace UaiFood.Controller
             establishment.SetNome(nameRestaurante);
             establishment.SetId(id);
             establishment.SetEmail(email);
-            establishment.SetTelefone(telephone);
+            string telefone = Regex.Replace(telephone, @"\D", "");
+            establishment.SetTelefone(telefone);
             establishment.SetAddressEstablishment(address);
             establishment.SetImage(image);
             var bd = new BancoDados();
