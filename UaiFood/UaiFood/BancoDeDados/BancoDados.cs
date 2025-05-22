@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -311,6 +311,51 @@ CREATE TABLE IF NOT EXISTS users (
                     return false;
                 }
             }
+
+            public bool UserCadastroCompleto(int userId)
+            {
+                Createconnection();
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                string query = @"
+            SELECT nome, email, image, cpf, telefone , cep, estado, cidade, rua, numero
+            FROM users
+            WHERE id = @id";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", userId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+
+                            string[] campos = new string[]
+                            {
+                        reader["nome"]?.ToString(),
+                        reader["email"]?.ToString(),
+                        reader["image"]?.ToString(),
+                        reader["cpf"]?.ToString(),
+                        reader["telefone"]?.ToString(),
+                        reader["cep"]?.ToString(),
+                        reader["estado"]?.ToString(),
+                        reader["cidade"]?.ToString(),
+                        reader["rua"]?.ToString(),
+                        reader["numero"]?.ToString(),
+                            };
+
+                            return campos.All(c => !string.IsNullOrWhiteSpace(c));
+                        }
+                    }
+                }
+
+
+                return false; // Se não encontrar ou houver erro, assume que está incompleto
+            }
+
             //establishment
             public void createTableEstablishment()
             {

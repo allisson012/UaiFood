@@ -88,10 +88,20 @@ namespace UaiFood.Controller
                     MessageBox.Show("Usuario logado com sucesso");
                     IdController.SetIdUser(u.getUserId());
                     System.Diagnostics.Debug.WriteLine("Id logado: " + u.getUserId());
-                    var telaPrincipalCliente = new TelaPrincipalCliente();
-                    telaPrincipalCliente.Show();
-                    var telaLogin = new TelaLogin();
-                    telaLogin.Close();
+                    if (!bancoDados.UserCadastroCompleto(u.getUserId()))
+                    {
+                        var telaCriarPerfilCliente = new TelaCriarPerfilCliente();
+                        telaCriarPerfilCliente.Show();
+                        var telaLogin = new TelaLogin();
+                        telaLogin.Close();
+                    }
+                    else
+                    {
+                        var telaPrincipalCliente = new TelaPrincipalCliente();
+                        telaPrincipalCliente.Show();
+                        var telaLogin = new TelaLogin();
+                        telaLogin.Close();
+                    }
                 }
                 else
                 {
