@@ -362,7 +362,7 @@ CREATE TABLE IF NOT EXISTS users (
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine("Erro MySQL: " + ex.Message);
+                    System.Diagnostics.Debug.WriteLine("Erro MySQL: " + ex.Message);
                     return false;
                 }
             }
@@ -485,6 +485,12 @@ CREATE TABLE IF NOT EXISTS establishment (
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Erro MySQL: " + ex.Message);
+                    Console.WriteLine("Código do erro: " + ex.Number);
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro inesperado: " + ex.Message);
                     return false;
                 }
                 return false;

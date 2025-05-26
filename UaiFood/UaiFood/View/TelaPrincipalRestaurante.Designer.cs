@@ -40,6 +40,8 @@
             lblCep = new Label();
             lblCidade = new Label();
             lblEstado = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -191,12 +193,24 @@
             lblEstado.TabIndex = 12;
             lblEstado.Text = "label1";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = Properties.Resources.restaurante;
+            pictureBox1.Location = new Point(23, 150);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(219, 246);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 13;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // TelaPrincipalRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalRestaurante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(pictureBox1);
             Controls.Add(lblEstado);
             Controls.Add(lblCidade);
             Controls.Add(lblCep);
@@ -216,6 +230,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
             Load += TelaPrincipalRestaurante_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -234,5 +249,6 @@
         private Label lblCep;
         private Label lblCidade;
         private Label lblEstado;
+        private PictureBox pictureBox1;
     }
 }

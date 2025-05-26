@@ -40,6 +40,7 @@ namespace UaiFood.Controller
                 else
                 {
                     MessageBox.Show("Erro ao criar Conta do restaurante");
+
                 }
             }
             else
