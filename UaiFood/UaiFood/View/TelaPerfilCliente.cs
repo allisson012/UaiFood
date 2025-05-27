@@ -35,7 +35,7 @@ namespace UaiFood.View
                 lblEstado.Text = address.getState();
                 lblRua.Text = address.getStreet();
                 lblNumero.Text = address.getNumberAddress();
-                
+
 
                 ImageController imageController = new ImageController();
                 picturePerfil.Image = imageController.ExibirImage(client.getPhoto());
@@ -50,6 +50,12 @@ namespace UaiFood.View
         private void picturePerfil_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEditarPerfil_Click(object sender, EventArgs e)
+        {
+            TelaEditarPerfilCliente telaEditarPerfilCliente = new TelaEditarPerfilCliente();
+            telaEditarPerfilCliente.Show();
         }
     }
 }
