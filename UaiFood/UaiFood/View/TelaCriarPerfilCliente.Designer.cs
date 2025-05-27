@@ -141,6 +141,7 @@
             txtCep.Name = "txtCep";
             txtCep.Size = new Size(159, 22);
             txtCep.TabIndex = 8;
+            txtCep.Leave += txtCep_Leave;
             // 
             // txtDataNascimento
             // 

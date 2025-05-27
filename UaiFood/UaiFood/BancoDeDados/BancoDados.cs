@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -805,7 +805,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                     }
                 }
             }
-        public List<Produto> ConsultarProdutoPorIdCardapio()
+        public List<Produto> ConsultarProdutoPorIdCardapio(int id)
         {
                 try
                 {
@@ -820,7 +820,7 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 using (var cmd = new MySqlCommand(sql, connection))
                 {
-                    cmd.Parameters.AddWithValue("@id", 1);
+                    cmd.Parameters.AddWithValue("@id", id);
                         using (var reader = cmd.ExecuteReader())
                         {
                             while(reader.Read())
@@ -851,6 +851,51 @@ CREATE TABLE IF NOT EXISTS produtos (
 
             return null;
         }
+            public List<Produto> GetProdutos()
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    List<Produto> produtos = new List<Produto>();
+                    string sql = "SELECT * FROM produtos";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var produto = new Produto
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Nome = reader.GetString("nome"),
+                                    Descricao = reader.GetString("descricao"),
+                                    Preco = reader.GetDecimal("preco"),
+                                    Categoria = reader.GetString("categoria"),
+                                    Imagem = reader["imagem"] as byte[]
+                                };
+                                produtos.Add(produto);
+                            }
+                        }
+                        return produtos;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao consultar produto: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return null;
+            }
 
             public Produto ConsultarProdutoPorId(int id)
             {
@@ -968,6 +1013,7 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 return estabelecimentos;
             }
+            
             public List<Produto> BuscarTodosProdutos(string termo)
             {
                 var produtos = new List<Produto>();
@@ -1075,7 +1121,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                     Createconnection();
                     connection.ChangeDatabase(bancoDados);
 
-                    string sql = @"SELECT id, nome, email, telefone FROM establishment";
+                    string sql = @"SELECT * FROM establishment";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
@@ -1085,14 +1131,25 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             while (reader.Read())
                             {
-                                var est = new Establishment();
-                                est.SetId(reader.GetInt32("id"));
-                                est.SetNome(reader.GetString("nome"));
-                                est.SetEmail(reader.GetString("email"));
-                                est.SetTelefone(reader.GetString("telefone"));
-                                est.SetImage(GetBytesFromReader(reader, "image"));
-                                estabelecimentos.Add(est);
+                                var addressEstablishment = new AddressEstablishment();
+                                var establishment = new Establishment();
+                                establishment.SetId(reader.GetInt32("id"));
+                                establishment.SetNome(reader.GetString("nome"));
+                                establishment.SetEmail(reader.GetString("email"));
+                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
+                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
+                                establishment.SetImage(GetBytesFromReader(reader, "image"));
+                                establishment.SetTelefone(reader.GetString("telefone"));
+                                establishment.SetCnpj(reader.GetString("cnpj"));
+                                addressEstablishment.setCep(reader.GetString("cep"));
+                                addressEstablishment.setState(reader.GetString("estado"));
+                                addressEstablishment.setCity(reader.GetString("cidade"));
+                                addressEstablishment.setStreet(reader.GetString("rua"));
+                                addressEstablishment.setNumberAddress(reader.GetString("numero"));
+                                establishment.SetAddressEstablishment(addressEstablishment);
+                                estabelecimentos.Add(establishment);
                             }
+                            return estabelecimentos;
                         }
                     }
                 }

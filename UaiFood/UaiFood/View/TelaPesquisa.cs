@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
+using UaiFood.Model;
 
 namespace UaiFood.View
 {
@@ -52,129 +53,215 @@ namespace UaiFood.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BancoDados bd = new BancoDados();
-
-            if (cbFiltro.SelectedIndex == 0)
+            if (cbFiltro.SelectedIndex != 0)
             {
-                var restaurantes = bd.BuscarRestaurantes(txtPesquisa.Text);
+                BancoDados bd = new BancoDados();
+                var restaurantesEncontrados = bd.BuscarRestaurantes(txtPesquisa.Text);
+                flowPanelProdutos.Controls.Clear(); // limpa resultados anteriores
 
-                flpRestaurantes.Controls.Clear();
                 ImageController imgController = new ImageController();
 
-                foreach (var restaurante in restaurantes)
+                foreach (var restaurante in restaurantesEncontrados)
                 {
-                    Panel card = new Panel();
-                    card.Width = 120;
-                    card.Height = 150;
-                    card.Margin = new Padding(10);
-                    card.BorderStyle = BorderStyle.FixedSingle;
+                    Panel restaurantePanel = new Panel();
+                    restaurantePanel.Width = 150;
+                    restaurantePanel.Height = 200;
+                    restaurantePanel.Margin = new Padding(10);
+                    restaurantePanel.BackColor = Color.White; // opcional: cor de fundo
 
-                    PictureBox pb = new PictureBox();
-                    pb.Width = 100;
-                    pb.Height = 100;
-                    pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    pb.Image = imgController.ExibirImage(restaurante.GetImage());
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.Width = 150;
+                    pictureBox.Height = 120;
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                    pb.Location = new Point(10, 10);
-                    card.Controls.Add(pb);
+                    if (restaurante.GetImage() != null)
+                    {
+                        pictureBox.Image = imgController.ExibirImage(restaurante.GetImage());
+                    }
+                    else
+                    {
+                        pictureBox.Image = Properties.Resources.restaurante; // imagem padrão
+                    }
 
-                    Label lbl = new Label();
-                    lbl.Text = restaurante.GetNome();
-                    lbl.AutoSize = false;
-                    lbl.Width = 100;
-                    lbl.TextAlign = ContentAlignment.MiddleCenter;
-                    lbl.Location = new Point(10, 115);
+                    pictureBox.Tag = restaurante;
+                    pictureBox.Cursor = Cursors.Hand;
 
-                    card.Controls.Add(lbl);
+                    pictureBox.Click += (s, args) =>
+                    {
+                        var pic = s as PictureBox;
+                        var restauranteSelecionado = pic.Tag as Establishment;
+                        TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.GetId());
+                        tela.Show();
+                        this.Close();
+                    };
 
-                    flpRestaurantes.Controls.Add(card);
+                    // Label nome
+                    Label nomeLabel = new Label();
+                    nomeLabel.Text = restaurante.GetNome();
+                    nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    nomeLabel.Dock = DockStyle.Bottom;
+                    nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+
+                    // Label cidade - estado
+                    Label localLabel = new Label();
+                    localLabel.Text = $"{restaurante.GetAddressEstablishment().getCity()} - {restaurante.GetAddressEstablishment().getState()}";
+                    localLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    localLabel.Dock = DockStyle.Bottom;
+                    localLabel.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                    localLabel.ForeColor = Color.Gray;
+
+                    restaurantePanel.Controls.Add(pictureBox);
+                    restaurantePanel.Controls.Add(localLabel);
+                    restaurantePanel.Controls.Add(nomeLabel);
+
+                    flowPanelProdutos.Controls.Add(restaurantePanel);
+                }
+
+                if (restaurantesEncontrados.Count == 0)
+                {
+                    MessageBox.Show("Nenhum restaurante encontrado.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
             else if (cbFiltro.SelectedIndex == 1)
             {
-                var produtos = bd.BuscarTodosProdutos(txtPesquisa.Text);
-
-                flpRestaurantes.Controls.Clear();
+                BancoDados bd = new BancoDados();
                 ImageController imgController = new ImageController();
+                var produtosEncontrados = bd.BuscarTodosProdutos(txtPesquisa.Text);
+                flowPanelProdutos.Controls.Clear();
 
-                foreach (var produto in produtos)
+                foreach (var produto in produtosEncontrados)
                 {
-                    Panel card = new Panel();
-                    card.Width = 120;
-                    card.Height = 150;
-                    card.Margin = new Padding(10);
-                    card.BorderStyle = BorderStyle.FixedSingle;
+                    Panel produtoPanel = new Panel();
+                    produtoPanel.Width = 150;
+                    produtoPanel.Height = 180;
+                    produtoPanel.Margin = new Padding(10);
 
-                    PictureBox pb = new PictureBox();
-                    pb.Width = 100;
-                    pb.Height = 100;
-                    pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    pb.Image = imgController.ExibirImage(produto.Imagem);
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.Width = 150;
+                    pictureBox.Height = 120;
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                    pb.Location = new Point(10, 10);
-                    card.Controls.Add(pb);
+                    if (produto.Imagem != null)
+                    {
+                        pictureBox.Image = imgController.ExibirImage(produto.Imagem);
+                    }
+                    else
+                    {
+                        pictureBox.Image = Properties.Resources.comida;
+                    }
 
-                    Label lbl = new Label();
-                    lbl.Text = produto.Nome;
-                    lbl.AutoSize = false;
-                    lbl.Width = 100;
-                    lbl.TextAlign = ContentAlignment.MiddleCenter;
-                    lbl.Location = new Point(10, 115);
+                    pictureBox.Tag = produto;
+                    pictureBox.Cursor = Cursors.Hand;
 
-                    card.Controls.Add(lbl);
+                    pictureBox.Click += (s, args) =>
+                    {
+                        var pic = s as PictureBox;
+                        var produtoSelecionado = pic.Tag as Produto;
+  
+                        TelaExibirProduto tela = new TelaExibirProduto(produto.Id);
+                        tela.Show();
+                        this.Close();
+                        
+                    };
 
-                    flpRestaurantes.Controls.Add(card);
+                    Label nomeLabel = new Label();
+                    nomeLabel.Text = produto.Nome;
+                    nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    nomeLabel.Dock = DockStyle.Bottom;
+                    nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Regular);
+
+                    Label precoLabel = new Label();
+                    precoLabel.Text = "R$ " + produto.Preco.ToString("F2");
+                    precoLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    precoLabel.Dock = DockStyle.Bottom;
+                    precoLabel.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
+                    produtoPanel.Controls.Add(pictureBox);
+                    produtoPanel.Controls.Add(precoLabel);
+                    produtoPanel.Controls.Add(nomeLabel);
+
+                    flowPanelProdutos.Controls.Add(produtoPanel);
                 }
-            }
-            else if (cbFiltro.SelectedIndex == -1)
-            {
-                MessageBox.Show("Selecione um flitro de pesquisa", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                if (produtosEncontrados.Count == 0)
+                {
+                    MessageBox.Show("Nenhum produto encontrado com esse nome.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
         }
 
 
         private void TelaPesquisa_Load(object sender, EventArgs e)
         {
-
             BancoDados bd = new BancoDados();
+            var restaurantesEncontrados = bd.ExibirRestaurantes();
+            flowPanelProdutos.Controls.Clear(); // limpa resultados anteriores
 
-            if (cbFiltro.SelectedIndex == 0)
+            ImageController imgController = new ImageController();
+
+            foreach (var restaurante in restaurantesEncontrados)
             {
-                var restaurantes = bd.ExibirRestaurantes();
+                Panel restaurantePanel = new Panel();
+                restaurantePanel.Width = 150;
+                restaurantePanel.Height = 200;
+                restaurantePanel.Margin = new Padding(10);
+                restaurantePanel.BackColor = Color.White; // opcional: cor de fundo
 
-                flpRestaurantes.Controls.Clear();
-                ImageController imgController = new ImageController();
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Width = 150;
+                pictureBox.Height = 120;
+                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                foreach (var restaurante in restaurantes)
+                if (restaurante.GetImage() != null)
                 {
-                    Panel card = new Panel();
-                    card.Width = 120;
-                    card.Height = 150;
-                    card.Margin = new Padding(10);
-                    card.BorderStyle = BorderStyle.FixedSingle;
-
-                    PictureBox pb = new PictureBox();
-                    pb.Width = 100;
-                    pb.Height = 100;
-                    pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    pb.Image = imgController.ExibirImage(restaurante.GetImage());
-
-                    pb.Location = new Point(10, 10);
-                    card.Controls.Add(pb);
-
-                    Label lbl = new Label();
-                    lbl.Text = restaurante.GetNome();
-                    lbl.AutoSize = false;
-                    lbl.Width = 100;
-                    lbl.TextAlign = ContentAlignment.MiddleCenter;
-                    lbl.Location = new Point(10, 115);
-
-                    card.Controls.Add(lbl);
-
-                    flpRestaurantes.Controls.Add(card);
+                    pictureBox.Image = imgController.ExibirImage(restaurante.GetImage());
                 }
+                else
+                {
+                    pictureBox.Image = Properties.Resources.restaurante; // imagem padrão
+                }
+
+                pictureBox.Tag = restaurante;
+                pictureBox.Cursor = Cursors.Hand;
+
+                pictureBox.Click += (s, args) =>
+                {
+                    var pic = s as PictureBox;
+                    var restauranteSelecionado = pic.Tag as Establishment;
+                    TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.GetId());
+                    tela.Show();
+                    this.Close();
+                };
+
+                // Label nome
+                Label nomeLabel = new Label();
+                nomeLabel.Text = restaurante.GetNome();
+                nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
+                nomeLabel.Dock = DockStyle.Bottom;
+                nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+
+                // Label cidade - estado
+                Label localLabel = new Label();
+                localLabel.Text = $"{restaurante.GetAddressEstablishment().getCity()} - {restaurante.GetAddressEstablishment().getState()}";
+                localLabel.TextAlign = ContentAlignment.MiddleCenter;
+                localLabel.Dock = DockStyle.Bottom;
+                localLabel.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                localLabel.ForeColor = Color.Gray;
+
+                restaurantePanel.Controls.Add(pictureBox);
+                restaurantePanel.Controls.Add(localLabel);
+                restaurantePanel.Controls.Add(nomeLabel);
+
+                flowPanelProdutos.Controls.Add(restaurantePanel);
+            }
+
+            if (restaurantesEncontrados.Count == 0)
+            {
+                MessageBox.Show("Nenhum restaurante encontrado.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
     }
 }
+

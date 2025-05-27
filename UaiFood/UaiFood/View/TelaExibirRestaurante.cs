@@ -7,20 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
     public partial class TelaExibirRestaurante : Form
     {
-        public TelaExibirRestaurante()
+        int idRestaurante;
+        public TelaExibirRestaurante(int idRestaurante)
         {
             InitializeComponent();
+            this.idRestaurante = idRestaurante;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             TelaPesquisa telaPesquisa = new TelaPesquisa();
             telaPesquisa.Show();
+            this.Close();
+        }
+
+        private void TelaExibirRestaurante_Load(object sender, EventArgs e)
+        {
+            BancoDados bd = new BancoDados();
+            ImageController img = new ImageController();
+            var restaurante = bd.findEstablishmentById(idRestaurante);
+            lblNome.Text = restaurante.GetNome();
+            lblTelefone.Text = restaurante.GetTelefone();
+            var adress = restaurante.GetAddressEstablishment();
+            lblNumero.Text = adress.getNumberAddress();
+            lblCidade.Text = adress.getCity();
+            lblEstado.Text = adress.getState();
+            lblRua.Text = adress.getStreet();
+            lblCep.Text = adress.getCep();
+            picturePerfil.Image = img.ExibirImage(restaurante.GetImage());
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            BancoDados bd = new BancoDados();
+            var restaurante = bd.findEstablishmentById(idRestaurante);
+            TelaCardapio tela = new TelaCardapio(restaurante.GetId());
+            tela.Show();
             this.Close();
         }
     }
