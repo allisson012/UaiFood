@@ -74,9 +74,9 @@ namespace UaiFood.View
                     pictureBox.Height = 120;
                     pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                    if (restaurante.GetImage() != null)
+                    if (restaurante.getImage() != null)
                     {
-                        pictureBox.Image = imgController.ExibirImage(restaurante.GetImage());
+                        pictureBox.Image = imgController.ExibirImage(restaurante.getImage());
                     }
                     else
                     {
@@ -90,21 +90,21 @@ namespace UaiFood.View
                     {
                         var pic = s as PictureBox;
                         var restauranteSelecionado = pic.Tag as Establishment;
-                        TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.GetId());
+                        TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.getId());
                         tela.Show();
                         this.Close();
                     };
 
                     // Label nome
                     Label nomeLabel = new Label();
-                    nomeLabel.Text = restaurante.GetNome();
+                    nomeLabel.Text = restaurante.getNome();
                     nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                     nomeLabel.Dock = DockStyle.Bottom;
                     nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
                     // Label cidade - estado
                     Label localLabel = new Label();
-                    localLabel.Text = $"{restaurante.GetAddressEstablishment().getCity()} - {restaurante.GetAddressEstablishment().getState()}";
+                    localLabel.Text = $"{restaurante.getAddressEstablishment().getCity()} - {restaurante.getAddressEstablishment().getState()}";
                     localLabel.TextAlign = ContentAlignment.MiddleCenter;
                     localLabel.Dock = DockStyle.Bottom;
                     localLabel.Font = new Font("Segoe UI", 9, FontStyle.Regular);
@@ -141,9 +141,9 @@ namespace UaiFood.View
                     pictureBox.Height = 120;
                     pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                    if (produto.Imagem != null)
+                    if (produto.getImagem() != null)
                     {
-                        pictureBox.Image = imgController.ExibirImage(produto.Imagem);
+                        pictureBox.Image = imgController.ExibirImage(produto.getImagem());
                     }
                     else
                     {
@@ -158,20 +158,20 @@ namespace UaiFood.View
                         var pic = s as PictureBox;
                         var produtoSelecionado = pic.Tag as Produto;
   
-                        TelaExibirProduto tela = new TelaExibirProduto(produto.Id);
+                        TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
                         tela.Show();
                         this.Close();
                         
                     };
 
                     Label nomeLabel = new Label();
-                    nomeLabel.Text = produto.Nome;
+                    nomeLabel.Text = produto.getNome();
                     nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                     nomeLabel.Dock = DockStyle.Bottom;
                     nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Regular);
 
                     Label precoLabel = new Label();
-                    precoLabel.Text = "R$ " + produto.Preco.ToString("F2");
+                    precoLabel.Text = "R$ " + produto.getPreco().ToString("F2");
                     precoLabel.TextAlign = ContentAlignment.MiddleCenter;
                     precoLabel.Dock = DockStyle.Bottom;
                     precoLabel.Font = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -213,9 +213,9 @@ namespace UaiFood.View
                 pictureBox.Height = 120;
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                if (restaurante.GetImage() != null)
+                if (restaurante.getImage() != null)
                 {
-                    pictureBox.Image = imgController.ExibirImage(restaurante.GetImage());
+                    pictureBox.Image = imgController.ExibirImage(restaurante.getImage());
                 }
                 else
                 {
@@ -229,21 +229,21 @@ namespace UaiFood.View
                 {
                     var pic = s as PictureBox;
                     var restauranteSelecionado = pic.Tag as Establishment;
-                    TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.GetId());
+                    TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.getId());
                     tela.Show();
                     this.Close();
                 };
 
                 // Label nome
                 Label nomeLabel = new Label();
-                nomeLabel.Text = restaurante.GetNome();
+                nomeLabel.Text = restaurante.getNome();
                 nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                 nomeLabel.Dock = DockStyle.Bottom;
                 nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
                 // Label cidade - estado
                 Label localLabel = new Label();
-                localLabel.Text = $"{restaurante.GetAddressEstablishment().getCity()} - {restaurante.GetAddressEstablishment().getState()}";
+                localLabel.Text = $"{restaurante.getAddressEstablishment().getCity()} - {restaurante.getAddressEstablishment().getState()}";
                 localLabel.TextAlign = ContentAlignment.MiddleCenter;
                 localLabel.Dock = DockStyle.Bottom;
                 localLabel.Font = new Font("Segoe UI", 9, FontStyle.Regular);

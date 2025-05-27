@@ -141,6 +141,7 @@
             cbCategoria.FlatStyle = FlatStyle.Flat;
             cbCategoria.Font = new Font("Segoe UI", 16F);
             cbCategoria.FormattingEnabled = true;
+            cbCategoria.Items.AddRange(new object[] { "Bebidas", "Alimentos ", "Doces" });
             cbCategoria.Location = new Point(373, 408);
             cbCategoria.Name = "cbCategoria";
             cbCategoria.Size = new Size(502, 38);
@@ -163,7 +164,7 @@
             Controls.Add(button3);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaAdicionarProduto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

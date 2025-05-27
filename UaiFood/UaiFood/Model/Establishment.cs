@@ -19,34 +19,34 @@ namespace UaiFood.Model
         private List<Cardapio> cardapio;
         private string telefone;
 
-        public int GetId() => id;
-        public void SetId(int value) => id = value;
+        public int getId() => id;
+        public void setId(int value) => id = value;
 
-        public string GetNome() => nome;
-        public void SetNome(string value) => nome = value;
+        public string getNome() => nome;
+        public void setNome(string value) => nome = value;
 
-        public string GetEmail() => email;
-        public void SetEmail(string value) => email = value;
+        public string getEmail() => email;
+        public void setEmail(string value) => email = value;
 
-        public byte[] GetHash() => hash;
-        public void SetHash(byte[] value) => hash = value;
+        public byte[] getHash() => hash;
+        public void setHash(byte[] value) => hash = value;
 
-        public byte[] GetSalt() => salt;
-        public void SetSalt(byte[] value) => salt = value;
+        public byte[] getSalt() => salt;
+        public void setSalt(byte[] value) => salt = value;
 
-        public byte[] GetImage() => image;
-        public void SetImage(byte[] value) => image = value;
+        public byte[] getImage() => image;
+        public void setImage(byte[] value) => image = value;
 
-        public string GetCnpj() => cnpj;
-        public void SetCnpj(string value) => cnpj = value;
+        public string getCnpj() => cnpj;
+        public void setCnpj(string value) => cnpj = value;
 
-        public AddressEstablishment GetAddressEstablishment() => addressEstablishment;
-        public void SetAddressEstablishment(AddressEstablishment value) => addressEstablishment = value;
+        public AddressEstablishment getAddressEstablishment() => addressEstablishment;
+        public void setAddressEstablishment(AddressEstablishment value) => addressEstablishment = value;
 
-        public List<Cardapio> GetCardapio() => cardapio;
-        public void SetCardapio(List<Cardapio> value) => cardapio = value;
+        public List<Cardapio> getCardapio() => cardapio;
+        public void setCardapio(List<Cardapio> value) => cardapio = value;
 
-        public string GetTelefone() => telefone;
-        public void SetTelefone(string value) => telefone = value;
+        public string getTelefone() => telefone;
+        public void setTelefone(string value) => telefone = value;
     }
 }

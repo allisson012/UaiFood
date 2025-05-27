@@ -23,7 +23,7 @@ namespace UaiFood.Model
         }
         public decimal CalcularTotal()
         {
-            return Produtos.Sum(p => p.Preco);
+            return Produtos.Sum(p => p.getPreco());
         }
         public void LimparCarrinho()
         {

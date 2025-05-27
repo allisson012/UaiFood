@@ -8,7 +8,11 @@ namespace UaiFood.Model
 {
     class Cardapio
     {
-        List<Produto> produtos;
-        int idEstabelecimentos;
+        private List<Produto> produtos;
+        private int idEstabelecimento;
+        public void setProdutos(List<Produto> produtos)
+        {
+            this.produtos = produtos;
+        }
     }
 }

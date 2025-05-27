@@ -44,9 +44,9 @@ namespace UaiFood.View
                 pictureBox.Height = 120;
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
-                if (produto.Imagem != null)
+                if (produto.getImagem() != null)
                 {
-                    pictureBox.Image = imgController.ExibirImage(produto.Imagem);
+                    pictureBox.Image = imgController.ExibirImage(produto.getImagem());
                 }
                 else
                 {
@@ -62,13 +62,13 @@ namespace UaiFood.View
                     var produtoSelecionado = pic.Tag as Produto;
                     if (usuarioLogado.HasValue)
                     {
-                        TelaExibirProduto tela = new TelaExibirProduto(produto.Id);
+                        TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
                         tela.Show();
                         this.Close();
                     }
                     else if (restauranteLogado.HasValue)
                     {
-                        TelaEditarProduto telaEditar = new TelaEditarProduto(produto.Id);
+                        TelaEditarProduto telaEditar = new TelaEditarProduto(produto.getId());
                         telaEditar.Show();
                         this.Close();
                     }
@@ -80,13 +80,13 @@ namespace UaiFood.View
                 };
 
                 Label nomeLabel = new Label();
-                nomeLabel.Text = produto.Nome;
+                nomeLabel.Text = produto.getNome();
                 nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                 nomeLabel.Dock = DockStyle.Bottom;
                 nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Regular);
 
                 Label precoLabel = new Label();
-                precoLabel.Text = "R$ " + produto.Preco.ToString("F2");
+                precoLabel.Text = "R$ " + produto.getPreco().ToString("F2");
                 precoLabel.TextAlign = ContentAlignment.MiddleCenter;
                 precoLabel.Dock = DockStyle.Bottom;
                 precoLabel.Font = new Font("Segoe UI", 10, FontStyle.Bold);

@@ -16,7 +16,7 @@ namespace UaiFood.View
     {
         int? establishmentId = IdController.GetIdEstablishment();
         BancoDados bd = new BancoDados();
-        
+
         public TelaPrincipalRestaurante()
         {
             InitializeComponent();
@@ -31,9 +31,9 @@ namespace UaiFood.View
 
         private void button6_Click(object sender, EventArgs e)
         {
-            TelaEditarProduto telaEditarProduto = new TelaEditarProduto();
-            telaEditarProduto.Show();
-            this.Close();
+           // TelaEditarProduto telaEditarProduto = new TelaEditarProduto();
+            //telaEditarProduto.Show();
+           // this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -45,14 +45,14 @@ namespace UaiFood.View
         private void TelaPrincipalRestaurante_Load(object sender, EventArgs e)
         {
             var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
-            lblNome.Text = establishment.GetNome();
-            lblTelefone.Text = establishment.GetTelefone();
-            var establishmentAddress = establishment.GetAddressEstablishment();
+            lblNome.Text = establishment.getNome();
+            lblTelefone.Text = establishment.getTelefone();
+            var establishmentAddress = establishment.getAddressEstablishment();
             lblCep.Text = establishmentAddress.getCep();
             lblCidade.Text = establishmentAddress.getCity();
             lblEstado.Text = establishmentAddress.getState();
             ImageController imageController = new ImageController();
-            pictureBox1.Image = imageController.ExibirImage(establishment.GetImage());
+            pictureBox1.Image = imageController.ExibirImage(establishment.getImage());
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -65,6 +65,29 @@ namespace UaiFood.View
             TelaCardapio telaCardapio = new TelaCardapio(IdController.GetIdEstablishment());
             telaCardapio.Show();
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+       "Tem certeza de que deseja deletar sua conta?",
+       "Confirmação",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Warning
+   );
+
+            if (resultado == DialogResult.Yes)
+            {
+                EstablishmentController establishmentController = new EstablishmentController();
+                bool deletado = establishmentController.deleteEstablishment();
+                if (deletado)
+                {
+                    MessageBox.Show("Conta deletado com sucesso");
+                    TelaLogin telaLogin = new TelaLogin();
+                    telaLogin.Show();
+                    this.Close();
+                }
+            }
         }
     }
 }

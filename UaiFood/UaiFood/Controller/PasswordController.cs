@@ -97,21 +97,21 @@ namespace UaiFood.Controller
             gerarSalt();
             var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 10000, HashAlgorithmName.SHA256);
             Byte[] hash = pbkdf2.GetBytes(32);
-            establishmentRecebe.SetSalt(salt);
-            establishmentRecebe.SetHash(hash);
+            establishmentRecebe.setSalt(salt);
+            establishmentRecebe.setHash(hash);
             System.Diagnostics.Debug.WriteLine("Hash establishment: " + BitConverter.ToString(hash));
             System.Diagnostics.Debug.WriteLine("Salt establishment: " + BitConverter.ToString(salt));
             return hash;
         }
         public Boolean compareSenhaForEstablishment(String senha, Establishment establishmentCompare)
         {
-            byte[] hashCompare = gerarHashAtravesDaSalt(senha, establishmentCompare.GetSalt());
+            byte[] hashCompare = gerarHashAtravesDaSalt(senha, establishmentCompare.getSalt());
             string hex = BitConverter.ToString(hashCompare).Replace("-", "").ToLower();
-            string hexOriginal = BitConverter.ToString(establishmentCompare.GetHash()).Replace("-", "").ToLower();
+            string hexOriginal = BitConverter.ToString(establishmentCompare.getHash()).Replace("-", "").ToLower();
             System.Diagnostics.Debug.WriteLine("hash salva = " + hexOriginal);
             System.Diagnostics.Debug.WriteLine("hash gerada = " + hex);
             bool areEqual = CryptographicOperations.FixedTimeEquals(
-                establishmentCompare.GetHash(),
+                establishmentCompare.getHash(),
                 hashCompare
             );
             return areEqual;

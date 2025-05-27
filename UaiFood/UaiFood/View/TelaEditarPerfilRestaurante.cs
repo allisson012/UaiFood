@@ -51,16 +51,16 @@ namespace UaiFood.View
         {
             var bd = new BancoDados();
             var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
-            txtEmail.Text = establishment.GetEmail();
-            txtNome.Text = establishment.GetNome();
-            txtTelefone.Text = establishment.GetTelefone();
-            txtCep.Text = establishment.GetAddressEstablishment().getCep();
-            txtCidade.Text = establishment.GetAddressEstablishment().getCity();
-            txtNumero.Text = establishment.GetAddressEstablishment().getNumberAddress();
-            txtEstado.Text = establishment.GetAddressEstablishment().getState();
-            txtRua.Text = establishment.GetAddressEstablishment().getStreet();
+            txtEmail.Text = establishment.getEmail();
+            txtNome.Text = establishment.getNome();
+            txtTelefone.Text = establishment.getTelefone();
+            txtCep.Text = establishment.getAddressEstablishment().getCep();
+            txtCidade.Text = establishment.getAddressEstablishment().getCity();
+            txtNumero.Text = establishment.getAddressEstablishment().getNumberAddress();
+            txtEstado.Text = establishment.getAddressEstablishment().getState();
+            txtRua.Text = establishment.getAddressEstablishment().getStreet();
             var imageController = new ImageController();
-            picturePerfil.Image = imageController.ExibirImage(establishment.GetImage());
+            picturePerfil.Image = imageController.ExibirImage(establishment.getImage());
         }
     }
 }
