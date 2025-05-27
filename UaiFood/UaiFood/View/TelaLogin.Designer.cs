@@ -35,6 +35,7 @@
             button2 = new Button();
             linkLabel2 = new LinkLabel();
             pictureBox1 = new PictureBox();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -123,12 +124,29 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.olho;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1224, 480);
+            button3.Name = "button3";
+            button3.Size = new Size(50, 28);
+            button3.TabIndex = 10;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click_1;
+            // 
             // TelaLogin
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaLogin;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button3);
             Controls.Add(linkLabel2);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
@@ -157,5 +175,6 @@
         private Button button2;
         private LinkLabel linkLabel2;
         private PictureBox pictureBox1;
+        private Button button3;
     }
 }

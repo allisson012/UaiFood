@@ -34,6 +34,7 @@
             txtRepeteSenha = new TextBox();
             button2 = new Button();
             linkLabel1 = new LinkLabel();
+            button3 = new Button();
             SuspendLayout();
             // 
             // txtCNPJ
@@ -117,12 +118,29 @@
             linkLabel1.Text = "Já possui conta?";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.olho;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1219, 451);
+            button3.Name = "button3";
+            button3.Size = new Size(47, 28);
+            button3.TabIndex = 13;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // TelaCadastroRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastroRestaurante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button3);
             Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(txtRepeteSenha);
@@ -150,5 +168,6 @@
         private Button button2;
         private TextBox txtRepeteSenha;
         private LinkLabel linkLabel1;
+        private Button button3;
     }
 }

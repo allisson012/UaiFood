@@ -33,6 +33,7 @@
             txtSenha = new TextBox();
             linkLabel1 = new LinkLabel();
             button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -101,12 +102,29 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.olho;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1217, 480);
+            button3.Name = "button3";
+            button3.Size = new Size(47, 28);
+            button3.TabIndex = 11;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // TelaLoginRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastroRestautrante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(linkLabel1);
             Controls.Add(txtSenha);
@@ -131,5 +149,6 @@
         private TextBox txtSenha;
         private LinkLabel linkLabel1;
         private Button button2;
+        private Button button3;
     }
 }
