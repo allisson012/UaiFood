@@ -37,6 +37,7 @@
             button2 = new Button();
             button3 = new Button();
             button1 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -125,7 +126,7 @@
             button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(76, 438);
+            button3.Location = new Point(76, 422);
             button3.Name = "button3";
             button3.Size = new Size(178, 43);
             button3.TabIndex = 25;
@@ -138,19 +139,33 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(76, 487);
+            button1.Location = new Point(76, 528);
             button1.Name = "button1";
             button1.Size = new Size(110, 47);
             button1.TabIndex = 26;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(76, 479);
+            button4.Name = "button4";
+            button4.Size = new Size(178, 43);
+            button4.TabIndex = 27;
+            button4.UseVisualStyleBackColor = false;
+            // 
             // TelaEditarProduto
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaEditarProduto;
+            BackgroundImage = Properties.Resources.TelaEditarProduto1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button4);
             Controls.Add(button1);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -166,6 +181,7 @@
             Name = "TelaEditarProduto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaEditarProduto_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -182,5 +198,6 @@
         private Button button2;
         private Button button3;
         private Button button1;
+        private Button button4;
     }
 }

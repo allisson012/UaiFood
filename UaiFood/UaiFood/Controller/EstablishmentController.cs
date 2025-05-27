@@ -36,6 +36,8 @@ namespace UaiFood.Controller
                     MessageBox.Show("Restaurante criado com sucesso");
                     var telaCriarPerfilRestaurante = new TelaCriarPerfilRestaurante();
                     telaCriarPerfilRestaurante.Show();
+                    var telaLoginRestaurante = new TelaLoginRestaurante();
+                    telaLoginRestaurante.Close();
                 }
                 else
                 {
@@ -73,6 +75,8 @@ namespace UaiFood.Controller
                 MessageBox.Show("Perfil concluido com sucesso!");
                 var telaPrincipalRestaurante = new TelaPrincipalRestaurante();
                 telaPrincipalRestaurante.Show();
+                var telaCriarPerfilRestaurante = new TelaCriarPerfilRestaurante();
+                telaCriarPerfilRestaurante.Close();
             }
             else
             {

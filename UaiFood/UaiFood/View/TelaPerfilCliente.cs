@@ -29,6 +29,13 @@ namespace UaiFood.View
                 var client = bd.findUserById(clienteLogado.Value);
                 lblNome.Text = client.getNome();
                 lblTelefone.Text = client.getTelefone();
+                var address = client.getAddress();
+                lblCep.Text = address.getCep();
+                lblCidade.Text = address.getCity();
+                lblEstado.Text = address.getState();
+                lblRua.Text = address.getStreet();
+                lblNumero.Text = address.getNumberAddress();
+                
 
                 ImageController imageController = new ImageController();
                 picturePerfil.Image = imageController.ExibirImage(client.getPhoto());
