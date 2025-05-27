@@ -23,11 +23,11 @@ namespace UaiFood.Controller
             var passwordController = new PasswordController();
             var establishment = new Establishment();
             establishment = passwordController.VerificarSenha(senha, establishment);
-            if (establishment.GetHash() != null)
+            if (establishment.getHash() != null)
             {
-                System.Diagnostics.Debug.Write(establishment.GetHash().ToString());
-                System.Diagnostics.Debug.Write(establishment.GetSalt().ToString());
-                establishment.SetCnpj(cnpj);
+                System.Diagnostics.Debug.Write(establishment.getHash().ToString());
+                System.Diagnostics.Debug.Write(establishment.getSalt().ToString());
+                establishment.setCnpj(cnpj);
                 var bancoDados = new BancoDados();
                 bool establishmentCriado = bancoDados.CreateEstablishmentBank(establishment);
                 if (establishmentCriado)
@@ -61,13 +61,13 @@ namespace UaiFood.Controller
             address.setStreet(street);
             address.setNumberAddress(numberAddress);
             var establishment = new Establishment();
-            establishment.SetNome(nameRestaurante);
-            establishment.SetId(id);
-            establishment.SetEmail(email);
+            establishment.setNome(nameRestaurante);
+            establishment.setId(id);
+            establishment.setEmail(email);
             string telefone = Regex.Replace(telephone, @"\D", "");
-            establishment.SetTelefone(telefone);
-            establishment.SetAddressEstablishment(address);
-            establishment.SetImage(image);
+            establishment.setTelefone(telefone);
+            establishment.setAddressEstablishment(address);
+            establishment.setImage(image);
             var bd = new BancoDados();
             bool criadoPerfil = bd.completePerfilRestaurante(establishment);
             if (criadoPerfil)
@@ -96,7 +96,7 @@ namespace UaiFood.Controller
                 if (senhaValida)
                 {
                     MessageBox.Show("Restaurante logado com sucesso");
-                    IdController.SetIdEstablishment(establishment.GetId());
+                    IdController.SetIdEstablishment(establishment.getId());
                     if (bancoDados.EstabelecimentoCadastroCompleto(IdController.GetIdEstablishment()))
                     {
                         return true;

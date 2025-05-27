@@ -10,14 +10,12 @@ namespace UaiFood.Controller
     {
         public void createProduct(string nome, string descricao, decimal preco, string categoria, byte[] imagem)
         {
-            Produto produto = new Produto
-            {
-                Nome = nome,
-                Descricao = descricao,
-                Preco = preco,
-                Categoria = categoria,
-                Imagem = imagem
-            };
+            var produto = new Produto();
+            produto.setNome(nome);
+            produto.setDescricao(descricao);
+            produto.setPreco(preco);
+            produto.setCategoria(categoria);
+            produto.setImagem(imagem);
 
             var banco = new BancoDados();
             bool cadastrado = banco.CadastrarProduto(produto);

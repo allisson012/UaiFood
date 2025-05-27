@@ -45,14 +45,14 @@ namespace UaiFood.View
         private void TelaPrincipalRestaurante_Load(object sender, EventArgs e)
         {
             var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
-            lblNome.Text = establishment.GetNome();
-            lblTelefone.Text = establishment.GetTelefone();
-            var establishmentAddress = establishment.GetAddressEstablishment();
+            lblNome.Text = establishment.getNome();
+            lblTelefone.Text = establishment.getTelefone();
+            var establishmentAddress = establishment.getAddressEstablishment();
             lblCep.Text = establishmentAddress.getCep();
             lblCidade.Text = establishmentAddress.getCity();
             lblEstado.Text = establishmentAddress.getState();
             ImageController imageController = new ImageController();
-            pictureBox1.Image = imageController.ExibirImage(establishment.GetImage());
+            pictureBox1.Image = imageController.ExibirImage(establishment.getImage());
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

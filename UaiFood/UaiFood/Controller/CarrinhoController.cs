@@ -15,12 +15,12 @@ namespace UaiFood.Controller
         public void AdicionarProduto(Produto produto)
         {
             carrinho.AdicionarProduto(produto);
-            MessageBox.Show($"Produto {produto.Nome} adicionado ao carrinho.");
+            MessageBox.Show($"Produto {produto.getNome()} adicionado ao carrinho.");
         }
         public void RemoverProduto(Produto produto)
         {
             carrinho.RemoverProduto(produto);
-            MessageBox.Show($"Produto {produto.Nome} removido do carrinho");
+            MessageBox.Show($"Produto {produto.getNome()} removido do carrinho");
         }
         public void MostrarCarrinho()
         {
@@ -28,7 +28,7 @@ namespace UaiFood.Controller
 
             foreach(var p in carrinho.Produtos)
             {
-                mensagem += $"{p.Nome} - R${p.Preco}\n";
+                mensagem += $"{p.getNome()} - R${p.getPreco()}\n";
             }
 
             mensagem += $"Total: R${carrinho.CalcularTotal()}";

@@ -27,11 +27,11 @@ namespace UaiFood.View
             ImageController img = new ImageController();
 
             var produto = bd.ConsultarProdutoPorId(idProduto);
-            lblNome.Text = produto.Nome;
-            lblDescricao.Text = produto.Descricao;
-            lblCategoria.Text = produto.Categoria;
-            lblPreco.Text = produto.Preco.ToString();
-            pictureBox1.Image = img.ExibirImage(produto.Imagem);
+            lblNome.Text = produto.getNome();
+            lblDescricao.Text = produto.getDescricao();
+            lblCategoria.Text = produto.getCategoria();
+            lblPreco.Text = produto.getPreco().ToString();
+            pictureBox1.Image = img.ExibirImage(produto.getImagem());
             
         }
     }

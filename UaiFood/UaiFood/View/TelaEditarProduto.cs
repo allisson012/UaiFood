@@ -44,10 +44,10 @@ namespace UaiFood.View
         private void TelaEditarProduto_Load(object sender, EventArgs e)
         {
             var produto = bd.ConsultarProdutoPorId(idProduto);
-            txtNome.Text = produto.Nome;
-            txtPreco.Text = produto.Preco.ToString();
-            txtDescricao.Text = produto.Descricao;
-            pictureBox1.Image = imageController.ExibirImage(produto.Imagem);
+            txtNome.Text = produto.getNome();
+            txtPreco.Text = produto.getPreco().ToString();
+            txtDescricao.Text = produto.getDescricao();
+            pictureBox1.Image = imageController.ExibirImage(produto.getImagem());
 
         }
     }

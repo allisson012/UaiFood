@@ -465,9 +465,9 @@ CREATE TABLE IF NOT EXISTS establishment (
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        byte[] hash = establishment.GetHash();
-                        byte[] salt = establishment.GetSalt();
-                        string cnpj = establishment.GetCnpj();
+                        byte[] hash = establishment.getHash();
+                        byte[] salt = establishment.getSalt();
+                        string cnpj = establishment.getCnpj();
                         cmd.Parameters.AddWithValue("@hash", hash);
                         cmd.Parameters.AddWithValue("@salt", salt);
                         cmd.Parameters.AddWithValue("@cnpj", cnpj);
@@ -514,10 +514,10 @@ CREATE TABLE IF NOT EXISTS establishment (
                             if (reader.Read())
                             {
                                 var establishment = new Establishment();
-                                establishment.SetId(reader.GetInt32("id"));
-                                establishment.SetCnpj(reader.GetString("cnpj"));
-                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
-                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
+                                establishment.setId(reader.GetInt32("id"));
+                                establishment.setCnpj(reader.GetString("cnpj"));
+                                establishment.setHash(GetBytesFromReader(reader, "hash"));
+                                establishment.setSalt(GetBytesFromReader(reader, "salt"));
                                 return establishment;
                             }
                             else
@@ -547,15 +547,15 @@ CREATE TABLE IF NOT EXISTS establishment (
                     string sql = "UPDATE establishment SET nome = @nome, email = @email, image = @image, telefone = @telefone, cep = @cep, estado = @estado, cidade = @cidade, rua = @rua, numero = @numero WHERE id = @id";
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        byte[] image = establishment.GetImage();
-                        string nome = establishment.GetNome();
-                        string email = establishment.GetEmail();
-                        string telefone = establishment.GetTelefone();
-                        string cep = establishment.GetAddressEstablishment().getCep();
-                        string estado = establishment.GetAddressEstablishment().getState();
-                        string cidade = establishment.GetAddressEstablishment().getCity();
-                        string rua = establishment.GetAddressEstablishment().getStreet();
-                        string numero = establishment.GetAddressEstablishment().getNumberAddress();
+                        byte[] image = establishment.getImage();
+                        string nome = establishment.getNome();
+                        string email = establishment.getEmail();
+                        string telefone = establishment.getTelefone();
+                        string cep = establishment.getAddressEstablishment().getCep();
+                        string estado = establishment.getAddressEstablishment().getState();
+                        string cidade = establishment.getAddressEstablishment().getCity();
+                        string rua = establishment.getAddressEstablishment().getStreet();
+                        string numero = establishment.getAddressEstablishment().getNumberAddress();
                         int id = IdController.GetIdEstablishment();
                         cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@image", image);
@@ -640,20 +640,20 @@ CREATE TABLE IF NOT EXISTS establishment (
                             {
                                 var addressEstablishment = new AddressEstablishment();
                                 var establishment = new Establishment();
-                                establishment.SetId(reader.GetInt32("id"));
-                                establishment.SetNome(reader.GetString("nome"));
-                                establishment.SetEmail(reader.GetString("email"));
-                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
-                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
-                                establishment.SetImage(GetBytesFromReader(reader, "image"));
-                                establishment.SetTelefone(reader.GetString("telefone"));
-                                establishment.SetCnpj(reader.GetString("cnpj"));
+                                establishment.setId(reader.GetInt32("id"));
+                                establishment.setNome(reader.GetString("nome"));
+                                establishment.setEmail(reader.GetString("email"));
+                                establishment.setHash(GetBytesFromReader(reader, "hash"));
+                                establishment.setSalt(GetBytesFromReader(reader, "salt"));
+                                establishment.setImage(GetBytesFromReader(reader, "image"));
+                                establishment.setTelefone(reader.GetString("telefone"));
+                                establishment.setCnpj(reader.GetString("cnpj"));
                                 addressEstablishment.setCep(reader.GetString("cep"));
                                 addressEstablishment.setState(reader.GetString("estado"));
                                 addressEstablishment.setCity(reader.GetString("cidade"));
                                 addressEstablishment.setStreet(reader.GetString("rua"));
                                 addressEstablishment.setNumberAddress(reader.GetString("numero"));
-                                establishment.SetAddressEstablishment(addressEstablishment);
+                                establishment.setAddressEstablishment(addressEstablishment);
                                 return establishment;
                             }
                             else
@@ -827,11 +827,11 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        cmd.Parameters.AddWithValue("@nome", produto.Nome);
-                        cmd.Parameters.AddWithValue("@descricao", produto.Descricao);
-                        cmd.Parameters.AddWithValue("@preco", produto.Preco);
-                        cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
-                        cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
+                        cmd.Parameters.AddWithValue("@nome", produto.getNome());
+                        cmd.Parameters.AddWithValue("@descricao", produto.getDescricao());
+                        cmd.Parameters.AddWithValue("@preco", produto.getPreco());
+                        cmd.Parameters.AddWithValue("@categoria", produto.getCategoria());
+                        cmd.Parameters.AddWithValue("@imagem", produto.getImagem());
                         cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
                         cmd.ExecuteNonQuery();
                         return true;
@@ -873,15 +873,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             while(reader.Read())
                             {
-                                var produto = new Produto
-                                {
-                                    Id = reader.GetInt32("id"),
-                                    Nome = reader.GetString("nome"),
-                                    Descricao = reader.GetString("descricao"),
-                                    Preco = reader.GetDecimal("preco"),
-                                    Categoria = reader.GetString("categoria"),
-                                    Imagem = reader["imagem"] as byte[]
-                                };
+                                var produto = new Produto();
+                                produto.setId(reader.GetInt32("id"));
+                                produto.setNome(reader.GetString("nome"));
+                                produto.setDescricao(reader.GetString("descricao"));
+                                produto.setPreco(reader.GetDecimal("preco"));
+                                produto.setCategoria(reader.GetString("categoria"));
+                                produto.setImagem(reader["imagem"] as byte[]);
                                 produtos.Add(produto);
                             }
                         }
@@ -918,15 +916,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             while (reader.Read())
                             {
-                                var produto = new Produto
-                                {
-                                    Id = reader.GetInt32("id"),
-                                    Nome = reader.GetString("nome"),
-                                    Descricao = reader.GetString("descricao"),
-                                    Preco = reader.GetDecimal("preco"),
-                                    Categoria = reader.GetString("categoria"),
-                                    Imagem = reader["imagem"] as byte[]
-                                };
+                                var produto = new Produto();
+                                produto.setId(reader.GetInt32("id"));
+                                produto.setNome(reader.GetString("nome"));
+                                produto.setDescricao(reader.GetString("descricao"));
+                                produto.setPreco(reader.GetDecimal("preco"));
+                                produto.setCategoria(reader.GetString("categoria"));
+                                produto.setImagem(reader["imagem"] as byte[]);
                                 produtos.Add(produto);
                             }
                         }
@@ -965,15 +961,14 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             if (reader.Read())
                             {
-                                return new Produto
-                                {
-                                    Id = reader.GetInt32("id"),
-                                    Nome = reader.GetString("nome"),
-                                    Descricao = reader.GetString("descricao"),
-                                    Preco = reader.GetDecimal("preco"),
-                                    Categoria = reader.GetString("categoria"),
-                                    Imagem = reader["imagem"] as byte[]
-                                };
+                                var produto = new Produto();
+                                produto.setId(reader.GetInt32("id"));
+                                produto.setNome(reader.GetString("nome"));
+                                produto.setDescricao(reader.GetString("descricao"));
+                                produto.setPreco(reader.GetDecimal("preco"));
+                                produto.setCategoria(reader.GetString("categoria"));
+                                produto.setImagem(reader["imagem"] as byte[]);
+                                return produto;
                             }
                         }
                     }
@@ -1063,11 +1058,11 @@ CREATE TABLE IF NOT EXISTS produtos (
                             while (reader.Read())
                             {
                                 var est = new Establishment();
-                                est.SetId(reader.GetInt32("id"));
-                                est.SetNome(reader.GetString("nome"));
-                                est.SetEmail(reader.GetString("email"));
-                                est.SetTelefone(reader.GetString("telefone"));
-                                est.SetImage(GetBytesFromReader(reader, "image"));
+                                est.setId(reader.GetInt32("id"));
+                                est.setNome(reader.GetString("nome"));
+                                est.setEmail(reader.GetString("email"));
+                                est.setTelefone(reader.GetString("telefone"));
+                                est.setImage(GetBytesFromReader(reader, "image"));
                                 estabelecimentos.Add(est);
                             }
                         }
@@ -1108,15 +1103,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             while (reader.Read())
                             {
-                                var produto = new Produto
-                                {
-                                    Id = reader.GetInt32("id"),
-                                    Nome = reader.GetString("nome"),
-                                    Descricao = reader.GetString("descricao"),
-                                    Preco = reader.GetDecimal("preco"),
-                                    Categoria = reader.GetString("categoria"),
-                                    Imagem = reader["imagem"] as byte[]
-                                };
+                                var produto = new Produto();
+                                produto.setId(reader.GetInt32("id"));
+                                produto.setNome(reader.GetString("nome"));
+                                produto.setDescricao(reader.GetString("descricao"));
+                                produto.setPreco(reader.GetDecimal("preco"));
+                                produto.setCategoria(reader.GetString("categoria"));
+                                produto.setImagem(reader["imagem"] as byte[]);
                                 produtos.Add(produto);
                             }
                         }
@@ -1158,15 +1151,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                         {
                             while (reader.Read())
                             {
-                                var produto = new Produto
-                                {
-                                    Id = reader.GetInt32("id"),
-                                    Nome = reader.GetString("nome"),
-                                    Descricao = reader.GetString("descricao"),
-                                    Preco = reader.GetDecimal("preco"),
-                                    Categoria = reader.GetString("categoria"),
-                                    Imagem = reader["imagem"] as byte[]
-                                };
+                                var produto = new Produto();
+                                produto.setId(reader.GetInt32("id"));
+                                produto.setNome(reader.GetString("nome"));
+                                produto.setDescricao(reader.GetString("descricao"));
+                                produto.setPreco(reader.GetDecimal("preco"));
+                                produto.setCategoria(reader.GetString("categoria"));
+                                produto.setImagem(reader["imagem"] as byte[]);
                                 produtos.Add(produto);
                             }
                         }
@@ -1204,20 +1195,20 @@ CREATE TABLE IF NOT EXISTS produtos (
                             {
                                 var addressEstablishment = new AddressEstablishment();
                                 var establishment = new Establishment();
-                                establishment.SetId(reader.GetInt32("id"));
-                                establishment.SetNome(reader.GetString("nome"));
-                                establishment.SetEmail(reader.GetString("email"));
-                                establishment.SetHash(GetBytesFromReader(reader, "hash"));
-                                establishment.SetSalt(GetBytesFromReader(reader, "salt"));
-                                establishment.SetImage(GetBytesFromReader(reader, "image"));
-                                establishment.SetTelefone(reader.GetString("telefone"));
-                                establishment.SetCnpj(reader.GetString("cnpj"));
+                                establishment.setId(reader.GetInt32("id"));
+                                establishment.setNome(reader.GetString("nome"));
+                                establishment.setEmail(reader.GetString("email"));
+                                establishment.setHash(GetBytesFromReader(reader, "hash"));
+                                establishment.setSalt(GetBytesFromReader(reader, "salt"));
+                                establishment.setImage(GetBytesFromReader(reader, "image"));
+                                establishment.setTelefone(reader.GetString("telefone"));
+                                establishment.setCnpj(reader.GetString("cnpj"));
                                 addressEstablishment.setCep(reader.GetString("cep"));
                                 addressEstablishment.setState(reader.GetString("estado"));
                                 addressEstablishment.setCity(reader.GetString("cidade"));
                                 addressEstablishment.setStreet(reader.GetString("rua"));
                                 addressEstablishment.setNumberAddress(reader.GetString("numero"));
-                                establishment.SetAddressEstablishment(addressEstablishment);
+                                establishment.setAddressEstablishment(addressEstablishment);
                                 estabelecimentos.Add(establishment);
                             }
                             return estabelecimentos;

@@ -33,15 +33,15 @@ namespace UaiFood.View
             BancoDados bd = new BancoDados();
             ImageController img = new ImageController();
             var restaurante = bd.findEstablishmentById(idRestaurante);
-            lblNome.Text = restaurante.GetNome();
-            lblTelefone.Text = restaurante.GetTelefone();
-            var adress = restaurante.GetAddressEstablishment();
+            lblNome.Text = restaurante.getNome();
+            lblTelefone.Text = restaurante.getTelefone();
+            var adress = restaurante.getAddressEstablishment();
             lblNumero.Text = adress.getNumberAddress();
             lblCidade.Text = adress.getCity();
             lblEstado.Text = adress.getState();
             lblRua.Text = adress.getStreet();
             lblCep.Text = adress.getCep();
-            picturePerfil.Image = img.ExibirImage(restaurante.GetImage());
+            picturePerfil.Image = img.ExibirImage(restaurante.getImage());
 
         }
 
@@ -50,7 +50,7 @@ namespace UaiFood.View
 
             BancoDados bd = new BancoDados();
             var restaurante = bd.findEstablishmentById(idRestaurante);
-            TelaCardapio tela = new TelaCardapio(restaurante.GetId());
+            TelaCardapio tela = new TelaCardapio(restaurante.getId());
             tela.Show();
             this.Close();
         }
