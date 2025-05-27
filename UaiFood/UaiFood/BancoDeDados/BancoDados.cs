@@ -18,12 +18,12 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
             // ordem da classe banco de dados
-            // estrutura do banco -> user -> establishment -> cardapio -> product -> outros
+            // estrutura do banco -> user -> establishment -> pedidos -> cardapio -> product -> outros
             public static void Createconnection()
             {
                 if (connection == null)
@@ -408,7 +408,7 @@ CREATE TABLE IF NOT EXISTS users (
                 }
 
 
-                return false; // Se não encontrar ou houver erro, assume que está incompleto
+                return false; 
             }
 
             //establishment
@@ -669,6 +669,31 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
                 return null;
             }
+            public bool deleteEstablishmentBank()
+            {
+                Createconnection();
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                String sql = "DELETE FROM establishment WHERE id = @id"; 
+                try
+                {
+                    using(var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", IdController.GetIdEstablishment());
+                        deleteCardapioBank();
+                        // deleta o cardapio desse restaurante para não dar erro na chave estrangeira
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch(MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
+                }
+            }
 
             //cardapio
 
@@ -720,7 +745,32 @@ CREATE TABLE IF NOT EXISTS cardapio (
                 }
                 catch (MySqlException ex)
                 {
-                    
+
+                }
+            }
+            public bool deleteCardapioBank()
+            {
+                Createconnection();
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                String sql = "DELETE FROM cardapio WHERE idRestaurante = @idRestaurante";
+                try
+                {
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idRestaurante", IdController.GetIdEstablishment());
+                        // deletar o produtos
+                        DeletarProdutoPeloRestaurante(connection);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return false;
                 }
             }
 
@@ -765,11 +815,9 @@ CREATE TABLE IF NOT EXISTS produtos (
                 try
                 {
                     Createconnection();
-
-                    // Verifique se a conexão já está aberta antes de abrir
                     if (connection.State != System.Data.ConnectionState.Open)
                     {
-                        connection.Open(); 
+                        connection.Open();
                     }
 
                     connection.ChangeDatabase(bancoDados);
@@ -784,7 +832,6 @@ CREATE TABLE IF NOT EXISTS produtos (
                         cmd.Parameters.AddWithValue("@preco", produto.Preco);
                         cmd.Parameters.AddWithValue("@categoria", produto.Categoria);
                         cmd.Parameters.AddWithValue("@imagem", produto.Imagem);
-                        // passar o idController do establishment
                         cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
                         cmd.ExecuteNonQuery();
                         return true;
@@ -798,14 +845,15 @@ CREATE TABLE IF NOT EXISTS produtos (
                 }
                 finally
                 {
-                    
+
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
                         connection.Close();
                     }
                 }
             }
-        public List<Produto> ConsultarProdutoPorIdCardapio(int id)
+
+            public List<Produto> ConsultarProdutoPorIdCardapio(int id)
         {
                 try
                 {
@@ -967,6 +1015,29 @@ CREATE TABLE IF NOT EXISTS produtos (
                 finally
                 {
                     connection.Close();
+                }
+            }
+
+            public void DeletarProdutoPeloRestaurante(MySqlConnection connection)
+            {
+                try
+                {
+                    if(connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "DELETE FROM produtos WHERE idCardapio = @idCardapio";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
                 }
             }
 

@@ -85,11 +85,11 @@ namespace UaiFood.Controller
 
         }
 
-        public bool loginEstablishment(string cnpj,string senha)
+        public bool loginEstablishment(string cnpj, string senha)
         {
             var bancoDados = new BancoDados();
             Establishment establishment = bancoDados.getSenhaEstablishmentBank(cnpj);
-            if(establishment != null)
+            if (establishment != null)
             {
                 var passwordController = new PasswordController();
                 bool senhaValida = passwordController.compareSenhaForEstablishment(senha, establishment);
@@ -119,7 +119,13 @@ namespace UaiFood.Controller
             {
                 MessageBox.Show("estabelecimento não encontrado");
             }
-                return false;
+            return false;
+        }
+        public bool deleteEstablishment()
+        {
+            var bd = new BancoDados();
+            bool retorno = bd.deleteEstablishmentBank();
+            return retorno;
         }
 
         //pesquisar
