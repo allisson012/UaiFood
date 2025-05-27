@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -1044,14 +1044,22 @@ CREATE TABLE IF NOT EXISTS produtos (
                 try
                 {
                     Createconnection();
+
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
                     connection.ChangeDatabase(bancoDados);
 
-                    string sql = @"SELECT id, nome, email, telefone FROM establishment WHERE LOWER(nome) LIKE @nome";
+                    string sql = @"SELECT id, nome, email, telefone, image, cep, estado, cidade, rua, numero 
+                                    FROM establishment 
+                                    WHERE LOWER(nome) LIKE @nome
+                                    ";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@nome", $"%{nome.ToLower()}%");
-                        connection.Open();
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -1063,6 +1071,13 @@ CREATE TABLE IF NOT EXISTS produtos (
                                 est.setEmail(reader.GetString("email"));
                                 est.setTelefone(reader.GetString("telefone"));
                                 est.setImage(GetBytesFromReader(reader, "image"));
+                                var addressEstablishment = new AddressEstablishment();
+                                addressEstablishment.setCep(reader.GetString("cep"));
+                                addressEstablishment.setState(reader.GetString("estado"));
+                                addressEstablishment.setCity(reader.GetString("cidade"));
+                                addressEstablishment.setStreet(reader.GetString("rua"));
+                                addressEstablishment.setNumberAddress(reader.GetString("numero"));
+                                est.setAddressEstablishment(addressEstablishment);
                                 estabelecimentos.Add(est);
                             }
                         }
@@ -1074,12 +1089,16 @@ CREATE TABLE IF NOT EXISTS produtos (
                 }
                 finally
                 {
-                    connection.Close();
+                    if (connection != null && connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                    }
                 }
 
                 return estabelecimentos;
             }
-            
+
+
             public List<Produto> BuscarTodosProdutos(string termo)
             {
                 var produtos = new List<Produto>();
@@ -1087,17 +1106,22 @@ CREATE TABLE IF NOT EXISTS produtos (
                 try
                 {
                     Createconnection();
+
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
                     connection.ChangeDatabase(bancoDados);
 
                     string sql = @"
-            SELECT id, nome, descricao, preco, categoria, imagem
-            FROM produtos
-            AND (LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo)";
+SELECT id, nome, descricao, preco, categoria, imagem
+FROM produtos
+WHERE LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@termo", $"%{termo.ToLower()}%");
-                        connection.Open();
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -1121,11 +1145,15 @@ CREATE TABLE IF NOT EXISTS produtos (
                 }
                 finally
                 {
-                    connection.Close();
+                    if (connection != null && connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                    }
                 }
 
                 return produtos;
             }
+
             public List<Produto> BuscarProdutosRestaurante(int idCardapio, string termo)
             {
                 var produtos = new List<Produto>();
@@ -1180,38 +1208,39 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 try
                 {
-                    Createconnection();
-                    connection.ChangeDatabase(bancoDados);
+                    BancoDados.Createconnection();
+
+                    if (BancoDados.connection.State != ConnectionState.Open)
+                    {
+                        BancoDados.connection.Open();
+                    }
+
+                    BancoDados.connection.ChangeDatabase(bancoDados);
 
                     string sql = @"SELECT * FROM establishment";
 
-                    using (var cmd = new MySqlCommand(sql, connection))
+                    using (var cmd = new MySqlCommand(sql, BancoDados.connection))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        connection.Open();
-
-                        using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                var addressEstablishment = new AddressEstablishment();
-                                var establishment = new Establishment();
-                                establishment.setId(reader.GetInt32("id"));
-                                establishment.setNome(reader.GetString("nome"));
-                                establishment.setEmail(reader.GetString("email"));
-                                establishment.setHash(GetBytesFromReader(reader, "hash"));
-                                establishment.setSalt(GetBytesFromReader(reader, "salt"));
-                                establishment.setImage(GetBytesFromReader(reader, "image"));
-                                establishment.setTelefone(reader.GetString("telefone"));
-                                establishment.setCnpj(reader.GetString("cnpj"));
-                                addressEstablishment.setCep(reader.GetString("cep"));
-                                addressEstablishment.setState(reader.GetString("estado"));
-                                addressEstablishment.setCity(reader.GetString("cidade"));
-                                addressEstablishment.setStreet(reader.GetString("rua"));
-                                addressEstablishment.setNumberAddress(reader.GetString("numero"));
-                                establishment.setAddressEstablishment(addressEstablishment);
-                                estabelecimentos.Add(establishment);
-                            }
-                            return estabelecimentos;
+                            var addressEstablishment = new AddressEstablishment();
+                            var establishment = new Establishment();
+                            establishment.setId(reader.GetInt32("id"));
+                            establishment.setNome(reader.GetString("nome"));
+                            establishment.setEmail(reader.GetString("email"));
+                            establishment.setHash(GetBytesFromReader(reader, "hash"));
+                            establishment.setSalt(GetBytesFromReader(reader, "salt"));
+                            establishment.setImage(GetBytesFromReader(reader, "image"));
+                            establishment.setTelefone(reader.GetString("telefone"));
+                            establishment.setCnpj(reader.GetString("cnpj"));
+                            addressEstablishment.setCep(reader.GetString("cep"));
+                            addressEstablishment.setState(reader.GetString("estado"));
+                            addressEstablishment.setCity(reader.GetString("cidade"));
+                            addressEstablishment.setStreet(reader.GetString("rua"));
+                            addressEstablishment.setNumberAddress(reader.GetString("numero"));
+                            establishment.setAddressEstablishment(addressEstablishment);
+                            estabelecimentos.Add(establishment);
                         }
                     }
                 }
@@ -1221,11 +1250,15 @@ CREATE TABLE IF NOT EXISTS produtos (
                 }
                 finally
                 {
-                    connection.Close();
+                    if (BancoDados.connection != null && BancoDados.connection.State != ConnectionState.Closed)
+                    {
+                        BancoDados.connection.Close();
+                    }
                 }
 
                 return estabelecimentos;
             }
+
 
             // pedidos
             public void createPedidosTable()

@@ -53,7 +53,7 @@ namespace UaiFood.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (cbFiltro.SelectedIndex != 0)
+            if (cbFiltro.SelectedIndex == 0)
             {
                 BancoDados bd = new BancoDados();
                 var restaurantesEncontrados = bd.BuscarRestaurantes(txtPesquisa.Text);
@@ -92,7 +92,6 @@ namespace UaiFood.View
                         var restauranteSelecionado = pic.Tag as Establishment;
                         TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.getId());
                         tela.Show();
-                        this.Close();
                     };
 
                     // Label nome
@@ -160,7 +159,6 @@ namespace UaiFood.View
   
                         TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
                         tela.Show();
-                        this.Close();
                         
                     };
 
@@ -231,7 +229,6 @@ namespace UaiFood.View
                     var restauranteSelecionado = pic.Tag as Establishment;
                     TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.getId());
                     tela.Show();
-                    this.Close();
                 };
 
                 // Label nome

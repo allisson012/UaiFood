@@ -57,5 +57,19 @@ namespace UaiFood.View
             telaLogin.Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+                txtRepeteSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+                txtRepeteSenha.UseSystemPasswordChar = true;
+            }
+        }
     }
 }

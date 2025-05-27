@@ -77,6 +77,20 @@ namespace UaiFood.View
             this.Close();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+                txtRepeteSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+                txtRepeteSenha.UseSystemPasswordChar = true;
+            }
+        }
+
         public static implicit operator TelaCadastroRestaurante(TelaCadastro v)
         {
             throw new NotImplementedException();

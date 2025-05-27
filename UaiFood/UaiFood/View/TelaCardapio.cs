@@ -16,8 +16,7 @@ namespace UaiFood.View
     public partial class TelaCardapio : Form
     {
         int idEstablishment;
-        int? restauranteLogado = IdController.GetIdEstablishment();
-        int? usuarioLogado = IdController.GetIdUser();
+        
 
         public TelaCardapio(int id)
         {
@@ -60,13 +59,13 @@ namespace UaiFood.View
                 {
                     var pic = s as PictureBox;
                     var produtoSelecionado = pic.Tag as Produto;
-                    if (usuarioLogado.HasValue)
+                    if (IdController.GetIdUser() != null)
                     {
                         TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
                         tela.Show();
                         this.Close();
                     }
-                    else if (restauranteLogado.HasValue)
+                    else if (IdController.GetIdEstablishment != null)
                     {
                         TelaEditarProduto telaEditar = new TelaEditarProduto(produto.getId());
                         telaEditar.Show();

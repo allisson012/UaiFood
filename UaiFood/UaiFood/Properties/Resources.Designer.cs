@@ -83,6 +83,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap olho {
+            get {
+                object obj = ResourceManager.GetObject("olho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap restaurante {
             get {
                 object obj = ResourceManager.GetObject("restaurante", resourceCulture);
