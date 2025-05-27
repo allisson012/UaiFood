@@ -1108,6 +1108,126 @@ CREATE TABLE IF NOT EXISTS produtos (
                 return estabelecimentos;
             }
 
+            // pedidos
+            public void createPedidosTable()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idEstabelecimento INT NOT NULL,
+    idCliente INT NULL, -- Se tiver clientes cadastrados
+    total DECIMAL(10,2) NOT NULL,
+    forma_pagamento VARCHAR(20) NOT NULL,
+    subtipo_pagamento VARCHAR(20),
+    status VARCHAR(50) NOT NULL,
+    tempo_estimado DATETIME NOT NULL,
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idEstabelecimento) REFERENCES establishment(id)
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("Tabela produto criada com sucesso.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao tentar criar tabela: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public void RegistrarPedido(Pedidos pedido)
+            {
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+                    string sql = "INSERT INTO pedidos (total, forma_pagamento, status, tempo_entrega) VALUES (@total, @forma_pagamento, @status, @tempo_entrega)";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@total", pedido.Total);
+                        cmd.Parameters.AddWithValue("@forma_pagamento", pedido.Pagamento);
+                        cmd.Parameters.AddWithValue("@status", pedido.Status);
+                        cmd.Parameters.AddWithValue("@tempo_entrega", pedido.TempoEntrega);
+
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao registrar pedido: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public List<Pedidos> ListarPedidos(int idEstabelecimento)
+            {
+                var pedidos = new List<Pedidos>();
+
+                try
+                {
+                    Createconnection();
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"
+            SELECT id, total, forma_pagamento, subtipo_pagamento, status, tempo_estimado, data_pedido
+            FROM pedidos
+            WHERE idEstabelecimento = @idEstabelecimento";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idEstabelecimento", idEstabelecimento);
+                        connection.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var pedido = new Pedidos
+                                {
+                                    Total = reader.GetDecimal("total"),
+                                    Pagamento = new FormaPagamento
+                                    {
+                                        Tipo = reader.GetString("forma_pagamento"),
+                                        Subtipo = reader.IsDBNull(reader.GetOrdinal("subtipo_pagamento"))
+                                                  ? null
+                                                  : reader.GetString("subtipo_pagamento")
+                                    },
+                                    Status = reader.GetString("status"),
+                                    TempoEntrega = reader.GetDateTime("tempo_estimado")
+                                };
+
+                                pedidos.Add(pedido);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao listar pedidos: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return pedidos;
+            }
+
+
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
             {
