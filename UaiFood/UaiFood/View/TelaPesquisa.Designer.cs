@@ -35,7 +35,7 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
-            flpRestaurantes = new FlowLayoutPanel();
+            flowPanelProdutos = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // button1
@@ -127,14 +127,14 @@
             button5.TabIndex = 7;
             button5.UseVisualStyleBackColor = false;
             // 
-            // flpRestaurantes
+            // flowPanelProdutos
             // 
-            flpRestaurantes.AutoScroll = true;
-            flpRestaurantes.BackColor = Color.White;
-            flpRestaurantes.Location = new Point(-3, 154);
-            flpRestaurantes.Name = "flpRestaurantes";
-            flpRestaurantes.Size = new Size(1354, 576);
-            flpRestaurantes.TabIndex = 8;
+            flowPanelProdutos.AutoScroll = true;
+            flowPanelProdutos.BackColor = Color.White;
+            flowPanelProdutos.Location = new Point(-3, 154);
+            flowPanelProdutos.Name = "flowPanelProdutos";
+            flowPanelProdutos.Size = new Size(1354, 576);
+            flowPanelProdutos.TabIndex = 8;
             // 
             // TelaPesquisa
             // 
@@ -142,7 +142,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPesquisa1;
             ClientSize = new Size(1350, 729);
-            Controls.Add(flpRestaurantes);
+            Controls.Add(flowPanelProdutos);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -168,6 +168,6 @@
         private Button button3;
         private Button button4;
         private Button button5;
-        private FlowLayoutPanel flpRestaurantes;
+        private FlowLayoutPanel flowPanelProdutos;
     }
 }

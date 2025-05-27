@@ -46,7 +46,6 @@ namespace UaiFood.View
                     var telaPrincipalRestaurante = new TelaPrincipalRestaurante();
                     telaPrincipalRestaurante.Show();
                     this.Close();
-                    // tela errada esta faltando a tela principal restaurante
                 }
             }
         }

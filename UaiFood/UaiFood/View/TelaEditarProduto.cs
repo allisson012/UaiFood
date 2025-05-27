@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
 
 namespace UaiFood.View
 {
     public partial class TelaEditarProduto : Form
     {
-        public TelaEditarProduto()
+        int idProduto;
+        BancoDados bd = new BancoDados();   
+        ImageController imageController = new ImageController();
+        public TelaEditarProduto(int idProduto)
         {
             InitializeComponent();
+            this.idProduto = idProduto;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +39,16 @@ namespace UaiFood.View
             {
                 pictureBox1.Image = i;
             }
+        }
+
+        private void TelaEditarProduto_Load(object sender, EventArgs e)
+        {
+            var produto = bd.ConsultarProdutoPorId(idProduto);
+            txtNome.Text = produto.Nome;
+            txtPreco.Text = produto.Preco.ToString();
+            txtDescricao.Text = produto.Descricao;
+            pictureBox1.Image = imageController.ExibirImage(produto.Imagem);
+
         }
     }
 }

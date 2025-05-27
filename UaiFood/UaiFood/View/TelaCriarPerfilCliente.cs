@@ -50,7 +50,7 @@ namespace UaiFood.View
             string formato = "dd/MM/yyyy";
             try
             {
-               data = DateOnly.ParseExact(dataNasc, formato, System.Globalization.CultureInfo.InvariantCulture);
+                data = DateOnly.ParseExact(dataNasc, formato, System.Globalization.CultureInfo.InvariantCulture);
                 System.Diagnostics.Debug.WriteLine($"Data convertida: {data}");
             }
             catch (FormatException)
@@ -64,7 +64,7 @@ namespace UaiFood.View
                 MessageBox.Show("Insira um CPF válido!", "CPF inválido!", (MessageBoxButtons)MessageBoxIcon.Warning);
                 return;
             }
-            if(!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
+            if (!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
             {
                 var userController = new UserController();
                 userController.createPerfilUser(IdController.GetIdUser(), nome, cpf, rua, estado, cidade, cep, telefone, numero, imag, data);
@@ -75,6 +75,19 @@ namespace UaiFood.View
         private void txtCep_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private async void txtCep_Leave(object sender, EventArgs e)
+        {
+            addressController controller = new addressController();
+            var endereco = await controller.viaCepBuscaAsync(txtCep.Text);
+
+            if (endereco != null)
+            {
+                txtRua.Text = endereco.Rua;
+                txtCidade.Text = endereco.Cidade;
+                txtEstado.Text = endereco.Estado;
+            }
         }
     }
 }

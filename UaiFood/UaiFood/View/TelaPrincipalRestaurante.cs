@@ -15,6 +15,8 @@ namespace UaiFood.View
     public partial class TelaPrincipalRestaurante : Form
     {
         int? establishmentId = IdController.GetIdEstablishment();
+        BancoDados bd = new BancoDados();
+        
         public TelaPrincipalRestaurante()
         {
             InitializeComponent();
@@ -42,7 +44,6 @@ namespace UaiFood.View
 
         private void TelaPrincipalRestaurante_Load(object sender, EventArgs e)
         {
-            BancoDados bd = new BancoDados();
             var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
             lblNome.Text = establishment.GetNome();
             lblTelefone.Text = establishment.GetTelefone();
@@ -57,6 +58,13 @@ namespace UaiFood.View
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaCardapio telaCardapio = new TelaCardapio(IdController.GetIdEstablishment());
+            telaCardapio.Show();
+            this.Close();
         }
     }
 }
