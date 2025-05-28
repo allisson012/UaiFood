@@ -163,6 +163,7 @@
             btnExcluirPefil.Size = new Size(187, 43);
             btnExcluirPefil.TabIndex = 7;
             btnExcluirPefil.UseVisualStyleBackColor = false;
+            btnExcluirPefil.Click += btnExcluirPefil_Click;
             // 
             // TelaPerfilCliente
             // 

@@ -57,5 +57,28 @@ namespace UaiFood.View
             TelaEditarPerfilCliente telaEditarPerfilCliente = new TelaEditarPerfilCliente();
             telaEditarPerfilCliente.Show();
         }
+
+        private void btnExcluirPefil_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+"Tem certeza de que deseja deletar sua conta?",
+"Confirmação",
+MessageBoxButtons.YesNo,
+MessageBoxIcon.Warning
+);
+
+            if (resultado == DialogResult.Yes)
+            {
+                UserController userController = new UserController();
+                bool deletado = userController.deleteUser();
+                if (deletado)
+                {
+                    MessageBox.Show("Conta deletado com sucesso");
+                    TelaLogin telaLogin = new TelaLogin();
+                    telaLogin.Show();
+                    this.Close();
+                }
+            }
+        }
     }
 }
