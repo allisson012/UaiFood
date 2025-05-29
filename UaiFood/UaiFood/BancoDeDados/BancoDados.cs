@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -618,7 +618,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
 
 
-                return false; // Se não encontrar ou houver erro, assume que está incompleto
+                return false; 
             }
 
             public Establishment findEstablishmentById(int id)
@@ -1258,7 +1258,7 @@ WHERE LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo";
 
                 return estabelecimentos;
             }
-
+           
 
             // pedidos
             public void createPedidosTable()
@@ -1266,15 +1266,18 @@ WHERE LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo";
                 string sql = @"
 CREATE TABLE IF NOT EXISTS pedidos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    idEstabelecimento INT NOT NULL,
-    idCliente INT NULL, -- Se tiver clientes cadastrados
+    idRestaurante INT NOT NULL,
+    FOREIGN KEY (idRestaurante) REFERENCES establishment(id),
+    idCliente INT NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES users(id),
+    idProduto INT NOT NULL,
+    FOREIGN KEY (idProduto) REFERENCES produtos(id),
     total DECIMAL(10,2) NOT NULL,
     forma_pagamento VARCHAR(20) NOT NULL,
     subtipo_pagamento VARCHAR(20),
     status VARCHAR(50) NOT NULL,
     tempo_estimado DATETIME NOT NULL,
-    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (idEstabelecimento) REFERENCES establishment(id)
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP
 );";
 
                 try
@@ -1303,14 +1306,16 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 {
                     Createconnection();
                     connection.ChangeDatabase(bancoDados);
+                    // comprar um produto quem vai estar logado é o usuario então eu tenho que pegar o idRestaurante de alguma forma 
+                    // idProduto , idCliente , IdRestaurante
                     string sql = "INSERT INTO pedidos (total, forma_pagamento, status, tempo_entrega) VALUES (@total, @forma_pagamento, @status, @tempo_entrega)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        cmd.Parameters.AddWithValue("@total", pedido.Total);
-                        cmd.Parameters.AddWithValue("@forma_pagamento", pedido.Pagamento);
-                        cmd.Parameters.AddWithValue("@status", pedido.Status);
-                        cmd.Parameters.AddWithValue("@tempo_entrega", pedido.TempoEntrega);
+                        cmd.Parameters.AddWithValue("@total", pedido.getTotal());
+                        cmd.Parameters.AddWithValue("@forma_pagamento", pedido.getPagamento());
+                        cmd.Parameters.AddWithValue("@status", pedido.getStatus());
+                        cmd.Parameters.AddWithValue("@tempo_entrega", pedido.getTempoEntrega());
 
                         connection.Open();
                         cmd.ExecuteNonQuery();
@@ -1348,19 +1353,29 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         {
                             while (reader.Read())
                             {
-                                var pedido = new Pedidos
+                                   var pedido = new Pedidos();
+                              /*  pedido.setTotal(reader.GetDecimal("total"));
+                                if (reader.isNull("tipo"))
                                 {
-                                    Total = reader.GetDecimal("total"),
-                                    Pagamento = new FormaPagamento
-                                    {
-                                        Tipo = reader.GetString("forma_pagamento"),
-                                        Subtipo = reader.IsDBNull(reader.GetOrdinal("subtipo_pagamento"))
-                                                  ? null
-                                                  : reader.GetString("subtipo_pagamento")
-                                    },
-                                    Status = reader.GetString("status"),
-                                    TempoEntrega = reader.GetDateTime("tempo_estimado")
-                                };
+                                    pedido.getPagamento().setTipo(null);
+                                }
+                                else
+                                {
+                                    pedido.getPagamento().setTipo(reader.getString("tipo"));
+                                }*/
+                                pedido.getPagamento().setTipo(reader.GetString("tipo"));
+                                pedido.getPagamento().setSubTipo(reader.GetString("subtipo"));
+                                //          ? null)
+                                //  pedido.Pagamento = new FormaPagamento
+                                //  {
+                                //   Tipo = reader.GetString("forma_pagamento"),
+                                //  Subtipo = reader.IsDBNull(reader.GetOrdinal("subtipo_pagamento"))
+                                //          ? null
+                                //            : reader.GetString("subtipo_pagamento")
+                                // };
+                                pedido.setStatus(reader.GetString("status"));
+                                    pedido.setTempoEntrega(reader.GetDateTime("tempo_estimado"));
+                                
 
                                 pedidos.Add(pedido);
                             }
