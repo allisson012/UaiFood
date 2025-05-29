@@ -35,6 +35,7 @@
             button2 = new Button();
             button3 = new Button();
             linkLabel1 = new LinkLabel();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -129,12 +130,29 @@
             linkLabel1.Text = "Já possui conta?";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.BackgroundImage = Properties.Resources.olho;
+            button4.BackgroundImageLayout = ImageLayout.Zoom;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(1238, 437);
+            button4.Name = "button4";
+            button4.Size = new Size(47, 28);
+            button4.TabIndex = 12;
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // TelaCadastro
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaCadastro;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button4);
             Controls.Add(linkLabel1);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -162,5 +180,6 @@
         private Button button2;
         private Button button3;
         private LinkLabel linkLabel1;
+        private Button button4;
     }
 }

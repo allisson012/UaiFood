@@ -37,7 +37,7 @@ namespace UaiFood.View
             string cnpj = txtCNPJ.Text;
             cnpj = Regex.Replace(cnpj, @"[^\d]", "");
             string senha = txtSenha.Text;
-            if(!String.IsNullOrEmpty(cnpj) && !String.IsNullOrEmpty(senha))
+            if (!String.IsNullOrEmpty(cnpj) && !String.IsNullOrEmpty(senha))
             {
                 var establishmentController = new EstablishmentController();
                 bool loginValido = establishmentController.loginEstablishment(cnpj, senha);
@@ -47,6 +47,18 @@ namespace UaiFood.View
                     telaPrincipalRestaurante.Show();
                     this.Close();
                 }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
             }
         }
     }

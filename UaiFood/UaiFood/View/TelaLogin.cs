@@ -46,7 +46,7 @@ namespace UaiFood
                 MessageBox.Show("preencha os campos de email e senha");
             }
 
-            
+
 
         }
 
@@ -80,6 +80,18 @@ namespace UaiFood
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+            }
         }
     }
 }
