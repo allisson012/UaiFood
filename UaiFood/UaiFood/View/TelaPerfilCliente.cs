@@ -35,7 +35,7 @@ namespace UaiFood.View
                 lblEstado.Text = address.getState();
                 lblRua.Text = address.getStreet();
                 lblNumero.Text = address.getNumberAddress();
-                
+
 
                 ImageController imageController = new ImageController();
                 picturePerfil.Image = imageController.ExibirImage(client.getPhoto());
@@ -50,6 +50,35 @@ namespace UaiFood.View
         private void picturePerfil_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEditarPerfil_Click(object sender, EventArgs e)
+        {
+            TelaEditarPerfilCliente telaEditarPerfilCliente = new TelaEditarPerfilCliente();
+            telaEditarPerfilCliente.Show();
+        }
+
+        private void btnExcluirPefil_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+"Tem certeza de que deseja deletar sua conta?",
+"Confirmação",
+MessageBoxButtons.YesNo,
+MessageBoxIcon.Warning
+);
+
+            if (resultado == DialogResult.Yes)
+            {
+                UserController userController = new UserController();
+                bool deletado = userController.deleteUser();
+                if (deletado)
+                {
+                    MessageBox.Show("Conta deletado com sucesso");
+                    TelaLogin telaLogin = new TelaLogin();
+                    telaLogin.Show();
+                    this.Close();
+                }
+            }
         }
     }
 }

@@ -36,6 +36,8 @@
             lblTelefone = new Label();
             lblRua = new Label();
             picturePerfil = new PictureBox();
+            btnEditarPerfil = new Button();
+            btnExcluirPefil = new Button();
             ((System.ComponentModel.ISupportInitialize)picturePerfil).BeginInit();
             SuspendLayout();
             // 
@@ -135,12 +137,42 @@
             picturePerfil.TabStop = false;
             picturePerfil.Click += picturePerfil_Click;
             // 
+            // btnEditarPerfil
+            // 
+            btnEditarPerfil.BackColor = Color.Transparent;
+            btnEditarPerfil.FlatAppearance.BorderSize = 0;
+            btnEditarPerfil.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnEditarPerfil.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnEditarPerfil.FlatStyle = FlatStyle.Flat;
+            btnEditarPerfil.Location = new Point(25, 425);
+            btnEditarPerfil.Name = "btnEditarPerfil";
+            btnEditarPerfil.Size = new Size(187, 43);
+            btnEditarPerfil.TabIndex = 6;
+            btnEditarPerfil.UseVisualStyleBackColor = false;
+            btnEditarPerfil.Click += btnEditarPerfil_Click;
+            // 
+            // btnExcluirPefil
+            // 
+            btnExcluirPefil.BackColor = Color.Transparent;
+            btnExcluirPefil.FlatAppearance.BorderSize = 0;
+            btnExcluirPefil.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnExcluirPefil.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnExcluirPefil.FlatStyle = FlatStyle.Flat;
+            btnExcluirPefil.Location = new Point(25, 474);
+            btnExcluirPefil.Name = "btnExcluirPefil";
+            btnExcluirPefil.Size = new Size(187, 43);
+            btnExcluirPefil.TabIndex = 7;
+            btnExcluirPefil.UseVisualStyleBackColor = false;
+            btnExcluirPefil.Click += btnExcluirPefil_Click;
+            // 
             // TelaPerfilCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPerfilCliente;
             ClientSize = new Size(1350, 729);
+            Controls.Add(btnExcluirPefil);
+            Controls.Add(btnEditarPerfil);
             Controls.Add(picturePerfil);
             Controls.Add(lblRua);
             Controls.Add(lblTelefone);
@@ -151,7 +183,7 @@
             Controls.Add(lblNome);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaPerfilCliente";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
@@ -172,5 +204,7 @@
         private Label lblTelefone;
         private Label lblRua;
         private PictureBox picturePerfil;
+        private Button btnEditarPerfil;
+        private Button btnExcluirPefil;
     }
 }

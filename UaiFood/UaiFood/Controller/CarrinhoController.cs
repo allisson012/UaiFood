@@ -48,22 +48,23 @@ namespace UaiFood.Controller
                 return;
             }
 
-            var pedido = new Pedidos
-            {
-                Produtos = carrinho.Produtos.ToList(),
-                Total = carrinho.CalcularTotal(),
-                Pagamento = new FormaPagamento { Tipo = tipoPagamento, Subtipo = subtipo},
-                Status = "Em preparo",
-                TempoEntrega = DateTime.Now.AddMinutes(new Random().Next(30, 91))
-            };
+            var pedido = new Pedidos();
+
+            pedido.setProdutos(carrinho.Produtos.ToList());
+
+            pedido.setTotal(carrinho.CalcularTotal());
+            pedido.setPagamento(new FormaPagamento(tipoPagamento,subtipo));
+            pedido.setStatus("Em preparo");
+            pedido.setTempoEntrega(DateTime.Now.AddMinutes(new Random().Next(30, 91)));
+            
 
             var banco = new BancoDados();
             banco.RegistrarPedido(pedido);
 
             MessageBox.Show($"Pedido Realizado com Sucesso!\n +" +
-                $"Total: R${pedido.Total}\n" +
-                $"Pagamento: {pedido.Pagamento}\n" +
-                $"Tempo de Entrega: {pedido.TempoEntrega.ToShortTimeString()}");
+                $"Total: R${pedido.getTotal()}\n" +
+                $"Pagamento: {pedido.getPagamento()}\n" +
+                $"Tempo de Entrega: {pedido.getTempoEntrega().ToShortTimeString()}");
 
             carrinho.LimparCarrinho();
         }

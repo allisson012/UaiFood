@@ -172,5 +172,10 @@ namespace UaiFood.Controller
             }
 
         }
+        public bool deleteUser()
+        {
+            BancoDados bd = new BancoDados();
+            return bd.deleteUserBank(IdController.GetIdUser());
+        }
     }
 }
