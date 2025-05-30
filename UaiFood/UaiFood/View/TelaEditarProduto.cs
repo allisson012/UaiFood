@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
+﻿using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
+using UaiFood.Model;
 
 namespace UaiFood.View
 {
     public partial class TelaEditarProduto : Form
     {
-        int idProduto;
-        BancoDados bd = new BancoDados();   
+        private int idProduto;
+        private byte[] imagemSelecionada;
+        BancoDados bd = new BancoDados();
         ImageController imageController = new ImageController();
+        
         public TelaEditarProduto(int idProduto)
         {
             InitializeComponent();
@@ -33,11 +27,15 @@ namespace UaiFood.View
         private void button2_Click(object sender, EventArgs e)
         {
             ImageController imageController = new ImageController();
-            byte[] imag = imageController.SelectImage();
-            Image i = imageController.ExibirImage(imag);
-            if (i != null)
+            imagemSelecionada = imageController.SelectImage();
+            Image imagem = imageController.ExibirImage(imagemSelecionada);
+            if (imagem != null)
             {
-                pictureBox1.Image = i;
+                pictureBox1.Image = imagem; // exibe na tela
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível carregar a imagem.");
             }
         }
 
@@ -47,7 +45,23 @@ namespace UaiFood.View
             txtNome.Text = produto.getNome();
             txtPreco.Text = produto.getPreco().ToString();
             txtDescricao.Text = produto.getDescricao();
-            pictureBox1.Image = imageController.ExibirImage(produto.getImagem());
+            cbCategoria.Text = produto.getCategoria();
+            imagemSelecionada = produto.getImagem();
+            pictureBox1.Image = imageController.ExibirImage(produto.getImagem());           
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!decimal.TryParse(txtPreco.Text, out decimal price))
+            {
+                MessageBox.Show("Preço inválido. Digite um valor numérico, como 9.99.");
+                return;
+            }
+            
+            ProductController productController = new ProductController();
+            productController.updateProduct(idProduto, txtNome.Text, txtDescricao.Text, price, cbCategoria.Text, imagemSelecionada);
+
 
         }
     }

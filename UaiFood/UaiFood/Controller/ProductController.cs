@@ -26,6 +26,7 @@ namespace UaiFood.Controller
                 MessageBox.Show("Erro ao cadastrar produto.");
         }
 
+
         public Produto consultProduct(int id)
         {
             var banco = new BancoDados();
@@ -64,6 +65,25 @@ namespace UaiFood.Controller
             //  }
             return null;
         }
+        public void updateProduct(int id, string nome, string descricao, decimal preco, string categoria, byte[] imagem)
+        {
+            var produto = new Produto();
+            produto.setId(id);               
+            produto.setNome(nome);
+            produto.setDescricao(descricao);
+            produto.setPreco(preco);
+            produto.setCategoria(categoria);
+            produto.setImagem(imagem);
+
+            var banco = new BancoDados();
+            bool atualizado = banco.AtualizarProduto(produto);
+
+            if (atualizado)
+                MessageBox.Show("Produto atualizado com sucesso!");
+            else
+                MessageBox.Show("Erro ao atualizar produto.");
+        }
+
     }
 }
 
