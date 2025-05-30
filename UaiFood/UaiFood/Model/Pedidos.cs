@@ -95,11 +95,11 @@ namespace UaiFood.Model
     }
     public class FormaPagamento{
         private string tipo;
-        private string subtipo;
-        public FormaPagamento(string tipo, string subtipo)
+        private string subTipo;
+        public FormaPagamento(string tipo, string subTipo)
         {
             this.tipo = tipo;
-            this.subtipo = subtipo;
+            this.subTipo = subTipo;
         }
 
         public void setTipo(string tipo)
@@ -112,11 +112,11 @@ namespace UaiFood.Model
         }
         public void setSubTipo(string subTipo)
         {
-            this.subtipo = subtipo;
+            this.subTipo = subTipo;
         }
         public string getSubTipo()
         {
-            return this.subtipo;
+            return this.subTipo;
         }
     }
 }
