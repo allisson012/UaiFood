@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -573,6 +573,7 @@ CREATE TABLE IF NOT EXISTS establishment (
                 }
                 catch (MySqlException ex)
                 {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
                     return false;
                 }
                 return false;
