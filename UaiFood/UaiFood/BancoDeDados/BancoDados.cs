@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -833,6 +833,47 @@ CREATE TABLE IF NOT EXISTS produtos (
                         cmd.Parameters.AddWithValue("@categoria", produto.getCategoria());
                         cmd.Parameters.AddWithValue("@imagem", produto.getImagem());
                         cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}");
+                    MessageBox.Show($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                finally
+                {
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+            public bool AtualizarProduto(Produto produto)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = "UPDATE produtos SET nome = @nome, descricao = @descricao, preco = @preco, categoria = @categoria, imagem = @imagem WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", produto.getNome());
+                        cmd.Parameters.AddWithValue("@descricao", produto.getDescricao());
+                        cmd.Parameters.AddWithValue("@preco", produto.getPreco());
+                        cmd.Parameters.AddWithValue("@categoria", produto.getCategoria());
+                        cmd.Parameters.AddWithValue("@imagem", produto.getImagem());
+                        cmd.Parameters.AddWithValue("@id", produto.getId());
                         cmd.ExecuteNonQuery();
                         return true;
                     }

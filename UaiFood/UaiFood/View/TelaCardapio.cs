@@ -54,31 +54,43 @@ namespace UaiFood.View
 
                 pictureBox.Tag = produto;
                 pictureBox.Cursor = Cursors.Hand;
-
                 pictureBox.Click += (s, args) =>
                 {
                     var pic = s as PictureBox;
-                    var produtoSelecionado = pic.Tag as Produto;
-                    if (IdController.GetIdUser() != null)
+                    var produtoSelecionado = pic?.Tag as Produto;
+
+                    if (produtoSelecionado == null)
                     {
-                        TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
+                        MessageBox.Show("Produto não encontrado!");
+                        return;
+                    }
+
+                    try
+                    {
+                        var userId = IdController.GetIdUser();
+                        // Se não der erro, é porque é usuário logado.
+                        TelaExibirProduto tela = new TelaExibirProduto(produtoSelecionado.getId());
                         tela.Show();
                         this.Close();
                     }
-                    else if (IdController.GetIdEstablishment != null)
+                    catch (InvalidOperationException)
                     {
-                        TelaEditarProduto telaEditar = new TelaEditarProduto(produto.getId());
-                        telaEditar.Show();
-                        this.Close();
+                        // Se der erro, tenta o establishment
+                        try
+                        {
+                            var establishmentId = IdController.GetIdEstablishment();
+                            TelaEditarProduto telaEditar = new TelaEditarProduto(produtoSelecionado.getId());
+                            telaEditar.Show();
+                            this.Close();
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            MessageBox.Show("Nenhum usuário logado!");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Nenhum usuário logado!");
-                    }
-                    
                 };
 
-                Label nomeLabel = new Label();
+                    Label nomeLabel = new Label();
                 nomeLabel.Text = produto.getNome();
                 nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                 nomeLabel.Dock = DockStyle.Bottom;
