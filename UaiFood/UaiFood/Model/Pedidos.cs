@@ -15,11 +15,12 @@ namespace UaiFood.Model
         private int idProduto;
         private List<Produto> produtos;
 
-        private decimal total { get; set; }
-        // não sei como esta funcionando a forma de pagamento
+        private decimal total;
+        
         private FormaPagamento pagamento;
-        private string status { get; set; }
-        private DateTime tempoEntrega { get; set; }
+        private string status;
+        private DateTime tempoEntrega;
+        private DateTime dataPedido;
         public void setId(int id)
         {
             this.id = id;
@@ -83,6 +84,14 @@ namespace UaiFood.Model
         public DateTime getTempoEntrega()
         {
             return this.tempoEntrega;
+        }
+        public void setDataPedido(DateTime dataPedido)
+        {
+            this.dataPedido = dataPedido;
+        }
+        public DateTime getDataPedido()
+        {
+            return this.dataPedido;
         }
         public void setPagamento(FormaPagamento pagamento)
         {

@@ -23,7 +23,7 @@ namespace UaiFood.BancoDeDados
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
             // ordem da classe banco de dados
-            // estrutura do banco -> user -> establishment -> pedidos -> cardapio -> product -> outros
+            // estrutura do banco -> user -> establishment -> cardapio -> product -> pedidos -> outros
             public static void Createconnection()
             {
                 if (connection == null)
@@ -1382,7 +1382,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     connection.ChangeDatabase(bancoDados);
 
                     string sql = @"
-            SELECT id, total, forma_pagamento, subtipo_pagamento, status, tempo_estimado, data_pedido
+            SELECT *
             FROM pedidos
             WHERE idEstabelecimento = @idEstabelecimento";
 
@@ -1395,30 +1395,17 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         {
                             while (reader.Read())
                             {
-                                   var pedido = new Pedidos();
-                              /*  pedido.setTotal(reader.GetDecimal("total"));
-                                if (reader.isNull("tipo"))
-                                {
-                                    pedido.getPagamento().setTipo(null);
-                                }
-                                else
-                                {
-                                    pedido.getPagamento().setTipo(reader.getString("tipo"));
-                                }*/
+                                var pedido = new Pedidos();
+                                pedido.setId(reader.GetInt32("id"));
+                                pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
+                                pedido.setIdCliente(reader.GetInt32("idCliente"));
+                                pedido.setIdProduto(reader.GetInt32("idProduto"));
                                 pedido.getPagamento().setTipo(reader.GetString("tipo"));
                                 pedido.getPagamento().setSubTipo(reader.GetString("subtipo"));
-                                //          ? null)
-                                //  pedido.Pagamento = new FormaPagamento
-                                //  {
-                                //   Tipo = reader.GetString("forma_pagamento"),
-                                //  Subtipo = reader.IsDBNull(reader.GetOrdinal("subtipo_pagamento"))
-                                //          ? null
-                                //            : reader.GetString("subtipo_pagamento")
-                                // };
+                                pedido.setTotal(reader.GetDecimal("total"));
                                 pedido.setStatus(reader.GetString("status"));
-                                    pedido.setTempoEntrega(reader.GetDateTime("tempo_estimado"));
-                                
-
+                                pedido.setTempoEntrega(reader.GetDateTime("tempo_estimado"));
+                                pedido.setDataPedido(reader.GetDateTime("data_pedido"));
                                 pedidos.Add(pedido);
                             }
                         }
