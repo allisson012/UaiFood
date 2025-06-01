@@ -1005,6 +1005,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                             {
                                 var produto = new Produto();
                                 produto.setId(reader.GetInt32("id"));
+                                produto.setIdCardapio(reader.GetInt32("idCardapio"));
                                 produto.setNome(reader.GetString("nome"));
                                 produto.setDescricao(reader.GetString("descricao"));
                                 produto.setPreco(reader.GetDecimal("preco"));
@@ -1342,24 +1343,32 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     connection.Close();
                 }
             }
-            public void RegistrarPedido(Pedidos pedido)
+            public void RegistrarPedido(Pedido pedido)
             {
+                Createconnection();
                 try
                 {
-                    Createconnection();
-                    connection.ChangeDatabase(bancoDados);
+                    if(connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+                    
                     // comprar um produto quem vai estar logado é o usuario então eu tenho que pegar o idRestaurante de alguma forma 
                     // idProduto , idCliente , IdRestaurante
-                    string sql = "INSERT INTO pedidos (total, forma_pagamento, status, tempo_entrega) VALUES (@total, @forma_pagamento, @status, @tempo_entrega)";
+                    string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total, forma_pagamento,subtipo_pagamento, status, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total, @forma_pagamento,@subtipo_pagamento, @status, @data_pedido)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
+                        cmd.Parameters.AddWithValue("@idRestaurante", pedido.getIdRestaurante());
+                        cmd.Parameters.AddWithValue("@idCliente", pedido.getIdCliente());
+                        cmd.Parameters.AddWithValue("@idProduto", pedido.getIdProduto());
                         cmd.Parameters.AddWithValue("@total", pedido.getTotal());
-                        cmd.Parameters.AddWithValue("@forma_pagamento", pedido.getPagamento());
+                        cmd.Parameters.AddWithValue("@forma_pagamento", pedido.getPagamento().getTipo());
+                        cmd.Parameters.AddWithValue("@subtipo_pagamento", pedido.getPagamento().getSubTipo());
                         cmd.Parameters.AddWithValue("@status", pedido.getStatus());
-                        cmd.Parameters.AddWithValue("@tempo_entrega", pedido.getTempoEntrega());
+                        cmd.Parameters.AddWithValue("@data_pedido", pedido.getDataPedido());
 
-                        connection.Open();
+                        
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -1372,9 +1381,9 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     connection.Close();
                 }
             }
-            public List<Pedidos> ListarPedidos(int idEstabelecimento)
+            public List<Pedido> ListarPedidos(int idEstabelecimento)
             {
-                var pedidos = new List<Pedidos>();
+                var pedidos = new List<Pedido>();
 
                 try
                 {
@@ -1395,7 +1404,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         {
                             while (reader.Read())
                             {
-                                var pedido = new Pedidos();
+                                var pedido = new Pedido();
                                 pedido.setId(reader.GetInt32("id"));
                                 pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
                                 pedido.setIdCliente(reader.GetInt32("idCliente"));

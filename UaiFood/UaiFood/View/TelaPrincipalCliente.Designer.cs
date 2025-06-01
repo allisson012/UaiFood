@@ -32,6 +32,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -88,12 +89,23 @@
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = false;
             // 
+            // button5
+            // 
+            button5.Location = new Point(576, 369);
+            button5.Name = "button5";
+            button5.Size = new Size(114, 51);
+            button5.TabIndex = 4;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // TelaPrincipalCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -103,7 +115,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaPrincipalCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
@@ -116,5 +128,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
     }
 }

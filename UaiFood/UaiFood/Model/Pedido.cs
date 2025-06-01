@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace UaiFood.Model
 {
-    internal class Pedidos
+    internal class Pedido
     {
         private int id;
         private int idCliente;
         private int idRestaurante;
         private int idProduto;
         private List<Produto> produtos;
-
         private decimal total;
-        
         private FormaPagamento pagamento;
         private string status;
         private DateTime tempoEntrega;
