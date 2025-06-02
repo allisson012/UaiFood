@@ -33,6 +33,7 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
+            flowPanelRestaurantes = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // button1
@@ -91,7 +92,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(576, 369);
+            button5.Location = new Point(119, 29);
             button5.Name = "button5";
             button5.Size = new Size(114, 51);
             button5.TabIndex = 4;
@@ -99,12 +100,22 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
+            // flowPanelRestaurantes
+            // 
+            flowPanelRestaurantes.AutoScroll = true;
+            flowPanelRestaurantes.BackColor = Color.White;
+            flowPanelRestaurantes.Location = new Point(-2, 195);
+            flowPanelRestaurantes.Name = "flowPanelRestaurantes";
+            flowPanelRestaurantes.Size = new Size(1354, 297);
+            flowPanelRestaurantes.TabIndex = 5;
+            // 
             // TelaPrincipalCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
+            Controls.Add(flowPanelRestaurantes);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -119,6 +130,7 @@
             Name = "TelaPrincipalCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaPrincipalCliente_Load;
             ResumeLayout(false);
         }
 
@@ -129,5 +141,6 @@
         private Button button3;
         private Button button4;
         private Button button5;
+        private FlowLayoutPanel flowPanelRestaurantes;
     }
 }

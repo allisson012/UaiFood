@@ -32,7 +32,19 @@ namespace UaiFood.View
             lblCategoria.Text = produto.getCategoria();
             lblPreco.Text = produto.getPreco().ToString();
             pictureBox1.Image = img.ExibirImage(produto.getImagem());
-            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Produto adicionado ao carrinho!");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaPesquisa telaPesquisa = new TelaPesquisa();
+            telaPesquisa.Show();
+            this.Close();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace UaiFood.View
 {
-    partial class TelaCardapio
+    partial class TelaCarrinho
     {
         /// <summary>
         /// Required designer variable.
@@ -28,55 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flowPanelProdutos = new FlowLayoutPanel();
-            button6 = new Button();
+            lblItens = new Label();
+            lblTotal = new Label();
             SuspendLayout();
             // 
-            // flowPanelProdutos
+            // lblItens
             // 
-            flowPanelProdutos.AutoScroll = true;
-            flowPanelProdutos.BackColor = Color.White;
-            flowPanelProdutos.Location = new Point(-3, 89);
-            flowPanelProdutos.Name = "flowPanelProdutos";
-            flowPanelProdutos.Size = new Size(1354, 639);
-            flowPanelProdutos.TabIndex = 0;
+            lblItens.AutoSize = true;
+            lblItens.BackColor = Color.Transparent;
+            lblItens.Font = new Font("Segoe UI", 13F);
+            lblItens.Location = new Point(1096, 316);
+            lblItens.Name = "lblItens";
+            lblItens.Size = new Size(22, 25);
+            lblItens.TabIndex = 0;
+            lblItens.Text = "0";
             // 
-            // button6
+            // lblTotal
             // 
-            button6.BackColor = Color.Transparent;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(1056, 12);
-            button6.Name = "button6";
-            button6.Size = new Size(295, 71);
-            button6.TabIndex = 7;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Segoe UI", 13F);
+            lblTotal.Location = new Point(1056, 466);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(56, 25);
+            lblTotal.TabIndex = 1;
+            lblTotal.Text = "00,00";
             // 
-            // TelaCardapio
+            // TelaCarrinho
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaCardapio;
+            BackgroundImage = Properties.Resources.TelaCarrinho;
             ClientSize = new Size(1350, 729);
-            Controls.Add(button6);
-            Controls.Add(flowPanelProdutos);
+            Controls.Add(lblTotal);
+            Controls.Add(lblItens);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
             MinimumSize = new Size(1366, 768);
-            Name = "TelaCardapio";
+            Name = "TelaCarrinho";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
-            Load += TelaCardapio_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private FlowLayoutPanel flowPanelProdutos;
-        private Button button6;
+        private Label lblItens;
+        private Label lblTotal;
     }
 }

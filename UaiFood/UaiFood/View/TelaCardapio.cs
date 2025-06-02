@@ -16,7 +16,7 @@ namespace UaiFood.View
     public partial class TelaCardapio : Form
     {
         int idEstablishment;
-        
+
 
         public TelaCardapio(int id)
         {
@@ -29,7 +29,7 @@ namespace UaiFood.View
             BancoDados bd = new BancoDados();
             ImageController imgController = new ImageController();
             var produtosEncontrados = bd.ConsultarProdutoPorIdCardapio(idEstablishment);
-            flowPanelProdutos.Controls.Clear(); 
+            flowPanelProdutos.Controls.Clear();
 
             foreach (var produto in produtosEncontrados)
             {
@@ -49,7 +49,7 @@ namespace UaiFood.View
                 }
                 else
                 {
-                    pictureBox.Image = Properties.Resources.comida; 
+                    pictureBox.Image = Properties.Resources.comida;
                 }
 
                 pictureBox.Tag = produto;
@@ -90,7 +90,7 @@ namespace UaiFood.View
                     }
                 };
 
-                    Label nomeLabel = new Label();
+                Label nomeLabel = new Label();
                 nomeLabel.Text = produto.getNome();
                 nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                 nomeLabel.Dock = DockStyle.Bottom;
@@ -112,6 +112,34 @@ namespace UaiFood.View
             if (produtosEncontrados.Count == 0)
             {
                 MessageBox.Show("Nenhum produto encontrado com esse nome.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var userId = IdController.GetIdUser();
+                // Se não der erro, é porque é usuário logado.
+                TelaPrincipalCliente tela = new TelaPrincipalCliente();
+                tela.Show();
+                this.Close();
+            }
+            catch (InvalidOperationException)
+            {
+                // Se der erro, tenta o establishment
+                try
+                {
+                    var establishmentId = IdController.GetIdEstablishment();
+                    TelaPrincipalRestaurante tela = new TelaPrincipalRestaurante();
+                    tela.Show();
+                    this.Close();
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("Nenhum usuário logado!");
+                }
             }
 
         }

@@ -19,8 +19,9 @@ namespace UaiFood.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TelaPrincipalRestaurante telaPrincipalRestaurante = new TelaPrincipalRestaurante();
-            telaPrincipalRestaurante.Show();
+            int? establishmentId = IdController.GetIdEstablishment();
+            TelaCardapio telaCardapio = new TelaCardapio(establishmentId.Value);
+            telaCardapio.Show();
             this.Close();
         }
 

@@ -163,6 +163,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaCarrinho {
+            get {
+                object obj = ResourceManager.GetObject("TelaCarrinho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaCriarPerfilCliente {
             get {
                 object obj = ResourceManager.GetObject("TelaCriarPerfilCliente", resourceCulture);
