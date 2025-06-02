@@ -156,10 +156,10 @@ namespace UaiFood.View
                     {
                         var pic = s as PictureBox;
                         var produtoSelecionado = pic.Tag as Produto;
-  
+
                         TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
                         tela.Show();
-                        
+
                     };
 
                     Label nomeLabel = new Label();
@@ -259,6 +259,10 @@ namespace UaiFood.View
             }
         }
 
+        private void flowPanelProdutos_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

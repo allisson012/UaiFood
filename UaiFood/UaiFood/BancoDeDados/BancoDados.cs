@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -1140,6 +1140,70 @@ CREATE TABLE IF NOT EXISTS produtos (
 
                 return estabelecimentos;
             }
+
+            public List<Establishment> BuscarRestaurantesProximos(string estado)
+            {
+                var estabelecimentos = new List<Establishment>();
+
+                try
+                {
+                    Createconnection();
+
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    connection.ChangeDatabase(bancoDados);
+
+                    string sql = @"SELECT id, nome, email, telefone, image, cep, estado, cidade, rua, numero 
+                       FROM establishment 
+                       WHERE LOWER(estado) LIKE @estado";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@estado", $"%{estado.ToLower()}%");  // <<< Corrigido aqui!
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var est = new Establishment();
+                                est.setId(reader.GetInt32("id"));
+                                est.setNome(reader.GetString("nome"));
+                                est.setEmail(reader.GetString("email"));
+                                est.setTelefone(reader.GetString("telefone"));
+                                est.setImage(GetBytesFromReader(reader, "image"));
+
+                                var addressEstablishment = new AddressEstablishment();
+                                addressEstablishment.setCep(reader.GetString("cep"));
+                                addressEstablishment.setState(reader.GetString("estado"));
+                                addressEstablishment.setCity(reader.GetString("cidade"));
+                                addressEstablishment.setStreet(reader.GetString("rua"));
+                                addressEstablishment.setNumberAddress(reader.GetString("numero"));
+
+                                est.setAddressEstablishment(addressEstablishment);
+
+                                estabelecimentos.Add(est);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar restaurantes: " + ex.Message);
+                }
+                finally
+                {
+                    if (connection != null && connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                    }
+                }
+
+                return estabelecimentos;
+            }
+
 
 
             public List<Produto> BuscarTodosProdutos(string termo)

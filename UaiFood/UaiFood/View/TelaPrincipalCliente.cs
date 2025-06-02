@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
+using UaiFood.Model;
 
 namespace UaiFood.View
 {
     public partial class TelaPrincipalCliente : Form
     {
+        int? userId = IdController.GetIdUser();
         public TelaPrincipalCliente()
         {
             InitializeComponent();
@@ -41,5 +43,77 @@ namespace UaiFood.View
             decimal total = produto.getPreco() * 2;
             pedidoController.RegistrarPedido(produto.getId(), IdController.GetIdUser(), produto.getIdCardapio(), total, "cartão", "Credito");
         }
+
+        private void TelaPrincipalCliente_Load(object sender, EventArgs e)
+        {            
+            BancoDados bd = new BancoDados();
+            var user = bd.findUserById(userId.Value);
+            var userAdress = user.getAddress();
+            var restaurantesEncontrados = bd.BuscarRestaurantesProximos(userAdress.getState());
+            flowPanelRestaurantes.Controls.Clear(); // limpa resultados anteriores
+
+            ImageController imgController = new ImageController();
+
+            foreach (var restaurante in restaurantesEncontrados)
+            {
+                Panel restaurantePanel = new Panel();
+                restaurantePanel.Width = 150;
+                restaurantePanel.Height = 200;
+                restaurantePanel.Margin = new Padding(10);
+                restaurantePanel.BackColor = Color.White; // opcional: cor de fundo
+
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Width = 150;
+                pictureBox.Height = 120;
+                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                if (restaurante.getImage() != null)
+                {
+                    pictureBox.Image = imgController.ExibirImage(restaurante.getImage());
+                }
+                else
+                {
+                    pictureBox.Image = Properties.Resources.restaurante; // imagem padrão
+                }
+
+                pictureBox.Tag = restaurante;
+                pictureBox.Cursor = Cursors.Hand;
+
+                pictureBox.Click += (s, args) =>
+                {
+                    var pic = s as PictureBox;
+                    var restauranteSelecionado = pic.Tag as Establishment;
+                    TelaExibirRestaurante tela = new TelaExibirRestaurante(restaurante.getId());
+                    tela.Show();
+                };
+
+                // Label nome
+                Label nomeLabel = new Label();
+                nomeLabel.Text = restaurante.getNome();
+                nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
+                nomeLabel.Dock = DockStyle.Bottom;
+                nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+
+                // Label cidade - estado
+                Label localLabel = new Label();
+                localLabel.Text = $"{restaurante.getAddressEstablishment().getCity()} - {restaurante.getAddressEstablishment().getState()}";
+                localLabel.TextAlign = ContentAlignment.MiddleCenter;
+                localLabel.Dock = DockStyle.Bottom;
+                localLabel.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                localLabel.ForeColor = Color.Gray;
+
+                restaurantePanel.Controls.Add(pictureBox);
+                restaurantePanel.Controls.Add(localLabel);
+                restaurantePanel.Controls.Add(nomeLabel);
+
+                flowPanelRestaurantes.Controls.Add(restaurantePanel);
+            }
+
+            if (restaurantesEncontrados.Count == 0)
+            {
+                MessageBox.Show("Nenhum restaurante encontrado.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
+
