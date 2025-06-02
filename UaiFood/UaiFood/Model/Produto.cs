@@ -9,12 +9,12 @@ namespace UaiFood.Model
     internal class Produto
     {
         private int id;
+        private int idCardapio;
         private string nome;
         private string descricao;
         private decimal preco;
         private string categoria;
         private byte[] imagem;
-        
         public Produto() { }
         public Produto(int id, string nome, string descricao, decimal preco, string categoria, byte[] imagem)
         {
@@ -32,6 +32,14 @@ namespace UaiFood.Model
         public int getId()
         {
             return this.id;
+        }
+        public void setIdCardapio(int idCardapio)
+        {
+            this.idCardapio = idCardapio;
+        }
+        public int getIdCardapio()
+        {
+            return this.idCardapio;
         }
         public void setNome(string nome)
         {

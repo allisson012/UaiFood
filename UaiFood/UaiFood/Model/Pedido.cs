@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace UaiFood.Model
 {
-    internal class Pedidos
+    internal class Pedido
     {
         private int id;
         private int idCliente;
         private int idRestaurante;
         private int idProduto;
         private List<Produto> produtos;
-
-        private decimal total { get; set; }
-        // não sei como esta funcionando a forma de pagamento
+        private decimal total;
         private FormaPagamento pagamento;
-        private string status { get; set; }
-        private DateTime tempoEntrega { get; set; }
+        private string status;
+        private DateTime tempoEntrega;
+        private DateTime dataPedido;
         public void setId(int id)
         {
             this.id = id;
@@ -84,6 +83,14 @@ namespace UaiFood.Model
         {
             return this.tempoEntrega;
         }
+        public void setDataPedido(DateTime dataPedido)
+        {
+            this.dataPedido = dataPedido;
+        }
+        public DateTime getDataPedido()
+        {
+            return this.dataPedido;
+        }
         public void setPagamento(FormaPagamento pagamento)
         {
             this.pagamento = pagamento;
@@ -95,11 +102,11 @@ namespace UaiFood.Model
     }
     public class FormaPagamento{
         private string tipo;
-        private string subtipo;
-        public FormaPagamento(string tipo, string subtipo)
+        private string subTipo;
+        public FormaPagamento(string tipo, string subTipo)
         {
             this.tipo = tipo;
-            this.subtipo = subtipo;
+            this.subTipo = subTipo;
         }
 
         public void setTipo(string tipo)
@@ -112,11 +119,11 @@ namespace UaiFood.Model
         }
         public void setSubTipo(string subTipo)
         {
-            this.subtipo = subtipo;
+            this.subTipo = subTipo;
         }
         public string getSubTipo()
         {
-            return this.subtipo;
+            return this.subTipo;
         }
     }
 }

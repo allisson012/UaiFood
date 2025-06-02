@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
+using UaiFood.Controller;
 
 namespace UaiFood.View
 {
@@ -29,6 +31,15 @@ namespace UaiFood.View
             TelaPerfilCliente telaPerfilCliente = new TelaPerfilCliente();
             telaPerfilCliente.Show();
             this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PedidoController pedidoController = new PedidoController();
+            BancoDados bd = new BancoDados();
+            var produto = bd.ConsultarProdutoPorId(2);
+            decimal total = produto.getPreco() * 2;
+            pedidoController.RegistrarPedido(produto.getId(), IdController.GetIdUser(), produto.getIdCardapio(), total, "cartão", "Credito");
         }
     }
 }

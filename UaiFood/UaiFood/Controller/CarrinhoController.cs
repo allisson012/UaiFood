@@ -48,7 +48,7 @@ namespace UaiFood.Controller
                 return;
             }
 
-            var pedido = new Pedidos();
+            var pedido = new Pedido();
 
             pedido.setProdutos(carrinho.Produtos.ToList());
 
