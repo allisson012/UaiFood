@@ -64,11 +64,12 @@
             Controls.Add(lblItens);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaCarrinho";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaCarrinho_Load;
             ResumeLayout(false);
             PerformLayout();
         }

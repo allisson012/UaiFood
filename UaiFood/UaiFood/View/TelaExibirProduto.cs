@@ -11,10 +11,11 @@ using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
 
 namespace UaiFood.View
-{
+{ 
     public partial class TelaExibirProduto : Form
     {
         int idProduto;
+        private CarrinhoControllerStatic carrinhoControllerStatic;
         public TelaExibirProduto(int idProduto)
         {
             InitializeComponent();
@@ -37,6 +38,11 @@ namespace UaiFood.View
 
         private void button1_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("clicado");
+            var bd = new BancoDados();
+            var produto = bd.ConsultarProdutoPorId(idProduto);
+            carrinhoControllerStatic = CarrinhoControllerStatic.getInstance();
+            carrinhoControllerStatic.addProduto(produto);
             MessageBox.Show("Produto adicionado ao carrinho!");
         }
 
