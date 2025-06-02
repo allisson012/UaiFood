@@ -17,6 +17,7 @@ namespace UaiFood.View
         int? establishmentId = IdController.GetIdEstablishment();
         BancoDados bd = new BancoDados();
 
+
         public TelaPrincipalRestaurante()
         {
             InitializeComponent();
@@ -31,9 +32,11 @@ namespace UaiFood.View
 
         private void button6_Click(object sender, EventArgs e)
         {
-           // TelaEditarProduto telaEditarProduto = new TelaEditarProduto();
-            //telaEditarProduto.Show();
-           // this.Close();
+            var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
+            MessageBox.Show("Escolha no cardápio o produto que deseja editar!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TelaCardapio telaCardapio = new TelaCardapio(establishment.getId());
+            telaCardapio.Show();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -87,6 +90,36 @@ namespace UaiFood.View
                     telaLogin.Show();
                     this.Close();
                 }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var establishment = bd.findEstablishmentById(IdController.GetIdEstablishment());
+            MessageBox.Show("Escolha no cardápio o produto que deseja excluir!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TelaCardapio telaCardapio = new TelaCardapio(establishment.getId());
+            telaCardapio.Show();
+            this.Close();
+        }
+
+        private void btnOpcoes_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(btnOpcoes, new Point(0, btnOpcoes.Height));
+        }
+
+        private void sairDaContaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Deseja realmente sair da conta?",
+                                          "Sair",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                TelaLoginRestaurante telaLogin = new TelaLoginRestaurante();
+                telaLogin.Show();
+                this.Close();
+                IdController.LogOffEstablishment();
             }
         }
     }

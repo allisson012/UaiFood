@@ -34,6 +34,8 @@
             lblDescricao = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
+            button6 = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -102,12 +104,42 @@
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Transparent;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(64, 495);
+            button6.Name = "button6";
+            button6.Size = new Size(114, 50);
+            button6.TabIndex = 19;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(64, 419);
+            button1.Name = "button1";
+            button1.Size = new Size(224, 60);
+            button1.TabIndex = 20;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // TelaExibirProduto
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaExibirProduto;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button1);
+            Controls.Add(button6);
             Controls.Add(pictureBox1);
             Controls.Add(label4);
             Controls.Add(lblDescricao);
@@ -134,5 +166,7 @@
         private Label lblDescricao;
         private Label label4;
         private PictureBox pictureBox1;
+        private Button button6;
+        private Button button1;
     }
 }

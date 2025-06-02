@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblNome = new Label();
             lblEstado = new Label();
             lblCep = new Label();
@@ -38,7 +39,12 @@
             picturePerfil = new PictureBox();
             btnEditarPerfil = new Button();
             btnExcluirPefil = new Button();
+            button1 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            sairDaContaToolStripMenuItem = new ToolStripMenuItem();
+            btnOpcoes = new Button();
             ((System.ComponentModel.ISupportInitialize)picturePerfil).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblNome
@@ -165,12 +171,55 @@
             btnExcluirPefil.UseVisualStyleBackColor = false;
             btnExcluirPefil.Click += btnExcluirPefil_Click;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(12, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(76, 84);
+            button1.TabIndex = 8;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { sairDaContaToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(181, 48);
+            // 
+            // sairDaContaToolStripMenuItem
+            // 
+            sairDaContaToolStripMenuItem.Name = "sairDaContaToolStripMenuItem";
+            sairDaContaToolStripMenuItem.Size = new Size(180, 22);
+            sairDaContaToolStripMenuItem.Text = "Sair da Conta";
+            sairDaContaToolStripMenuItem.Click += sairDaContaToolStripMenuItem_Click;
+            // 
+            // btnOpcoes
+            // 
+            btnOpcoes.BackColor = Color.Transparent;
+            btnOpcoes.FlatAppearance.BorderSize = 0;
+            btnOpcoes.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnOpcoes.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnOpcoes.FlatStyle = FlatStyle.Flat;
+            btnOpcoes.Location = new Point(1262, 3);
+            btnOpcoes.Name = "btnOpcoes";
+            btnOpcoes.Size = new Size(85, 84);
+            btnOpcoes.TabIndex = 10;
+            btnOpcoes.UseVisualStyleBackColor = false;
+            btnOpcoes.Click += button2_Click;
+            // 
             // TelaPerfilCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPerfilCliente;
             ClientSize = new Size(1350, 729);
+            Controls.Add(btnOpcoes);
+            Controls.Add(button1);
             Controls.Add(btnExcluirPefil);
             Controls.Add(btnEditarPerfil);
             Controls.Add(picturePerfil);
@@ -190,6 +239,7 @@
             Text = "UaiFood";
             Load += TelaPerfilCliente_Load;
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -206,5 +256,9 @@
         private PictureBox picturePerfil;
         private Button btnEditarPerfil;
         private Button btnExcluirPefil;
+        private Button button1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem sairDaContaToolStripMenuItem;
+        private Button btnOpcoes;
     }
 }

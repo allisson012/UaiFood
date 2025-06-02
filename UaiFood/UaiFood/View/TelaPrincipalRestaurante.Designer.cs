@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -41,7 +42,11 @@
             lblCidade = new Label();
             lblEstado = new Label();
             pictureBox1 = new PictureBox();
+            btnOpcoes = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            sairDaContaToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -139,6 +144,7 @@
             button7.Size = new Size(194, 40);
             button7.TabIndex = 7;
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // lblNome
             // 
@@ -206,12 +212,40 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // btnOpcoes
+            // 
+            btnOpcoes.BackColor = Color.Transparent;
+            btnOpcoes.FlatAppearance.BorderSize = 0;
+            btnOpcoes.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnOpcoes.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnOpcoes.FlatStyle = FlatStyle.Flat;
+            btnOpcoes.Location = new Point(12, 3);
+            btnOpcoes.Name = "btnOpcoes";
+            btnOpcoes.Size = new Size(85, 84);
+            btnOpcoes.TabIndex = 14;
+            btnOpcoes.UseVisualStyleBackColor = false;
+            btnOpcoes.Click += btnOpcoes_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { sairDaContaToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(181, 48);
+            // 
+            // sairDaContaToolStripMenuItem
+            // 
+            sairDaContaToolStripMenuItem.Name = "sairDaContaToolStripMenuItem";
+            sairDaContaToolStripMenuItem.Size = new Size(180, 22);
+            sairDaContaToolStripMenuItem.Text = "Sair da Conta";
+            sairDaContaToolStripMenuItem.Click += sairDaContaToolStripMenuItem_Click;
+            // 
             // TelaPrincipalRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalRestaurante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(btnOpcoes);
             Controls.Add(pictureBox1);
             Controls.Add(lblEstado);
             Controls.Add(lblCidade);
@@ -233,6 +267,7 @@
             Text = "UaiFood";
             Load += TelaPrincipalRestaurante_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -252,5 +287,8 @@
         private Label lblCidade;
         private Label lblEstado;
         private PictureBox pictureBox1;
+        private Button btnOpcoes;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem sairDaContaToolStripMenuItem;
     }
 }

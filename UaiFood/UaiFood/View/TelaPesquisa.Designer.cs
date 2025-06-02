@@ -135,6 +135,7 @@
             flowPanelProdutos.Name = "flowPanelProdutos";
             flowPanelProdutos.Size = new Size(1354, 576);
             flowPanelProdutos.TabIndex = 8;
+            flowPanelProdutos.Paint += flowPanelProdutos_Paint;
             // 
             // TelaPesquisa
             // 

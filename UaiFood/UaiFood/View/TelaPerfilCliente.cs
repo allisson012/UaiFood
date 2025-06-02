@@ -80,5 +80,33 @@ MessageBoxIcon.Warning
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+            telaPrincipalCliente.Show();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(btnOpcoes, new Point(0, btnOpcoes.Height));
+        }
+
+        private void sairDaContaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Deseja realmente sair da conta?",
+                                          "Sair",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                TelaLogin telaLogin = new TelaLogin();
+                telaLogin.Show();
+                this.Close();
+                IdController.LogOffUser();
+            }
+        }
     }
 }
