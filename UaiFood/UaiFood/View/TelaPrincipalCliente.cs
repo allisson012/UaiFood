@@ -37,7 +37,7 @@ namespace UaiFood.View
         {
             PedidoController pedidoController = new PedidoController();
             BancoDados bd = new BancoDados();
-            var produto = bd.ConsultarProdutoPorId(2);
+            var produto = bd.ConsultarProdutoPorId(3);
             decimal total = produto.getPreco() * 2;
             pedidoController.RegistrarPedido(produto.getId(), IdController.GetIdUser(), produto.getIdCardapio(), total, "cartão", "Credito");
         }
