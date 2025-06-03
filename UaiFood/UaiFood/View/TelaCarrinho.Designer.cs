@@ -33,6 +33,9 @@
             flowPanelCarrinho = new FlowLayoutPanel();
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // lblItens
@@ -64,6 +67,7 @@
             flowPanelCarrinho.Name = "flowPanelCarrinho";
             flowPanelCarrinho.Size = new Size(809, 492);
             flowPanelCarrinho.TabIndex = 2;
+            flowPanelCarrinho.Paint += flowPanelCarrinho_Paint;
             // 
             // button1
             // 
@@ -93,6 +97,48 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1255, 12);
+            button3.Name = "button3";
+            button3.Size = new Size(69, 64);
+            button3.TabIndex = 23;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(292, 31);
+            button4.Name = "button4";
+            button4.Size = new Size(603, 45);
+            button4.TabIndex = 24;
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button5.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(12, 12);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 64);
+            button5.TabIndex = 25;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // TelaCarrinho
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -100,6 +146,9 @@
             BackgroundImage = Properties.Resources.TelaCarrinho;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(flowPanelCarrinho);
@@ -124,5 +173,8 @@
         private FlowLayoutPanel flowPanelCarrinho;
         private Button button1;
         private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
     }
 }
