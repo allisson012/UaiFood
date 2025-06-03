@@ -68,7 +68,7 @@ namespace UaiFood.View
         }
 
         private void TelaPrincipalCliente_Load(object sender, EventArgs e)
-        {            
+        {
             BancoDados bd = new BancoDados();
             var user = bd.findUserById(userId.Value);
             var userAdress = user.getAddress();
@@ -136,6 +136,13 @@ namespace UaiFood.View
             {
                 MessageBox.Show("Nenhum restaurante encontrado.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaCarrinho telaCarrinho = new TelaCarrinho();
+            telaCarrinho.Show();
+            this.Close();
         }
     }
 }
