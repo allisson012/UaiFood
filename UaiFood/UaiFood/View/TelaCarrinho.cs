@@ -16,5 +16,10 @@ namespace UaiFood.View
         {
             InitializeComponent();
         }
+
+        private void TelaCarrinho_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
