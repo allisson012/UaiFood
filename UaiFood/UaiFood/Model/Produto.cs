@@ -15,6 +15,7 @@ namespace UaiFood.Model
         private decimal preco;
         private string categoria;
         private byte[] imagem;
+        private int quantidade = 1;
         public Produto() { }
         public Produto(int id, string nome, string descricao, decimal preco, string categoria, byte[] imagem)
         {
@@ -80,6 +81,14 @@ namespace UaiFood.Model
         public byte[] getImagem()
         {
             return this.imagem;
+        }
+        public void setQuantidade(int quantidade)
+        {
+            this.quantidade = quantidade;
+        }
+        public int getQuantidade()
+        {
+            return this.quantidade;
         }
 
     }

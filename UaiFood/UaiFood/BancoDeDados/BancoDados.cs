@@ -1383,6 +1383,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
     FOREIGN KEY (idCliente) REFERENCES users(id),
     idProduto INT NOT NULL,
     FOREIGN KEY (idProduto) REFERENCES produtos(id),
+    quantidade INT,
     total DECIMAL(10,2) NOT NULL,
     forma_pagamento VARCHAR(20) NOT NULL,
     subtipo_pagamento VARCHAR(20),
@@ -1411,7 +1412,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     connection.Close();
                 }
             }
-            public void RegistrarPedido(Pedido pedido)
+            public bool RegistrarPedido(Pedido pedido)
             {
                 Createconnection();
                 try
@@ -1423,7 +1424,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
                     // comprar um produto quem vai estar logado é o usuario então eu tenho que pegar o idRestaurante de alguma forma 
                     // idProduto , idCliente , IdRestaurante
-                    string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total, forma_pagamento,subtipo_pagamento, status, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total, @forma_pagamento,@subtipo_pagamento, @status, @data_pedido)";
+                    string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total,quantidade, forma_pagamento,subtipo_pagamento, status, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total,@quantidade, @forma_pagamento,@subtipo_pagamento, @status, @data_pedido)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
@@ -1431,23 +1432,25 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         cmd.Parameters.AddWithValue("@idCliente", pedido.getIdCliente());
                         cmd.Parameters.AddWithValue("@idProduto", pedido.getIdProduto());
                         cmd.Parameters.AddWithValue("@total", pedido.getTotal());
+                        cmd.Parameters.AddWithValue("@quantidade", pedido.getQuantidade());
                         cmd.Parameters.AddWithValue("@forma_pagamento", pedido.getPagamento().getTipo());
-                        cmd.Parameters.AddWithValue("@subtipo_pagamento", pedido.getPagamento().getSubTipo());
+                        cmd.Parameters.AddWithValue("@subtipo_pagamento", "Nenhum");
                         cmd.Parameters.AddWithValue("@status", pedido.getStatus());
                         cmd.Parameters.AddWithValue("@data_pedido", pedido.getDataPedido());
-
-
                         cmd.ExecuteNonQuery();
+                        return true;
                     }
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Erro ao registrar pedido: " + ex.Message);
+                    return false;
                 }
                 finally
                 {
                     connection.Close();
                 }
+                return false;
             }
             public void DeletarPedidosPeloRestaurante(MySqlConnection connection)
             {

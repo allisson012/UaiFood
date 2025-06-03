@@ -99,6 +99,7 @@
             button3.Size = new Size(53, 49);
             button3.TabIndex = 5;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -126,6 +127,7 @@
             button5.Size = new Size(123, 43);
             button5.TabIndex = 7;
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // flowPanelProdutos
             // 

@@ -263,6 +263,18 @@ namespace UaiFood.View
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaCarrinho telaCarrinho = new TelaCarrinho();
+            telaCarrinho.Show();
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

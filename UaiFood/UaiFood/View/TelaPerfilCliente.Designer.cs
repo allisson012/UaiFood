@@ -43,6 +43,9 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             sairDaContaToolStripMenuItem = new ToolStripMenuItem();
             btnOpcoes = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)picturePerfil).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -189,12 +192,12 @@
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { sairDaContaToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 48);
+            contextMenuStrip1.Size = new Size(145, 26);
             // 
             // sairDaContaToolStripMenuItem
             // 
             sairDaContaToolStripMenuItem.Name = "sairDaContaToolStripMenuItem";
-            sairDaContaToolStripMenuItem.Size = new Size(180, 22);
+            sairDaContaToolStripMenuItem.Size = new Size(144, 22);
             sairDaContaToolStripMenuItem.Text = "Sair da Conta";
             sairDaContaToolStripMenuItem.Click += sairDaContaToolStripMenuItem_Click;
             // 
@@ -212,12 +215,56 @@
             btnOpcoes.UseVisualStyleBackColor = false;
             btnOpcoes.Click += button2_Click;
             // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(295, 32);
+            button2.Name = "button2";
+            button2.Size = new Size(601, 55);
+            button2.TabIndex = 11;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(985, 25);
+            button3.Name = "button3";
+            button3.Size = new Size(55, 62);
+            button3.TabIndex = 12;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(1086, 41);
+            button4.Name = "button4";
+            button4.Size = new Size(142, 46);
+            button4.TabIndex = 13;
+            button4.UseVisualStyleBackColor = false;
+            // 
             // TelaPerfilCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPerfilCliente;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(btnOpcoes);
             Controls.Add(button1);
             Controls.Add(btnExcluirPefil);
@@ -260,5 +307,8 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem sairDaContaToolStripMenuItem;
         private Button btnOpcoes;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

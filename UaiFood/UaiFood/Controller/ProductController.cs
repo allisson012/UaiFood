@@ -8,7 +8,7 @@ namespace UaiFood.Controller
 {
     class ProductController
     {
-        public void createProduct(string nome, string descricao, decimal preco, string categoria, byte[] imagem)
+        public bool createProduct(string nome, string descricao, decimal preco, string categoria, byte[] imagem)
         {
             var produto = new Produto();
             produto.setNome(nome);
@@ -21,12 +21,17 @@ namespace UaiFood.Controller
             bool cadastrado = banco.CadastrarProduto(produto);
 
             if (cadastrado)
+            {
                 MessageBox.Show("Produto cadastrado com sucesso!");
+                return true;
+            }
             else
+            {
                 MessageBox.Show("Erro ao cadastrar produto.");
+                return false;
+            }
         }
-
-
+               
         public Produto consultProduct(int id)
         {
             var banco = new BancoDados();
