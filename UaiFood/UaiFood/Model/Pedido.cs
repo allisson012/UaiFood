@@ -14,6 +14,7 @@ namespace UaiFood.Model
         private int idRestaurante;
         private int idProduto;
         private List<Produto> produtos;
+        private int quantidade;
         private decimal total;
         private FormaPagamento pagamento;
         private string status;
@@ -58,6 +59,14 @@ namespace UaiFood.Model
         public List<Produto> GetProdutos()
         {
             return this.produtos;
+        }
+        public void setQuantidade(int quantidade)
+        {
+            this.quantidade = quantidade;
+        }
+        public int getQuantidade()
+        {
+            return this.quantidade;
         }
         public void setTotal(decimal total)
         {
@@ -107,6 +116,10 @@ namespace UaiFood.Model
         {
             this.tipo = tipo;
             this.subTipo = subTipo;
+        }
+        public FormaPagamento(string tipo)
+        {
+            this.tipo = tipo;
         }
 
         public void setTipo(string tipo)

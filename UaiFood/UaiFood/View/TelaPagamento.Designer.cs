@@ -163,6 +163,7 @@
             button5.Size = new Size(194, 45);
             button5.TabIndex = 28;
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // TelaPagamento
             // 
@@ -182,7 +183,7 @@
             Controls.Add(lblItens);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1366, 768);
+            MinimumSize = new Size(1364, 766);
             Name = "TelaPagamento";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";

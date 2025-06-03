@@ -35,37 +35,6 @@ namespace UaiFood.View
             this.Close();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            //         var carrinho = CarrinhoControllerStatic.getInstance();
-            //        
-            //       PedidoController pedidoController = new PedidoController();
-            //     BancoDados bd = new BancoDados();
-            //     var produto = bd.ConsultarProdutoPorId(3);
-            //      decimal total = produto.getPreco() * 2;
-            //        pedidoController.RegistrarPedido(produto.getId(), IdController.GetIdUser(), produto.getIdCardapio(), total, "cartão", "Credito");
-            var carrinho = CarrinhoControllerStatic.getInstance();
-            var produtos = carrinho.getProdutos();
-
-            PedidoController pedidoController = new PedidoController();
-            int userId = IdController.GetIdUser();
-
-            int i = 0;
-            while (i < produtos.Count)
-            {
-                Produto produto = produtos[i];
-                decimal total = produto.getPreco(); // ajuste se quiser multiplicar por quantidade
-                pedidoController.RegistrarPedido(
-                    produto.getId(),
-                    userId,
-                    produto.getIdCardapio(),
-                    total,
-                    "cartão",
-                    "Credito"
-                );
-                i++;
-            }
-        }
 
         private void TelaPrincipalCliente_Load(object sender, EventArgs e)
         {
