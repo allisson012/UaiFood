@@ -168,10 +168,18 @@ namespace UaiFood.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TelaPagamento telaPagamento = new TelaPagamento();
-            telaPagamento.Show();
-            this.Close();
-        }
+            CarrinhoControllerStatic carrinhoControllerStatic = CarrinhoControllerStatic.getInstance();
+            if (carrinhoControllerStatic.getProdutos().Count != 0)
+            {
+                TelaPagamento telaPagamento = new TelaPagamento();
+                telaPagamento.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum produto no carrinho!");
+            }
+            }
 
         private void flowPanelCarrinho_Paint(object sender, PaintEventArgs e)
         {

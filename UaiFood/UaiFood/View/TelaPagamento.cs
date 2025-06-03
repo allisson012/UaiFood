@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.Controller;
+using UaiFood.Model;
 
 namespace UaiFood.View
 {
@@ -54,6 +55,60 @@ namespace UaiFood.View
             TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
             telaPrincipalCliente.Show();
             this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string tipoPagamento = "";
+            bool retorno = false;
+            if (opCartao.Checked)
+            {
+                tipoPagamento = "Cartão";
+            }
+            else if (opDinheiro.Checked)
+            {
+                tipoPagamento = "Dinheiro";
+            }
+            else if (opPix.Checked)
+            {
+                tipoPagamento = "Pix";
+            }
+            else
+            {
+                MessageBox.Show("Selecione um meio de pagamento");
+            }
+            if (!String.IsNullOrEmpty(tipoPagamento))
+            {
+                var carrinho = CarrinhoControllerStatic.getInstance();
+                var produtos = carrinho.getProdutos();
+
+                PedidoController pedidoController = new PedidoController();
+                int userId = IdController.GetIdUser();
+
+                int i = 0;
+                while (i < produtos.Count)
+                {
+                    Produto produto = produtos[i];
+                    decimal total = produto.getPreco() * produto.getQuantidade();
+                    retorno = pedidoController.RegistrarPedido(
+                        produto.getId(),
+                        userId,
+                        produto.getIdCardapio(),
+                        total,
+                        tipoPagamento,
+                        produto.getQuantidade()
+                    );
+                    i++;
+                }
+            }
+            if(retorno)
+            {
+                MessageBox.Show("Pedido realizado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show("Erro ao realizar pedido!");
+            }
         }
     }
 }
