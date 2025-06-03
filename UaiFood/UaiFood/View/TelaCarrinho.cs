@@ -23,8 +23,20 @@ namespace UaiFood.View
         {
             flowPanelCarrinho.Controls.Clear();
 
-            foreach (var item in CarrinhoControllerStatic.getInstance().getProdutos())
+            var produtos = CarrinhoControllerStatic.getInstance().getProdutos();
+
+            var produtosAgrupados = produtos
+                .GroupBy(p => p.getId())
+                .Select(g => new
+                {
+                    Produto = g.First(),
+                    QuantidadeTotal = g.Sum(p => p.getQuantidade())
+                });
+
+            foreach (var grupo in produtosAgrupados)
             {
+                var item = grupo.Produto;
+
                 Panel itemPanel = new Panel
                 {
                     Width = 800,
@@ -69,7 +81,7 @@ namespace UaiFood.View
 
                 Label qtdLabel = new Label
                 {
-                    Text = item.getQuantidade().ToString(),
+                    Text = grupo.QuantidadeTotal.ToString(),
                     Font = new Font("Segoe UI", 12),
                     Location = new Point(560, 40),
                     AutoSize = true
@@ -83,7 +95,15 @@ namespace UaiFood.View
                     Tag = item
                 };
 
-                // Evento para aumentar
+                Label valorLabel = new Label
+                {
+                    Text = item.getPreco().ToString("C"),
+                    Font = new Font("Segoe UI", 12),
+                    Location = new Point(690, 40),
+                    AutoSize = true
+                };
+
+                // Eventos de clique
                 btnMais.Click += (s, e) =>
                 {
                     item.setQuantidade(item.getQuantidade() + 1);
@@ -91,7 +111,6 @@ namespace UaiFood.View
                     AtualizarResumo();
                 };
 
-                // Evento para diminuir
                 btnMenos.Click += (s, e) =>
                 {
                     item.setQuantidade(item.getQuantidade() - 1);
@@ -107,13 +126,14 @@ namespace UaiFood.View
 
                         if (resultado == DialogResult.Yes)
                         {
-                            CarrinhoControllerStatic.getInstance().getProdutos().Remove(item);
+                            CarrinhoControllerStatic.getInstance().getProdutos().RemoveAll(p => p.getNome() == item.getNome());
                         }
                         else
                         {
                             item.setQuantidade(1);
                         }
                     }
+
                     AtualizarTela();
                     AtualizarResumo();
                 };
@@ -123,6 +143,7 @@ namespace UaiFood.View
                 itemPanel.Controls.Add(btnMenos);
                 itemPanel.Controls.Add(qtdLabel);
                 itemPanel.Controls.Add(btnMais);
+                itemPanel.Controls.Add(valorLabel);
 
                 flowPanelCarrinho.Controls.Add(itemPanel);
             }
@@ -134,8 +155,8 @@ namespace UaiFood.View
             int totalItens = produtos.Sum(p => p.getQuantidade());
             decimal valorTotal = produtos.Sum(p => p.getPreco() * p.getQuantidade());
 
-            lblItens.Text = $"Itens: {totalItens}";
-            lblTotal.Text = $"Total: R$ {valorTotal:F2}";
+            lblItens.Text = $"{totalItens}";
+            lblTotal.Text = $"{valorTotal:F2}";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -150,6 +171,33 @@ namespace UaiFood.View
             TelaPagamento telaPagamento = new TelaPagamento();
             telaPagamento.Show();
             this.Close();
+        }
+
+        private void flowPanelCarrinho_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaPerfilCliente telaPerfilCliente = new TelaPerfilCliente();
+            telaPerfilCliente.Show();
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TelaPesquisa telaPesquisa = new TelaPesquisa();
+            telaPesquisa.Show();
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+            telaPrincipalCliente.Show();
+            this.Close();
+
         }
     }
 }

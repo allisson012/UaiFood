@@ -108,5 +108,19 @@ MessageBoxIcon.Warning
                 IdController.LogOffUser();
             }
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            TelaPesquisa telaPesquisa = new TelaPesquisa();
+            telaPesquisa.Show();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaCarrinho telaCarrinho = new TelaCarrinho();
+            telaCarrinho.Show();
+            this.Close();
+        }
     }
 }
