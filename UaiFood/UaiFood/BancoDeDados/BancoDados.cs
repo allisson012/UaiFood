@@ -189,6 +189,8 @@ CREATE TABLE IF NOT EXISTS users (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
+                        // deletar pedidos pelo usuario;
+                        DeletarPedidosPeloUsuario();
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
@@ -1070,6 +1072,8 @@ CREATE TABLE IF NOT EXISTS produtos (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@idCardapio", IdController.GetIdEstablishment());
+                        // deletar pedidos 
+                        DeletarPedidosPeloRestaurante(connection);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -1412,11 +1416,11 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 Createconnection();
                 try
                 {
-                    if(connection.State != System.Data.ConnectionState.Open)
+                    if (connection.State != System.Data.ConnectionState.Open)
                     {
                         connection.Open();
                     }
-                    
+
                     // comprar um produto quem vai estar logado é o usuario então eu tenho que pegar o idRestaurante de alguma forma 
                     // idProduto , idCliente , IdRestaurante
                     string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total, forma_pagamento,subtipo_pagamento, status, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total, @forma_pagamento,@subtipo_pagamento, @status, @data_pedido)";
@@ -1432,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         cmd.Parameters.AddWithValue("@status", pedido.getStatus());
                         cmd.Parameters.AddWithValue("@data_pedido", pedido.getDataPedido());
 
-                        
+
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -1443,6 +1447,52 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 finally
                 {
                     connection.Close();
+                }
+            }
+            public void DeletarPedidosPeloRestaurante(MySqlConnection connection)
+            {
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "DELETE FROM pedidos WHERE idRestaurante = @idRestaurante";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idRestaurante", IdController.GetIdEstablishment());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
+                }
+            }
+
+            public void DeletarPedidosPeloUsuario()
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "DELETE FROM pedidos WHERE idCliente = @idCliente";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCliente", IdController.GetIdUser());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
                 }
             }
             public List<Pedido> ListarPedidos(int idEstabelecimento)
