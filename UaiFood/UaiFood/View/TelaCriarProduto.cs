@@ -44,6 +44,7 @@ namespace UaiFood.View
                 txtDescricao.Clear();
                 txtPreco.Clear();
                 txtNome.Clear();
+                cbCategoria.Items.Clear();
                 pictureBox1.Image = Properties.Resources.comida;
             }
         }

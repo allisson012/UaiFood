@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
+using UaiFood.Model;
 
 namespace UaiFood.View
 { 
     public partial class TelaExibirProduto : Form
     {
         int idProduto;
+        Produto produto;
         private CarrinhoControllerStatic carrinhoControllerStatic;
         public TelaExibirProduto(int idProduto)
         {
@@ -27,7 +29,7 @@ namespace UaiFood.View
             BancoDados bd = new BancoDados();
             ImageController img = new ImageController();
 
-            var produto = bd.ConsultarProdutoPorId(idProduto);
+            this.produto = bd.ConsultarProdutoPorId(idProduto);
             lblNome.Text = produto.getNome();
             lblDescricao.Text = produto.getDescricao();
             lblCategoria.Text = produto.getCategoria();
@@ -48,8 +50,8 @@ namespace UaiFood.View
 
         private void button6_Click(object sender, EventArgs e)
         {
-            TelaPesquisa telaPesquisa = new TelaPesquisa();
-            telaPesquisa.Show();
+            TelaExibirRestaurante telaExibirRestaurante = new TelaExibirRestaurante(produto.getIdCardapio());
+            telaExibirRestaurante.Show();
             this.Close();
         }
     }
