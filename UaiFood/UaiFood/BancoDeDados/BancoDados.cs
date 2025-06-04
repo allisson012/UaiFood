@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -1226,7 +1226,7 @@ CREATE TABLE IF NOT EXISTS produtos (
                     connection.ChangeDatabase(bancoDados);
 
                     string sql = @"
-SELECT id, nome, descricao, preco, categoria, imagem
+SELECT id, nome, descricao, preco, categoria, imagem, idCardapio
 FROM produtos
 WHERE LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo";
 
@@ -1245,6 +1245,7 @@ WHERE LOWER(nome) LIKE @termo OR LOWER(categoria) LIKE @termo";
                                 produto.setPreco(reader.GetDecimal("preco"));
                                 produto.setCategoria(reader.GetString("categoria"));
                                 produto.setImagem(reader["imagem"] as byte[]);
+                                produto.setIdCardapio(reader.GetInt32("idCardapio"));
                                 produtos.Add(produto);
                             }
                         }
@@ -1499,7 +1500,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     System.Diagnostics.Debug.WriteLine("Erro ao deletar produto: " + ex.Message);
                 }
             }
-            public List<Pedido> ListarPedidos(int idEstabelecimento)
+            public List<Pedido> ListarPedidos(int idRestaurante)
             {
                 var pedidos = new List<Pedido>();
 
@@ -1514,11 +1515,11 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     string sql = @"
             SELECT *
             FROM pedidos
-            WHERE idEstabelecimento = @idEstabelecimento";
+            WHERE idRestaurante = @idRestaurante";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        cmd.Parameters.AddWithValue("@idEstabelecimento", idEstabelecimento);
+                        cmd.Parameters.AddWithValue("@idRestaurante", idRestaurante);
 
 
                         using (var reader = cmd.ExecuteReader())
@@ -1551,6 +1552,60 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 }
 
                 return pedidos;
+            }
+            public Pedido FindPedidoById(int id)
+            {
+
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = @"
+            SELECT *
+            FROM pedidos
+            WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var pedido = new Pedido();
+                                pedido.setId(reader.GetInt32("id"));
+                                pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
+                                pedido.setIdCliente(reader.GetInt32("idCliente"));
+                                pedido.setIdProduto(reader.GetInt32("idProduto"));
+                                string forma_pagamento;
+                                forma_pagamento = reader.GetString("forma_pagamento");
+                                FormaPagamento formapagamento = new FormaPagamento(forma_pagamento);
+                                pedido.setPagamento(formapagamento);
+                                pedido.setQuantidade(reader.GetInt32("quantidade"));
+                                pedido.setTotal(reader.GetDecimal("total"));
+                                pedido.setStatus(reader.GetString("status"));
+                                pedido.setDataPedido(reader.GetDateTime("data_pedido"));
+                                return pedido;                                
+                            }
+                            
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao listar pedidos: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return null;
             }
 
             public List<Pedido> ListarPedidosCliente(int idCliente)

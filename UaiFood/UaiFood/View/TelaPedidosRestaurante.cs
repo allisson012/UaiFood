@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UaiFood.BancoDeDados.UaiFood.BancoDeDados;
 using UaiFood.Controller;
 
 namespace UaiFood.View
 {
     public partial class TelaPedidosRestaurante : Form
     {
+        BancoDados bd = new BancoDados();
+        decimal total = 0;
+        int itens = 0;
         public TelaPedidosRestaurante()
         {
             InitializeComponent();
@@ -20,8 +24,168 @@ namespace UaiFood.View
 
         private void TelaPedidosRestaurante_Load(object sender, EventArgs e)
         {
-
+            CarregarPedidos();
         }
+        public void CarregarPedidos()
+        {
+
+            flowPanelPedidos.Controls.Clear();
+
+            var pedidos = bd.ListarPedidos(IdController.GetIdEstablishment());
+
+            var naoEntregues = pedidos.Where(p => !p.getStatus().Equals("Entregue", StringComparison.OrdinalIgnoreCase))
+                                      .OrderByDescending(p => p.getDataPedido())
+                                      .ToList();
+
+            var entregues = pedidos.Where(p => p.getStatus().Equals("Entregue", StringComparison.OrdinalIgnoreCase))
+                                   .OrderByDescending(p => p.getDataPedido())
+                                   .ToList();
+
+            var pedidosOrdenados = naoEntregues.Concat(entregues).ToList();
+
+            total = 0;
+            itens = 0;
+
+            foreach (var pedido in pedidosOrdenados)
+            {
+                var item = bd.ConsultarProdutoPorId(pedido.getIdProduto());
+                var cliente = bd.findUserById(pedido.getIdCliente());
+
+                decimal precoUnitario = item.getPreco();
+                int quantidade = pedido.getQuantidade();
+                decimal totalProduto = precoUnitario * quantidade;
+
+                total += totalProduto;
+                itens += quantidade;
+
+                Panel itemPanel = new Panel
+                {
+                    Width = 800,
+                    Height = 140,
+                    Margin = new Padding(10),
+                    BackColor = Color.WhiteSmoke,
+                    BorderStyle = BorderStyle.FixedSingle
+                };
+
+                PictureBox foto = new PictureBox
+                {
+                    Size = new Size(80, 80),
+                    Location = new Point(10, 10),
+                    SizeMode = PictureBoxSizeMode.StretchImage
+                };
+
+                ImageController imgController = new ImageController();
+
+                if (item.getImagem() != null)
+                {
+                    foto.Image = imgController.ExibirImage(item.getImagem());
+                }
+                else
+                {
+                    foto.Image = Properties.Resources.comida;
+                }
+
+                Label nomeLabel = new Label
+                {
+                    Text = item.getNome(),
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    Location = new Point(100, 10),
+                    AutoSize = true
+                };
+
+                Label quantidadeLabel = new Label
+                {
+                    Text = $"Qtd: {quantidade}",
+                    Font = new Font("Segoe UI", 10),
+                    Location = new Point(100, 40),
+                    AutoSize = true
+                };
+
+                Label totalProdutoLabel = new Label
+                {
+                    Text = $"Total: {totalProduto:C}",
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    ForeColor = Color.ForestGreen,
+                    Location = new Point(100, 65),
+                    AutoSize = true
+                };
+
+                if (!pedido.getStatus().Equals("Entregue", StringComparison.OrdinalIgnoreCase))
+                {
+                    Button btnEntregue = new Button
+                    {
+                        Text = "Pedido Entregue",
+                        Location = new Point(650, 20),
+                        Size = new Size(120, 30),
+                        BackColor = Color.LightGreen
+                    };
+
+                    btnEntregue.Click += (s, args) =>
+                    {
+                        bd.MudarStatusDoPedido(pedido.getId());
+                        MessageBox.Show("Pedido marcado como entregue.");
+                        CarregarPedidos();
+                    };
+
+                    Button btnVerDetalhes = new Button
+                    {
+                        Text = "Ver Detalhes",
+                        Location = new Point(650, 60),
+                        Size = new Size(120, 30),
+                        BackColor = Color.LightBlue
+                    };
+
+                    btnVerDetalhes.Click += (s, args) =>
+                    {
+                        TelaDetalhesPedido telaDetalhesPedido = new TelaDetalhesPedido(pedido.getId());
+                        telaDetalhesPedido.Show();
+                        this.Close();
+                    };
+
+                    itemPanel.Controls.Add(btnEntregue);
+                    itemPanel.Controls.Add(btnVerDetalhes);
+                }
+                else
+                {
+                    Label concluidoLabel = new Label
+                    {
+                        Text = "Pedido Concluído",
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        ForeColor = Color.ForestGreen,
+                        Location = new Point(650, 30),
+                        AutoSize = true
+                    };
+                    Button btnVerDetalhes = new Button
+                    {
+                        Text = "Ver Detalhes",
+                        Location = new Point(650, 60),
+                        Size = new Size(120, 30),
+                        BackColor = Color.LightBlue
+                    };
+
+                    btnVerDetalhes.Click += (s, args) =>
+                    {
+                        TelaDetalhesPedido telaDetalhesPedido = new TelaDetalhesPedido(pedido.getId());
+                        telaDetalhesPedido.Show();
+                        this.Close();
+                    };
+
+                    itemPanel.Controls.Add(concluidoLabel);
+                    itemPanel.Controls.Add(btnVerDetalhes);
+                }
+
+                itemPanel.Controls.Add(foto);
+                itemPanel.Controls.Add(nomeLabel);
+                itemPanel.Controls.Add(quantidadeLabel);
+                itemPanel.Controls.Add(totalProdutoLabel);
+
+                flowPanelPedidos.Controls.Add(itemPanel);
+            }
+            lblItens.Text = itens.ToString();
+            lblTotal.Text = total.ToString("C");
+        }
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {

@@ -31,6 +31,9 @@
             button2 = new Button();
             button1 = new Button();
             button3 = new Button();
+            flowPanelPedidos = new FlowLayoutPanel();
+            lblItens = new Label();
+            lblTotal = new Label();
             SuspendLayout();
             // 
             // button2
@@ -75,12 +78,48 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
+            // flowPanelPedidos
+            // 
+            flowPanelPedidos.AutoScroll = true;
+            flowPanelPedidos.BackColor = Color.FromArgb(228, 228, 228);
+            flowPanelPedidos.FlowDirection = FlowDirection.TopDown;
+            flowPanelPedidos.Location = new Point(28, 154);
+            flowPanelPedidos.Name = "flowPanelPedidos";
+            flowPanelPedidos.Size = new Size(840, 560);
+            flowPanelPedidos.TabIndex = 12;
+            flowPanelPedidos.WrapContents = false;
+            // 
+            // lblItens
+            // 
+            lblItens.AutoSize = true;
+            lblItens.BackColor = Color.Transparent;
+            lblItens.Font = new Font("Segoe UI", 13F);
+            lblItens.Location = new Point(1210, 315);
+            lblItens.Name = "lblItens";
+            lblItens.Size = new Size(22, 25);
+            lblItens.TabIndex = 2;
+            lblItens.Text = "0";
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Segoe UI", 13F);
+            lblTotal.Location = new Point(1079, 373);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(56, 25);
+            lblTotal.TabIndex = 13;
+            lblTotal.Text = "00,00";
+            // 
             // TelaPedidosRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPedidosRestaurante;
             ClientSize = new Size(1350, 729);
+            Controls.Add(lblTotal);
+            Controls.Add(lblItens);
+            Controls.Add(flowPanelPedidos);
             Controls.Add(button3);
             Controls.Add(button1);
             Controls.Add(button2);
@@ -92,6 +131,7 @@
             Text = "UaiFood";
             Load += TelaPedidosRestaurante_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -99,5 +139,8 @@
         private Button button2;
         private Button button1;
         private Button button3;
+        private FlowLayoutPanel flowPanelPedidos;
+        private Label lblItens;
+        private Label lblTotal;
     }
 }
