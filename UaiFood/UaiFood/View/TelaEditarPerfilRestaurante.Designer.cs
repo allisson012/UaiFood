@@ -203,6 +203,7 @@
             MaximumSize = new Size(1366, 768);
             MinimumSize = new Size(1364, 766);
             Name = "TelaEditarPerfilRestaurante";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
             Load += TelaEditarPerfilRestaurante_Load;
             ((System.ComponentModel.ISupportInitialize)picturePerfil).EndInit();

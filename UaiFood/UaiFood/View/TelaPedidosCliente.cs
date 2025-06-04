@@ -67,7 +67,14 @@ namespace UaiFood.View
             total = 0;
             itens = 0;
 
-            foreach (var pedido in pedidos)
+            var emPreparo = pedidos.Where(p => p.getStatus().Equals("Em preparo", StringComparison.OrdinalIgnoreCase)).ToList();
+            var outros = pedidos.Where(p => !p.getStatus().Equals("Em preparo", StringComparison.OrdinalIgnoreCase))
+                                .OrderByDescending(p => p.getDataPedido())
+                                .ToList();
+
+            var pedidosOrdenados = emPreparo.Concat(outros).ToList();
+
+            foreach (var pedido in pedidosOrdenados)
             {
                 var item = bd.ConsultarProdutoPorId(pedido.getIdProduto());
                 var restaurante = bd.findEstablishmentById(pedido.getIdRestaurante());
@@ -80,7 +87,7 @@ namespace UaiFood.View
                 Panel itemPanel = new Panel
                 {
                     Width = 800,
-                    Height = 140, 
+                    Height = 140,
                     Margin = new Padding(10),
                     BackColor = Color.WhiteSmoke,
                     BorderStyle = BorderStyle.FixedSingle
@@ -153,7 +160,6 @@ namespace UaiFood.View
                     AutoSize = true
                 };
 
-                // Cor conforme status
                 switch (pedido.getStatus().ToLower())
                 {
                     case "em preparo":
@@ -185,8 +191,8 @@ namespace UaiFood.View
                 itemPanel.Controls.Add(dataHoraLabel);
                 itemPanel.Controls.Add(precoUnitarioLabel);
                 itemPanel.Controls.Add(quantidadeLabel);
-                itemPanel.Controls.Add(statusLabel);    
-                itemPanel.Controls.Add(totalProdutoLabel); 
+                itemPanel.Controls.Add(statusLabel);
+                itemPanel.Controls.Add(totalProdutoLabel);
 
                 flowPanelPedidos.Controls.Add(itemPanel);
             }
@@ -194,8 +200,6 @@ namespace UaiFood.View
             lblItens.Text = itens.ToString();
             lblTotal.Text = total.ToString("C");
         }
-
-
 
         private void flowPanelPedidos_Paint(object sender, PaintEventArgs e)
         {

@@ -32,7 +32,6 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            button5 = new Button();
             flowPanelRestaurantes = new FlowLayoutPanel();
             SuspendLayout();
             // 
@@ -92,13 +91,6 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
-            // button5
-            // 
-            button5.Location = new Point(0, 0);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 6;
-            // 
             // flowPanelRestaurantes
             // 
             flowPanelRestaurantes.AutoScroll = true;
@@ -115,7 +107,6 @@
             BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
             Controls.Add(flowPanelRestaurantes);
-            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -139,7 +130,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button button5;
         private FlowLayoutPanel flowPanelRestaurantes;
     }
 }

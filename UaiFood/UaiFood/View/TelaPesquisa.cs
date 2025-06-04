@@ -130,9 +130,13 @@ namespace UaiFood.View
 
                 foreach (var produto in produtosEncontrados)
                 {
+                    System.Diagnostics.Debug.WriteLine("Id- ",produto.getIdCardapio());
+                    var restaurante = bd.findEstablishmentById(produto.getIdCardapio());
+                    System.Diagnostics.Debug.WriteLine("Nome- ", restaurante.getNome());
+
                     Panel produtoPanel = new Panel();
                     produtoPanel.Width = 150;
-                    produtoPanel.Height = 180;
+                    produtoPanel.Height = 200; 
                     produtoPanel.Margin = new Padding(10);
 
                     PictureBox pictureBox = new PictureBox();
@@ -157,9 +161,8 @@ namespace UaiFood.View
                         var pic = s as PictureBox;
                         var produtoSelecionado = pic.Tag as Produto;
 
-                        TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
+                        TelaExibirProduto tela = new TelaExibirProduto(produtoSelecionado.getId());
                         tela.Show();
-
                     };
 
                     Label nomeLabel = new Label();
@@ -167,6 +170,13 @@ namespace UaiFood.View
                     nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
                     nomeLabel.Dock = DockStyle.Bottom;
                     nomeLabel.Font = new Font("Segoe UI", 12, FontStyle.Regular);
+
+                    Label restauranteLabel = new Label();
+                    restauranteLabel.Text = restaurante.getNome();
+                    restauranteLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    restauranteLabel.Dock = DockStyle.Bottom;
+                    restauranteLabel.Font = new Font("Segoe UI", 8, FontStyle.Italic);
+                    restauranteLabel.ForeColor = Color.Gray;
 
                     Label precoLabel = new Label();
                     precoLabel.Text = "R$ " + produto.getPreco().ToString("F2");
@@ -176,6 +186,7 @@ namespace UaiFood.View
 
                     produtoPanel.Controls.Add(pictureBox);
                     produtoPanel.Controls.Add(precoLabel);
+                    produtoPanel.Controls.Add(restauranteLabel);
                     produtoPanel.Controls.Add(nomeLabel);
 
                     flowPanelProdutos.Controls.Add(produtoPanel);
