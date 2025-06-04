@@ -1505,7 +1505,10 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 try
                 {
                     Createconnection();
-                    connection.ChangeDatabase(bancoDados);
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
 
                     string sql = @"
             SELECT *
@@ -1515,7 +1518,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@idEstabelecimento", idEstabelecimento);
-                        connection.Open();
+
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -1527,13 +1530,67 @@ CREATE TABLE IF NOT EXISTS pedidos (
                                 pedido.setIdCliente(reader.GetInt32("idCliente"));
                                 pedido.setIdProduto(reader.GetInt32("idProduto"));
                                 pedido.getPagamento().setTipo(reader.GetString("tipo"));
-                                pedido.getPagamento().setSubTipo(reader.GetString("subtipo"));
+                                pedido.setQuantidade(reader.GetInt32("quantidade"));
                                 pedido.setTotal(reader.GetDecimal("total"));
                                 pedido.setStatus(reader.GetString("status"));
-                                pedido.setTempoEntrega(reader.GetDateTime("tempo_estimado"));
                                 pedido.setDataPedido(reader.GetDateTime("data_pedido"));
                                 pedidos.Add(pedido);
                             }
+                            return pedidos;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao listar pedidos: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return pedidos;
+            }
+
+            public List<Pedido> ListarPedidosCliente(int idCliente)
+            {
+                var pedidos = new List<Pedido>();
+
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = @"
+            SELECT *
+            FROM pedidos
+            WHERE idCliente = @idCliente";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var pedido = new Pedido();
+                                pedido.setId(reader.GetInt32("id"));
+                                pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
+                                pedido.setIdCliente(reader.GetInt32("idCliente"));
+                                pedido.setIdProduto(reader.GetInt32("idProduto"));
+                                pedido.getPagamento().setTipo(reader.GetString("tipo"));
+                                pedido.setQuantidade(reader.GetInt32("quantidade"));
+                                pedido.setTotal(reader.GetDecimal("total"));
+                                pedido.setStatus(reader.GetString("status"));
+                                pedido.setDataPedido(reader.GetDateTime("data_pedido"));
+                                pedidos.Add(pedido);
+                            }
+                            return pedidos;
                         }
                     }
                 }
