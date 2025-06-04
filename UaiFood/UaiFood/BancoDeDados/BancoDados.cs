@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "pedro";
+            private const string senha = "";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -1612,6 +1612,33 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 return pedidos;
             }
 
+            public bool MudarStatusDoPedido(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "UPDATE pedidos set status = @status WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Entregue");
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao atualizar produto: " + ex.Message);
+                    return false;
+                }
+            }
+            // string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
