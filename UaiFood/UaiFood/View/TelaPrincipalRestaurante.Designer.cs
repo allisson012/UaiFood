@@ -75,6 +75,7 @@
             button2.Size = new Size(165, 40);
             button2.TabIndex = 2;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -230,12 +231,12 @@
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { sairDaContaToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 48);
+            contextMenuStrip1.Size = new Size(145, 26);
             // 
             // sairDaContaToolStripMenuItem
             // 
             sairDaContaToolStripMenuItem.Name = "sairDaContaToolStripMenuItem";
-            sairDaContaToolStripMenuItem.Size = new Size(180, 22);
+            sairDaContaToolStripMenuItem.Size = new Size(144, 22);
             sairDaContaToolStripMenuItem.Text = "Sair da Conta";
             sairDaContaToolStripMenuItem.Click += sairDaContaToolStripMenuItem_Click;
             // 

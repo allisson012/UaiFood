@@ -313,6 +313,26 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaPedidosCliente {
+            get {
+                object obj = ResourceManager.GetObject("TelaPedidosCliente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaPedidosRestaurante {
+            get {
+                object obj = ResourceManager.GetObject("TelaPedidosRestaurante", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaPerfilCliente {
             get {
                 object obj = ResourceManager.GetObject("TelaPerfilCliente", resourceCulture);

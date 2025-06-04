@@ -273,7 +273,9 @@ namespace UaiFood.View
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
+            telaPedidosCliente.Show();
+            this.Close();
         }
     }
 }

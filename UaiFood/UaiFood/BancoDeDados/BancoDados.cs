@@ -18,7 +18,7 @@ namespace UaiFood.BancoDeDados
             private const string servidor = "localhost";
             private const string bancoDados = "UaiFood";
             private const string usuario = "root";
-            private const string senha = "";
+            private const string senha = "pedro";
             private static MySqlConnection connection;
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
@@ -1424,7 +1424,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
                     // comprar um produto quem vai estar logado é o usuario então eu tenho que pegar o idRestaurante de alguma forma 
                     // idProduto , idCliente , IdRestaurante
-                    string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total,quantidade, forma_pagamento,subtipo_pagamento, status, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total,@quantidade, @forma_pagamento,@subtipo_pagamento, @status, @data_pedido)";
+                    string sql = "INSERT INTO pedidos (idRestaurante , idCliente , idProduto, total,quantidade, forma_pagamento,subtipo_pagamento, status, tempo_estimado, data_pedido) VALUES (@idRestaurante , @idCliente , @idProduto ,@total,@quantidade, @forma_pagamento,@subtipo_pagamento, @status, @tempo_estimado, @data_pedido)";
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
@@ -1436,6 +1436,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                         cmd.Parameters.AddWithValue("@forma_pagamento", pedido.getPagamento().getTipo());
                         cmd.Parameters.AddWithValue("@subtipo_pagamento", "Nenhum");
                         cmd.Parameters.AddWithValue("@status", pedido.getStatus());
+                        cmd.Parameters.AddWithValue("@tempo_estimado", "2025-06-09 00:00:00");
                         cmd.Parameters.AddWithValue("@data_pedido", pedido.getDataPedido());
                         cmd.ExecuteNonQuery();
                         return true;
