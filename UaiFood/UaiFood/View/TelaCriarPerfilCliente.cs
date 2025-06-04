@@ -59,10 +59,17 @@ namespace UaiFood.View
                 return;
             }
             DocumentController documentController = new DocumentController();
-            if (!documentController.validateCpf(cpf))
+            try
             {
-                MessageBox.Show("Insira um CPF válido!", "CPF inválido!", (MessageBoxButtons)MessageBoxIcon.Warning);
-                return;
+                if (!documentController.validateCpf(cpf))
+                {
+                    MessageBox.Show("Insira um CPF válido!", "CPF inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Insira um CPF válido!", "CPF inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             if (!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
             {

@@ -63,11 +63,14 @@
             // 
             // flowPanelCarrinho
             // 
+            flowPanelCarrinho.AutoScroll = true;
             flowPanelCarrinho.BackColor = Color.FromArgb(228, 228, 228);
+            flowPanelCarrinho.FlowDirection = FlowDirection.TopDown;
             flowPanelCarrinho.Location = new Point(21, 212);
             flowPanelCarrinho.Name = "flowPanelCarrinho";
             flowPanelCarrinho.Size = new Size(809, 492);
             flowPanelCarrinho.TabIndex = 2;
+            flowPanelCarrinho.WrapContents = false;
             flowPanelCarrinho.Paint += flowPanelCarrinho_Paint;
             // 
             // button1

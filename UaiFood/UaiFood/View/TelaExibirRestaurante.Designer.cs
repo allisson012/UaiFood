@@ -38,6 +38,11 @@
             lblNumero = new Label();
             picturePerfil = new PictureBox();
             button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
             ((System.ComponentModel.ISupportInitialize)picturePerfil).BeginInit();
             SuspendLayout();
             // 
@@ -157,12 +162,87 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(32, 505);
+            button3.Name = "button3";
+            button3.Size = new Size(187, 40);
+            button3.TabIndex = 21;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(1272, 12);
+            button4.Name = "button4";
+            button4.Size = new Size(66, 72);
+            button4.TabIndex = 22;
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button5.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(975, 29);
+            button5.Name = "button5";
+            button5.Size = new Size(66, 55);
+            button5.TabIndex = 23;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.Transparent;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(1088, 36);
+            button6.Name = "button6";
+            button6.Size = new Size(137, 40);
+            button6.TabIndex = 24;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.Transparent;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button7.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Location = new Point(23, 4);
+            button7.Name = "button7";
+            button7.Size = new Size(66, 72);
+            button7.TabIndex = 25;
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
+            // 
             // TelaExibirRestaurante
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaExibirRestaurante1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button7);
+            Controls.Add(button6);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(picturePerfil);
             Controls.Add(lblNumero);
@@ -195,5 +275,10 @@
         private Label lblNumero;
         private PictureBox picturePerfil;
         private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
     }
 }

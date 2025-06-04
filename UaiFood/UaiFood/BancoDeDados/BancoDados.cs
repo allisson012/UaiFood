@@ -1530,7 +1530,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                                 pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
                                 pedido.setIdCliente(reader.GetInt32("idCliente"));
                                 pedido.setIdProduto(reader.GetInt32("idProduto"));
-                                pedido.getPagamento().setTipo(reader.GetString("tipo"));
+                                //pedido.getPagamento().setTipo(reader.GetString("forma_pagamento"));
                                 pedido.setQuantidade(reader.GetInt32("quantidade"));
                                 pedido.setTotal(reader.GetDecimal("total"));
                                 pedido.setStatus(reader.GetString("status"));
@@ -1564,7 +1564,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     {
                         connection.Open();
                     }
-
+                    System.Diagnostics.Debug.WriteLine($"[DEBUG] ID Cliente recebido: {idCliente}");
                     string sql = @"
             SELECT *
             FROM pedidos
@@ -1572,11 +1572,14 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
-                        cmd.Parameters.AddWithValue("@idCliente", idCliente);
-
+                        cmd.Parameters.AddWithValue("@idCliente", idCliente);                        
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.HasRows)
+                            {
+                                System.Diagnostics.Debug.WriteLine("[DEBUG] Nenhum pedido encontrado para o cliente.");
+                            }
                             while (reader.Read())
                             {
                                 var pedido = new Pedido();
@@ -1584,12 +1587,13 @@ CREATE TABLE IF NOT EXISTS pedidos (
                                 pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
                                 pedido.setIdCliente(reader.GetInt32("idCliente"));
                                 pedido.setIdProduto(reader.GetInt32("idProduto"));
-                                pedido.getPagamento().setTipo(reader.GetString("tipo"));
+                                //pedido.getPagamento().setTipo(reader.GetString("forma_pagamento"));
                                 pedido.setQuantidade(reader.GetInt32("quantidade"));
                                 pedido.setTotal(reader.GetDecimal("total"));
                                 pedido.setStatus(reader.GetString("status"));
                                 pedido.setDataPedido(reader.GetDateTime("data_pedido"));
                                 pedidos.Add(pedido);
+                                System.Diagnostics.Debug.WriteLine($"[DEBUG] Pedido lido: ID={pedido.getId()}, Produto={pedido.getIdProduto()}, Total={pedido.getTotal()}");
                             }
                             return pedidos;
                         }
@@ -1598,6 +1602,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Erro ao listar pedidos: " + ex.Message);
+
                 }
                 finally
                 {

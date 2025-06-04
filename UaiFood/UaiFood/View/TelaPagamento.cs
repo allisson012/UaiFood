@@ -104,6 +104,9 @@ namespace UaiFood.View
             if(retorno)
             {
                 MessageBox.Show("Pedido realizado com sucesso!");
+                TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
+                telaPedidosCliente.Show();
+                this.Close();
             }
             else
             {

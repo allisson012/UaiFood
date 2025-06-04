@@ -33,6 +33,9 @@
             button2 = new Button();
             button4 = new Button();
             button5 = new Button();
+            flowPanelPedidos = new FlowLayoutPanel();
+            lblItens = new Label();
+            lblTotal = new Label();
             SuspendLayout();
             // 
             // button3
@@ -105,12 +108,49 @@
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
+            // flowPanelPedidos
+            // 
+            flowPanelPedidos.AutoScroll = true;
+            flowPanelPedidos.BackColor = Color.FromArgb(228, 228, 228);
+            flowPanelPedidos.FlowDirection = FlowDirection.TopDown;
+            flowPanelPedidos.Location = new Point(30, 146);
+            flowPanelPedidos.Name = "flowPanelPedidos";
+            flowPanelPedidos.Size = new Size(840, 560);
+            flowPanelPedidos.TabIndex = 11;
+            flowPanelPedidos.WrapContents = false;
+            flowPanelPedidos.Paint += flowPanelPedidos_Paint;
+            // 
+            // lblItens
+            // 
+            lblItens.AutoSize = true;
+            lblItens.BackColor = Color.Transparent;
+            lblItens.Font = new Font("Segoe UI", 13F);
+            lblItens.Location = new Point(1236, 316);
+            lblItens.Name = "lblItens";
+            lblItens.Size = new Size(22, 25);
+            lblItens.TabIndex = 1;
+            lblItens.Text = "0";
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Segoe UI", 13F);
+            lblTotal.Location = new Point(1037, 372);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(56, 25);
+            lblTotal.TabIndex = 12;
+            lblTotal.Text = "00,00";
+            // 
             // TelaPedidosCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPedidosCliente;
             ClientSize = new Size(1350, 729);
+            Controls.Add(lblTotal);
+            Controls.Add(lblItens);
+            Controls.Add(flowPanelPedidos);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button2);
@@ -122,7 +162,9 @@
             Name = "TelaPedidosCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
+            Load += TelaPedidosCliente_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -132,5 +174,8 @@
         private Button button2;
         private Button button4;
         private Button button5;
+        private FlowLayoutPanel flowPanelPedidos;
+        private Label lblItens;
+        private Label lblTotal;
     }
 }
