@@ -36,7 +36,7 @@ namespace UaiFood.Controller
                     MessageBox.Show("Restaurante criado com sucesso");
                     var telaCriarPerfilRestaurante = new TelaCriarPerfilRestaurante();
                     telaCriarPerfilRestaurante.Show();
-                    var telaLoginRestaurante = new TelaLoginRestaurante();
+                    var telaLoginRestaurante = new TelaCadastroRestaurante();
                     telaLoginRestaurante.Close();
                 }
                 else

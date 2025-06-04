@@ -54,5 +54,40 @@ namespace UaiFood.View
             tela.Show();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TelaPesquisa telaPesquisa = new TelaPesquisa();
+            telaPesquisa.Show();
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TelaCarrinho telaCarrinho = new TelaCarrinho();
+            telaCarrinho.Show();
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
+            telaPedidosCliente.Show();
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TelaPerfilCliente telaPerfilCliente = new TelaPerfilCliente();
+            telaPerfilCliente.Show();
+            this.Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+            telaPrincipalCliente.Show();
+            this.Close();
+        }
     }
 }

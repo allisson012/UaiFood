@@ -122,5 +122,12 @@ MessageBoxIcon.Warning
             telaCarrinho.Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
+            telaPedidosCliente.Show();
+            this.Close();
+        }
     }
 }

@@ -255,6 +255,7 @@
             button4.Size = new Size(142, 46);
             button4.TabIndex = 13;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // TelaPerfilCliente
             // 

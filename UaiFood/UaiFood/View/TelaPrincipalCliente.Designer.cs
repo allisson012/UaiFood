@@ -90,6 +90,14 @@
             button4.Size = new Size(125, 52);
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(0, 0);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 6;
             // 
             // flowPanelRestaurantes
             // 
