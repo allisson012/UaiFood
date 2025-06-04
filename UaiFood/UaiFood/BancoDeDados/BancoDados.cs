@@ -1606,6 +1606,33 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 return pedidos;
             }
 
+            public bool MudarStatusDoPedido(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "UPDATE pedidos set status = @status WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Concluido");
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao atualizar produto: " + ex.Message);
+                    return false;
+                }
+            }
+            // string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
