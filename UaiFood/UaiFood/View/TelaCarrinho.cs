@@ -179,7 +179,7 @@ namespace UaiFood.View
             {
                 MessageBox.Show("Nenhum produto no carrinho!");
             }
-            }
+        }
 
         private void flowPanelCarrinho_Paint(object sender, PaintEventArgs e)
         {
@@ -206,6 +206,13 @@ namespace UaiFood.View
             telaPrincipalCliente.Show();
             this.Close();
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
+            telaPedidosCliente.Show();
+            this.Close();
         }
     }
 }

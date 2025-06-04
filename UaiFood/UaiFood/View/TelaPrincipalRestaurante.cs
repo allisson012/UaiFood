@@ -122,5 +122,12 @@ namespace UaiFood.View
                 IdController.LogOffEstablishment();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TelaPedidosRestaurante telaPedidosRestaurante = new TelaPedidosRestaurante();
+            telaPedidosRestaurante.Show();
+            this.Close();
+        }
     }
 }

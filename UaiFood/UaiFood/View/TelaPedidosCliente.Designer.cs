@@ -1,6 +1,6 @@
 ﻿namespace UaiFood.View
 {
-    partial class TelaPrincipalCliente
+    partial class TelaPedidosCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button3 = new Button();
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
             button4 = new Button();
             button5 = new Button();
-            flowPanelRestaurantes = new FlowLayoutPanel();
             SuspendLayout();
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1203, 157);
+            button3.Name = "button3";
+            button3.Size = new Size(122, 37);
+            button3.TabIndex = 6;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button1
             // 
@@ -43,10 +56,10 @@
             button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(265, 34);
+            button1.Location = new Point(982, 32);
             button1.Name = "button1";
-            button1.Size = new Size(591, 40);
-            button1.TabIndex = 0;
+            button1.Size = new Size(55, 49);
+            button1.TabIndex = 7;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -57,26 +70,12 @@
             button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(1273, 12);
+            button2.Location = new Point(1275, 12);
             button2.Name = "button2";
-            button2.Size = new Size(65, 74);
-            button2.TabIndex = 1;
+            button2.Size = new Size(63, 69);
+            button2.TabIndex = 8;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.Transparent;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(978, 34);
-            button3.Name = "button3";
-            button3.Size = new Size(62, 52);
-            button3.TabIndex = 2;
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -85,61 +84,53 @@
             button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button4.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(1093, 34);
+            button4.Location = new Point(271, 36);
             button4.Name = "button4";
-            button4.Size = new Size(125, 52);
-            button4.TabIndex = 3;
+            button4.Size = new Size(588, 40);
+            button4.TabIndex = 9;
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(0, 0);
+            button5.BackColor = Color.Transparent;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button5.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(12, 12);
             button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 6;
+            button5.Size = new Size(75, 69);
+            button5.TabIndex = 10;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
-            // flowPanelRestaurantes
-            // 
-            flowPanelRestaurantes.AutoScroll = true;
-            flowPanelRestaurantes.BackColor = Color.White;
-            flowPanelRestaurantes.Location = new Point(-2, 195);
-            flowPanelRestaurantes.Name = "flowPanelRestaurantes";
-            flowPanelRestaurantes.Size = new Size(1354, 297);
-            flowPanelRestaurantes.TabIndex = 5;
-            // 
-            // TelaPrincipalCliente
+            // TelaPedidosCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
+            BackgroundImage = Properties.Resources.TelaPedidosCliente;
             ClientSize = new Size(1350, 729);
-            Controls.Add(flowPanelRestaurantes);
             Controls.Add(button5);
             Controls.Add(button4);
-            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(button3);
             MaximizeBox = false;
             MaximumSize = new Size(1366, 768);
-            MinimumSize = new Size(1364, 766);
-            Name = "TelaPrincipalCliente";
+            MinimumSize = new Size(1366, 768);
+            Name = "TelaPedidosCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UaiFood";
-            Load += TelaPrincipalCliente_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
+        private Button button3;
         private Button button1;
         private Button button2;
-        private Button button3;
         private Button button4;
         private Button button5;
-        private FlowLayoutPanel flowPanelRestaurantes;
     }
 }
