@@ -100,6 +100,8 @@ namespace UaiFood.Controller
                     {
                         var telaPrincipalCliente = new TelaPrincipalCliente();
                         telaPrincipalCliente.Show();
+                        TelaQrCode telaQrCode = new TelaQrCode();
+                        telaQrCode.Show();
                         var telaLogin = new TelaLogin();
                         telaLogin.Close();
                     }

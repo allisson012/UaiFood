@@ -1741,7 +1741,7 @@ CREATE TABLE IF NOT EXISTS telegram (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@idCliente", idCliente);
-                        cmd.Parameters.AddWithValue("@idCliente", chatId);
+                        cmd.Parameters.AddWithValue("@chatId", chatId);
                         cmd.ExecuteNonQuery();
                         return true;
                     }
