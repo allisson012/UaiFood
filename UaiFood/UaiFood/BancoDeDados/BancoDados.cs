@@ -262,6 +262,39 @@ CREATE TABLE IF NOT EXISTS users (
                 }
                 return null;
             }
+            public int? FindUserIdByCPF(string cpf)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "SELECT id FROM users WHERE cpf = @cpf LIMIT 1";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cpf", cpf);
+
+                        var result = cmd.ExecuteScalar();
+                        if (result != null && int.TryParse(result.ToString(), out int userId))
+                        {
+                            return userId;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+                return null;
+            }
+
 
             public Boolean RegisterNewPassword(User user)
             {
@@ -1727,7 +1760,7 @@ CREATE TABLE IF NOT EXISTS telegram (
                     connection.Close();
                 }
             }
-            public bool RegistrarChatId(int idCliente, int chatId)
+            public bool RegistrarChatId(int idCliente, long chatId)
             {
                 Createconnection();
                 try

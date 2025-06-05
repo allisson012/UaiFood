@@ -8,7 +8,9 @@ namespace UaiFood.Controller
     {
         public Bitmap GerarQRCode(string userId)
         {
-            string url = $"https://t.me/uaifoodbot?start={userId}";
+            string url = $"https://t.me/uaifoodsupbot?start={userId}";
+
+            System.Diagnostics.Debug.WriteLine($"URL gerada: {url}");
 
             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
             {

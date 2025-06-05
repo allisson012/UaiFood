@@ -21,6 +21,7 @@ namespace UaiFood.View
 
             if (userId.HasValue)
             {
+                System.Diagnostics.Debug.WriteLine("Passando id pro qrCode = ", userId.Value.ToString());
                 var qrController = new qrCodeController();
                 Bitmap qrBitmap = qrController.GerarQRCode(userId.Value.ToString());
                 pictureBox1.Image = qrBitmap; // exibe o QRCode no PictureBox
