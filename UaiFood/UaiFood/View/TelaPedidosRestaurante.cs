@@ -28,7 +28,6 @@ namespace UaiFood.View
         }
         public void CarregarPedidos()
         {
-
             flowPanelPedidos.Controls.Clear();
 
             var pedidos = bd.ListarPedidos(IdController.GetIdEstablishment());
@@ -60,7 +59,7 @@ namespace UaiFood.View
 
                 Panel itemPanel = new Panel
                 {
-                    Width = 800,
+                    Width = 810,
                     Height = 140,
                     Margin = new Padding(10),
                     BackColor = Color.WhiteSmoke,
@@ -110,43 +109,92 @@ namespace UaiFood.View
                     AutoSize = true
                 };
 
-                if (!pedido.getStatus().Equals("Entregue", StringComparison.OrdinalIgnoreCase))
+                string status = pedido.getStatus();
+
+                if (!status.Equals("Entregue", StringComparison.OrdinalIgnoreCase))
                 {
-                    Button btnEntregue = new Button
+                    if (!status.Equals("Saiu para entrega", StringComparison.OrdinalIgnoreCase))
                     {
-                        Text = "Pedido Entregue",
-                        Location = new Point(650, 20),
-                        Size = new Size(120, 30),
-                        BackColor = Color.LightGreen
-                    };
+                        // Botão "Pedido saiu para entrega"
+                        Button btnSaiuParaEntrega = new Button
+                        {
+                            Text = "Pedido saiu para entrega",
+                            Location = new Point(650, 20),
+                            Size = new Size(150, 30),
+                            BackColor = Color.Orange
+                        };
 
-                    btnEntregue.Click += (s, args) =>
+                        btnSaiuParaEntrega.Click += (s, args) =>
+                        {
+                            bd.MudarStatusDoPedidoSaiuPraEntrega(pedido.getId());
+                            MessageBox.Show("Pedido marcado como saiu para entrega.");
+                            int clientId = pedido.getIdCliente();
+                            long? chatId = bd.BuscarChatIdPorUserId(clientId);
+                            TelegramController.EnviarStatusPedidoAsync(chatId.Value, "saiu para entrega");
+                            CarregarPedidos();
+                        };
+
+                        Button btnVerDetalhes = new Button
+                        {
+                            Text = "Ver Detalhes",
+                            Location = new Point(650, 60),
+                            Size = new Size(120, 30),
+                            BackColor = Color.LightBlue
+                        };
+
+                        btnVerDetalhes.Click += (s, args) =>
+                        {
+                            TelaDetalhesPedido telaDetalhesPedido = new TelaDetalhesPedido(pedido.getId());
+                            telaDetalhesPedido.Show();
+                            this.Close();
+                        };
+
+                        itemPanel.Controls.Add(btnSaiuParaEntrega);
+                        itemPanel.Controls.Add(btnVerDetalhes);
+                    }
+                    else
                     {
-                        bd.MudarStatusDoPedido(pedido.getId());
-                        MessageBox.Show("Pedido marcado como entregue.");
-                        CarregarPedidos();
-                    };
+                        // Botão "Pedido concluído"
+                        Button btnPedidoConcluido = new Button
+                        {
+                            Text = "Pedido Entregue",
+                            Location = new Point(650, 20),
+                            Size = new Size(120, 30),
+                            BackColor = Color.LightGreen
+                        };
 
-                    Button btnVerDetalhes = new Button
-                    {
-                        Text = "Ver Detalhes",
-                        Location = new Point(650, 60),
-                        Size = new Size(120, 30),
-                        BackColor = Color.LightBlue
-                    };
+                        btnPedidoConcluido.Click += (s, args) =>
+                        {
+                            bd.MudarStatusDoPedidoSaiuPraEntrega(pedido.getId());
+                            MessageBox.Show("Pedido marcado como entregue.");
+                            int clientId = pedido.getIdCliente();
+                            long? chatId = bd.BuscarChatIdPorUserId(clientId);
+                            TelegramController.EnviarStatusPedidoAsync(chatId.Value, "entregue");
+                            CarregarPedidos();
+                        };
 
-                    btnVerDetalhes.Click += (s, args) =>
-                    {
-                        TelaDetalhesPedido telaDetalhesPedido = new TelaDetalhesPedido(pedido.getId());
-                        telaDetalhesPedido.Show();
-                        this.Close();
-                    };
+                        Button btnVerDetalhes = new Button
+                        {
+                            Text = "Ver Detalhes",
+                            Location = new Point(650, 60),
+                            Size = new Size(120, 30),
+                            BackColor = Color.LightBlue
+                        };
 
-                    itemPanel.Controls.Add(btnEntregue);
-                    itemPanel.Controls.Add(btnVerDetalhes);
+                        btnVerDetalhes.Click += (s, args) =>
+                        {
+                            TelaDetalhesPedido telaDetalhesPedido = new TelaDetalhesPedido(pedido.getId());
+                            telaDetalhesPedido.Show();
+                            this.Close();
+                        };
+
+                        itemPanel.Controls.Add(btnPedidoConcluido);
+                        itemPanel.Controls.Add(btnVerDetalhes);
+                    }
                 }
                 else
                 {
+                    // Label "Pedido concluído"
                     Label concluidoLabel = new Label
                     {
                         Text = "Pedido Concluído",
@@ -155,6 +203,7 @@ namespace UaiFood.View
                         Location = new Point(650, 30),
                         AutoSize = true
                     };
+
                     Button btnVerDetalhes = new Button
                     {
                         Text = "Ver Detalhes",
@@ -181,8 +230,10 @@ namespace UaiFood.View
 
                 flowPanelPedidos.Controls.Add(itemPanel);
             }
+
             lblItens.Text = itens.ToString();
             lblTotal.Text = total.ToString("C");
+
         }
 
 

@@ -1699,8 +1699,34 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
                 return pedidos;
             }
+            public bool MudarStatusDoPedidoSaiuPraEntrega(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
 
-            public bool MudarStatusDoPedido(int id)
+                    string sql = "UPDATE pedidos set status = @status WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Saiu para entrega");
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao atualizar produto: " + ex.Message);
+                    return false;
+                }
+            }
+
+            public bool MudarStatusDoPedidoEntregue(int id)
             {
                 try
                 {
@@ -1790,6 +1816,46 @@ CREATE TABLE IF NOT EXISTS telegram (
                 }
                 return false;
             }
+            public long? BuscarChatIdPorUserId(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "SELECT chatId FROM telegram WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return reader.GetInt64("chatId");
+                            }
+                            else
+                            {
+                                return null; 
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
