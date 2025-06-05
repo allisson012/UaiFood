@@ -10,7 +10,7 @@ namespace UaiFood.Controller
 {
     public static class TelegramController
     {
-        private static readonly string Token = "7921214030:AAH9gOTdt7HOLb1J5r8qlUq5JVg7sInV8oU";
+        private static readonly string Token = "7773246172:AAGS9Yk9XGy7WqnpWxMcm7WpL6udWopW0vI";
         private static TelegramBotClient botClient;
 
         private static ConcurrentDictionary<long, string> estados = new ConcurrentDictionary<long, string>();
@@ -39,6 +39,34 @@ namespace UaiFood.Controller
 
             // Mantém a task viva
             await Task.Delay(-1);
+        }
+
+        public static async Task EnviarStatusPedidoAsync(long chatId, string status)
+        {
+            if (botClient == null)
+            {
+                botClient = new TelegramBotClient(Token);
+            }
+
+            string mensagem = status.ToLower() switch
+            {
+                "em preparo" => "Confirmado!\nSeu pedido está em preparo!",
+                "saiu para entrega" => "Boa notícia!\nSeu pedido saiu para entrega.",
+                "entregue" => "Seu pedido foi entregue.\nBom apetite!",
+                _ => "Status do pedido desconhecido."
+            };
+
+            try
+            {
+                await botClient.SendTextMessageAsync(
+                    chatId: chatId,
+                    text: mensagem
+                );
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao enviar mensagem para chatId {chatId}: {ex.Message}");
+            }
         }
 
         private static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)

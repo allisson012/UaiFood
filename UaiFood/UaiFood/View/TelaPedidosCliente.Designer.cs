@@ -115,7 +115,7 @@
             flowPanelPedidos.FlowDirection = FlowDirection.TopDown;
             flowPanelPedidos.Location = new Point(30, 146);
             flowPanelPedidos.Name = "flowPanelPedidos";
-            flowPanelPedidos.Size = new Size(840, 560);
+            flowPanelPedidos.Size = new Size(847, 560);
             flowPanelPedidos.TabIndex = 11;
             flowPanelPedidos.WrapContents = false;
             flowPanelPedidos.Paint += flowPanelPedidos_Paint;

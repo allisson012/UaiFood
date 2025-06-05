@@ -58,7 +58,7 @@ namespace UaiFood.View
             this.Close();
         }
 
-        private void TelaPedidosCliente_Load(object sender, EventArgs e)
+        private async void TelaPedidosCliente_Load(object sender, EventArgs e)
         {
             flowPanelPedidos.Controls.Clear();
 
@@ -71,6 +71,28 @@ namespace UaiFood.View
             var outros = pedidos.Where(p => !p.getStatus().Equals("Em preparo", StringComparison.OrdinalIgnoreCase))
                                 .OrderByDescending(p => p.getDataPedido())
                                 .ToList();
+            DateTime agora = DateTime.Now;
+
+            // Filtra pedidos do usuário com status "Em preparo" feitos nos últimos 30 segundos
+            var pedidosRecentes = pedidos
+                .Where(p => p.getStatus().Equals("Em preparo", StringComparison.OrdinalIgnoreCase)
+                            && (agora - p.getDataPedido()).TotalSeconds <= 30)
+                .ToList();
+
+            if (pedidosRecentes.Any())
+            {
+                long? chatId = bd.BuscarChatIdPorUserId(IdController.GetIdUser());
+
+                if (chatId.HasValue)
+                {
+                    foreach (var pedidoRecente in pedidosRecentes)
+                    {
+                        string status = pedidoRecente.getStatus(); // "Em preparo"
+                                                                   // Envia a mensagem pelo método que criamos para status
+                        await TelegramController.EnviarStatusPedidoAsync(chatId.Value, status);
+                    }
+                }
+            }
 
             var pedidosOrdenados = emPreparo.Concat(outros).ToList();
 
