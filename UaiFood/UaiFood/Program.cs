@@ -14,8 +14,6 @@ namespace UaiFood
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             BancoDados bd = new BancoDados();
             bd.createBank();
             bd.createTableUser();
@@ -24,8 +22,13 @@ namespace UaiFood
             bd.createProductTable();
             bd.createPedidosTable();
             bd.createTelegramTable();
+
+            // Executa o bot em paralelo.
+            Task.Run(() => TelegramController.RunBotAsync());
+
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaInicial());
         }
+
     }
 }
