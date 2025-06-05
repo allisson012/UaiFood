@@ -23,7 +23,7 @@ namespace UaiFood
             bd.createCardapioTable();
             bd.createProductTable();
             bd.createPedidosTable();
-            bd.MudarStatusDoPedido(2);
+            bd.createTelegramTable();
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaInicial());
         }

@@ -94,7 +94,7 @@
             lblItens.AutoSize = true;
             lblItens.BackColor = Color.Transparent;
             lblItens.Font = new Font("Segoe UI", 13F);
-            lblItens.Location = new Point(1210, 315);
+            lblItens.Location = new Point(1210, 313);
             lblItens.Name = "lblItens";
             lblItens.Size = new Size(22, 25);
             lblItens.TabIndex = 2;
@@ -105,7 +105,7 @@
             lblTotal.AutoSize = true;
             lblTotal.BackColor = Color.Transparent;
             lblTotal.Font = new Font("Segoe UI", 13F);
-            lblTotal.Location = new Point(1079, 373);
+            lblTotal.Location = new Point(1080, 371);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(56, 25);
             lblTotal.TabIndex = 13;

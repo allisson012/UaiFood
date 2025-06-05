@@ -23,7 +23,7 @@ namespace UaiFood.BancoDeDados
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
             // ordem da classe banco de dados
-            // estrutura do banco -> user -> establishment -> cardapio -> product -> pedidos -> outros
+            // estrutura do banco -> user -> establishment -> cardapio -> product -> pedidos -> Telegram -> outros 
             public static void Createconnection()
             {
                 if (connection == null)
@@ -1694,6 +1694,69 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 }
             }
             // string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
+
+            //Telegram
+
+            public void createTelegramTable()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS telegram (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES users(id),
+    chatId BIGINT NOT NULL
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("Tabela telgram criada com sucesso.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao tentar criar tabela: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public bool RegistrarChatId(int idCliente, int chatId)
+            {
+                Createconnection();
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "INSERT INTO telegram (idCliente, chatId ) VALUES (@idCliente, @chatId)";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                        cmd.Parameters.AddWithValue("@idCliente", chatId);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao registrar chat: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return false;
+            }
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
