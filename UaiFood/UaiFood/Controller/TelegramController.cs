@@ -50,12 +50,11 @@ namespace UaiFood.Controller
 
             string mensagem = status.ToLower() switch
             {
-                "em preparo" => "Confirmado!\nSeu pedido está em preparo!",
-                "saiu para entrega" => "Boa notícia!\nSeu pedido saiu para entrega.",
-                "entregue" => "Seu pedido foi entregue.\nBom apetite!",
-                _ => "Status do pedido desconhecido."
+                "em preparo" => "✅ Pedido confirmado!\n👨‍🍳 Estamos preparando com carinho pra você!",
+                "saiu para entrega" => "📦 Partiu entrega!\n🛵 Seu pedido tá a caminho, segura aí!",
+                "entregue" => "🍽️ Pedido entregue!\n😋 Bom apetite e aproveite!",
+                _ => "🤔 Ops! Não conseguimos identificar o status do seu pedido."
             };
-
             try
             {
                 await botClient.SendTextMessageAsync(
@@ -93,6 +92,7 @@ namespace UaiFood.Controller
                 if (estadoAtual == "aguardando_cpf")
                 {
                     string cpf = messageText.Trim();
+                    cpf = cpf.Replace(".", "").Replace("-", "");
 
                     // Validação simples do CPF (só números e 11 dígitos)
                     if (cpf.Length != 11 || !cpf.All(char.IsDigit))

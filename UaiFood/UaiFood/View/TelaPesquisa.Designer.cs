@@ -36,6 +36,7 @@
             button4 = new Button();
             button5 = new Button();
             flowPanelProdutos = new FlowLayoutPanel();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -139,12 +140,29 @@
             flowPanelProdutos.TabIndex = 8;
             flowPanelProdutos.Paint += flowPanelProdutos_Paint;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Transparent;
+            button6.BackgroundImage = Properties.Resources.icons8_código_qr_80__1_;
+            button6.BackgroundImageLayout = ImageLayout.Zoom;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(99, 23);
+            button6.Name = "button6";
+            button6.Size = new Size(62, 52);
+            button6.TabIndex = 9;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // TelaPesquisa
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPesquisa1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button6);
             Controls.Add(flowPanelProdutos);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -172,5 +190,6 @@
         private Button button4;
         private Button button5;
         private FlowLayoutPanel flowPanelProdutos;
+        private Button button6;
     }
 }

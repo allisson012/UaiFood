@@ -214,5 +214,11 @@ namespace UaiFood.View
             telaPedidosCliente.Show();
             this.Close();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            TelaQrCode telaQrCode = new TelaQrCode();
+            telaQrCode.Show();
+        }
     }
 }

@@ -1855,7 +1855,38 @@ CREATE TABLE IF NOT EXISTS telegram (
                     connection.Close();
                 }
             }
+            public bool BuscarIdNaTabela(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
 
+                    string sql = "SELECT id FROM telegram WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)

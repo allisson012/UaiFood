@@ -130,13 +130,13 @@ namespace UaiFood.View
 
                 foreach (var produto in produtosEncontrados)
                 {
-                    System.Diagnostics.Debug.WriteLine("Id- ",produto.getIdCardapio());
+                    System.Diagnostics.Debug.WriteLine("Id- ", produto.getIdCardapio());
                     var restaurante = bd.findEstablishmentById(produto.getIdCardapio());
                     System.Diagnostics.Debug.WriteLine("Nome- ", restaurante.getNome());
 
                     Panel produtoPanel = new Panel();
                     produtoPanel.Width = 150;
-                    produtoPanel.Height = 200; 
+                    produtoPanel.Height = 200;
                     produtoPanel.Margin = new Padding(10);
 
                     PictureBox pictureBox = new PictureBox();
@@ -287,6 +287,12 @@ namespace UaiFood.View
             TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
             telaPedidosCliente.Show();
             this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaQrCode telaQrCode = new TelaQrCode();
+            telaQrCode.Show();
         }
     }
 }

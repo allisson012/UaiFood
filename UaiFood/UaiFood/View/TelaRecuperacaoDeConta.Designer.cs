@@ -40,10 +40,10 @@
             txtEmail.BackColor = Color.FromArgb(239, 239, 239);
             txtEmail.BorderStyle = BorderStyle.None;
             txtEmail.Font = new Font("Segoe UI", 16F);
-            txtEmail.Location = new Point(174, 308);
+            txtEmail.Location = new Point(131, 237);
             txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(440, 29);
+            txtEmail.Size = new Size(366, 29);
             txtEmail.TabIndex = 7;
             // 
             // txtCodigo
@@ -51,10 +51,10 @@
             txtCodigo.BackColor = Color.FromArgb(239, 239, 239);
             txtCodigo.BorderStyle = BorderStyle.None;
             txtCodigo.Font = new Font("Segoe UI", 16F);
-            txtCodigo.Location = new Point(172, 406);
+            txtCodigo.Location = new Point(131, 317);
             txtCodigo.Margin = new Padding(3, 2, 3, 2);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(440, 29);
+            txtCodigo.Size = new Size(366, 29);
             txtCodigo.TabIndex = 8;
             // 
             // txtSenha
@@ -62,10 +62,10 @@
             txtSenha.BackColor = Color.FromArgb(239, 239, 239);
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 16F);
-            txtSenha.Location = new Point(172, 506);
+            txtSenha.Location = new Point(131, 396);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(440, 29);
+            txtSenha.Size = new Size(366, 29);
             txtSenha.TabIndex = 9;
             // 
             // txtRepete
@@ -73,10 +73,10 @@
             txtRepete.BackColor = Color.FromArgb(239, 239, 239);
             txtRepete.BorderStyle = BorderStyle.None;
             txtRepete.Font = new Font("Segoe UI", 16F);
-            txtRepete.Location = new Point(172, 612);
+            txtRepete.Location = new Point(131, 478);
             txtRepete.Margin = new Padding(3, 2, 3, 2);
             txtRepete.Name = "txtRepete";
-            txtRepete.Size = new Size(440, 29);
+            txtRepete.Size = new Size(366, 29);
             txtRepete.TabIndex = 10;
             // 
             // button3
@@ -86,9 +86,9 @@
             button3.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button3.FlatAppearance.MouseOverBackColor = Color.Transparent;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(305, 683);
+            button3.Location = new Point(250, 544);
             button3.Name = "button3";
-            button3.Size = new Size(190, 47);
+            button3.Size = new Size(135, 32);
             button3.TabIndex = 11;
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
@@ -98,15 +98,16 @@
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.Salvar_nova_senha;
-            ClientSize = new Size(784, 841);
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(633, 696);
             Controls.Add(button3);
             Controls.Add(txtRepete);
             Controls.Add(txtSenha);
             Controls.Add(txtCodigo);
             Controls.Add(txtEmail);
             Margin = new Padding(3, 2, 3, 2);
-            MaximumSize = new Size(800, 880);
-            MinimumSize = new Size(800, 880);
+            MaximumSize = new Size(649, 735);
+            MinimumSize = new Size(649, 735);
             Name = "TelaRecuperacaoDeConta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaRecuperacaoDeConta";
