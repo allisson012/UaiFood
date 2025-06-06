@@ -34,9 +34,9 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(154, 38);
+            pictureBox1.Location = new Point(138, 325);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(614, 755);
+            pictureBox1.Size = new Size(355, 306);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -46,10 +46,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(957, 760);
+            BackgroundImage = Properties.Resources.TelaQrCode;
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(633, 696);
             Controls.Add(pictureBox1);
+            DoubleBuffered = true;
             Name = "TelaQrCode";
-            Text = "TelaQrCode";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "UaiFood";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

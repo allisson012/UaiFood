@@ -33,6 +33,7 @@
             button3 = new Button();
             button4 = new Button();
             flowPanelRestaurantes = new FlowLayoutPanel();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -100,12 +101,29 @@
             flowPanelRestaurantes.Size = new Size(1354, 297);
             flowPanelRestaurantes.TabIndex = 5;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.BackgroundImage = Properties.Resources.icons8_código_qr_80__1_;
+            button5.BackgroundImageLayout = ImageLayout.Zoom;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button5.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(105, 23);
+            button5.Name = "button5";
+            button5.Size = new Size(62, 52);
+            button5.TabIndex = 6;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // TelaPrincipalCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button5);
             Controls.Add(flowPanelRestaurantes);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -131,5 +149,6 @@
         private Button button3;
         private Button button4;
         private FlowLayoutPanel flowPanelRestaurantes;
+        private Button button5;
     }
 }

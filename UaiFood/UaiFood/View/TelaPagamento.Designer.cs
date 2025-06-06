@@ -38,6 +38,7 @@
             button1 = new Button();
             button3 = new Button();
             button5 = new Button();
+            button6 = new Button();
             SuspendLayout();
             // 
             // lblItens
@@ -165,12 +166,29 @@
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Transparent;
+            button6.BackgroundImage = Properties.Resources.icons8_código_qr_80__1_;
+            button6.BackgroundImageLayout = ImageLayout.Zoom;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(106, 23);
+            button6.Name = "button6";
+            button6.Size = new Size(62, 52);
+            button6.TabIndex = 29;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // TelaPagamento
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPagamento;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button3);
             Controls.Add(button1);
@@ -204,5 +222,6 @@
         private Button button1;
         private Button button3;
         private Button button5;
+        private Button button6;
     }
 }
