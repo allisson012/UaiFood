@@ -121,6 +121,42 @@ namespace UaiFood.Controller
             }
             return false;
         }
+        public void editarPerfilEstablishment(int id, string nameRestaurante, string email, string street, string state, string city, string cep, string telephone, string numberAddress, byte[] image)
+        {
+            var address = new AddressEstablishment();
+            string cep02 = Regex.Replace(cep, @"\D", "");
+            address.setCep(cep02);
+            address.setState(state);
+            address.setCity(city);
+            address.setStreet(street);
+            address.setNumberAddress(numberAddress);
+
+            var establishment = new Establishment();
+            establishment.setNome(nameRestaurante);
+            establishment.setId(id);
+            establishment.setEmail(email);
+            string telefoneLimpo = Regex.Replace(telephone, @"\D", "");
+            establishment.setTelefone(telefoneLimpo);
+            establishment.setAddressEstablishment(address);
+            establishment.setImage(image);
+
+            var bd = new BancoDados();
+            bool editado = bd.completePerfilRestaurante(establishment);
+            if (editado)
+            {
+                MessageBox.Show("Perfil editado com sucesso!");
+                var telaPrincipalRestaurante = new TelaPrincipalRestaurante();
+                telaPrincipalRestaurante.Show();
+                var telaEditarPerfil = new TelaEditarPerfilRestaurante(); 
+                telaEditarPerfil.Close();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao editar o perfil do restaurante");
+            }
+        }
+
+
         public bool deleteEstablishment()
         {
             var bd = new BancoDados();
