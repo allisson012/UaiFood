@@ -1873,7 +1873,7 @@ CREATE TABLE IF NOT EXISTS telegram (
 
                         using (var reader = cmd.ExecuteReader())
                         {
-                            return true;
+                            return reader.Read();
                         }
                     }
                 }

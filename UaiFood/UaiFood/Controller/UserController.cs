@@ -101,8 +101,8 @@ namespace UaiFood.Controller
                         var telaPrincipalCliente = new TelaPrincipalCliente();
                         telaPrincipalCliente.Show(); 
                         bool retorno = bancoDados.BuscarIdNaTabela(u.getUserId());
-                        System.Diagnostics.Debug.WriteLine("retrono = ", retorno);
-                        if (retorno)
+                        System.Diagnostics.Debug.WriteLine("retorno = ", retorno);
+                        if (!retorno)
                         {
                             TelaQrCode telaQrCode = new TelaQrCode();
                             telaQrCode.Show();
@@ -175,7 +175,7 @@ namespace UaiFood.Controller
                 telaPrincipalCliente.Show();
                 bool retorno = bd.BuscarIdNaTabela(user.getUserId());
                 System.Diagnostics.Debug.WriteLine("retrono = ",retorno);
-                if (retorno)
+                if (!retorno)
                 {
                     TelaQrCode telaQrCode = new TelaQrCode();
                     telaQrCode.Show();
