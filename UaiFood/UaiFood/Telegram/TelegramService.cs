@@ -33,18 +33,18 @@ namespace UaiFood.Telegram
             _telegramService = new TelegramService(tokenBot);
         }
 
-        public async Task EnviarMensagem(Telegram mensagem)
+        public async Task EnviarMensagem(/*Telegram mensagem*/)
         {
-            string texto = $"Pedido #{mensagem.IdPedido}\n" +
-                           $"Total: R${mensagem.Total}\n" +
-                           $"Status: {mensagem.Status}";
+           // string texto = $"Pedido #{mensagem.IdPedido}\n" +
+            //               $"Total: R${mensagem.Total}\n" +
+             //              $"Status: {mensagem.Status}";
 
-            if (!string.IsNullOrEmpty(mensagem.TextoFinal))
-            {
-                texto += $"\n{mensagem.TextoFinal}";
-            }
+         //   if (!string.IsNullOrEmpty(mensagem.TextoFinal))
+        //    {
+        //        texto += $"\n{mensagem.TextoFinal}";
+         //   }
 
-            await _telegramService.EnviarMensagemAsync(mensagem.ChatId, texto);
+         //   await _telegramService.EnviarMensagemAsync(mensagem.ChatId, texto);
         }
     }
 }
