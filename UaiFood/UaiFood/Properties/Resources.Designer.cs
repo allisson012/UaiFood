@@ -83,6 +83,26 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_código_qr_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-código-qr-80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_código_qr_80__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-código-qr-80 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap olho {
             get {
                 object obj = ResourceManager.GetObject("olho", resourceCulture);
@@ -396,6 +416,16 @@ namespace UaiFood.Properties {
         internal static System.Drawing.Bitmap TelaPrincipalUsuario {
             get {
                 object obj = ResourceManager.GetObject("TelaPrincipalUsuario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaQrCode {
+            get {
+                object obj = ResourceManager.GetObject("TelaQrCode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -101,7 +101,7 @@ namespace UaiFood.View
                     i++;
                 }
             }
-            if(retorno)
+            if (retorno)
             {
                 MessageBox.Show("Pedido realizado com sucesso!");
                 TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
@@ -112,6 +112,12 @@ namespace UaiFood.View
             {
                 MessageBox.Show("Erro ao realizar pedido!");
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TelaQrCode telaQrCode = new TelaQrCode();
+            telaQrCode.Show();
         }
     }
 }

@@ -36,6 +36,7 @@
             flowPanelPedidos = new FlowLayoutPanel();
             lblItens = new Label();
             lblTotal = new Label();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button3
@@ -115,7 +116,7 @@
             flowPanelPedidos.FlowDirection = FlowDirection.TopDown;
             flowPanelPedidos.Location = new Point(30, 146);
             flowPanelPedidos.Name = "flowPanelPedidos";
-            flowPanelPedidos.Size = new Size(840, 560);
+            flowPanelPedidos.Size = new Size(847, 560);
             flowPanelPedidos.TabIndex = 11;
             flowPanelPedidos.WrapContents = false;
             flowPanelPedidos.Paint += flowPanelPedidos_Paint;
@@ -142,12 +143,29 @@
             lblTotal.TabIndex = 12;
             lblTotal.Text = "00,00";
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Transparent;
+            button6.BackgroundImage = Properties.Resources.icons8_código_qr_80__1_;
+            button6.BackgroundImageLayout = ImageLayout.Zoom;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button6.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(105, 24);
+            button6.Name = "button6";
+            button6.Size = new Size(62, 52);
+            button6.TabIndex = 13;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // TelaPedidosCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.TelaPedidosCliente;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button6);
             Controls.Add(lblTotal);
             Controls.Add(lblItens);
             Controls.Add(flowPanelPedidos);
@@ -177,5 +195,6 @@
         private FlowLayoutPanel flowPanelPedidos;
         private Label lblItens;
         private Label lblTotal;
+        private Button button6;
     }
 }

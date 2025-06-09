@@ -99,7 +99,15 @@ namespace UaiFood.Controller
                     else
                     {
                         var telaPrincipalCliente = new TelaPrincipalCliente();
-                        telaPrincipalCliente.Show();
+                        telaPrincipalCliente.Show(); 
+                        bool retorno = bancoDados.BuscarIdNaTabela(u.getUserId());
+                        System.Diagnostics.Debug.WriteLine("retrono = ", retorno);
+                        if (retorno)
+                        {
+                            TelaQrCode telaQrCode = new TelaQrCode();
+                            telaQrCode.Show();
+                        }
+                        
                         var telaLogin = new TelaLogin();
                         telaLogin.Close();
                     }
@@ -161,10 +169,19 @@ namespace UaiFood.Controller
             var bd = new BancoDados();
             bool criadoPerfil = bd.completePerfilUser(user);
             if (criadoPerfil)
-            {
+            {                
                 MessageBox.Show("Perfil concluido com sucesso!");
                 TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
                 telaPrincipalCliente.Show();
+                bool retorno = bd.BuscarIdNaTabela(user.getUserId());
+                System.Diagnostics.Debug.WriteLine("retrono = ",retorno);
+                if (retorno)
+                {
+                    TelaQrCode telaQrCode = new TelaQrCode();
+                    telaQrCode.Show();
+                    var telaLogin = new TelaCriarPerfilCliente();
+                    telaLogin.Close();
+                }
             }
             else
             {

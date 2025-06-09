@@ -109,6 +109,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(421, 22);
             txtNome.TabIndex = 23;
+            txtNome.TextChanged += txtNome_TextChanged;
             // 
             // txtEmail
             // 

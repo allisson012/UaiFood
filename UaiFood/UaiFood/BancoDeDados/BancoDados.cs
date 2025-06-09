@@ -23,7 +23,7 @@ namespace UaiFood.BancoDeDados
             static public string conexaoServidor = $"server={servidor};user id={usuario};password={senha}";
 
             // ordem da classe banco de dados
-            // estrutura do banco -> user -> establishment -> cardapio -> product -> pedidos -> outros
+            // estrutura do banco -> user -> establishment -> cardapio -> product -> pedidos -> Telegram -> outros 
             public static void Createconnection()
             {
                 if (connection == null)
@@ -262,6 +262,39 @@ CREATE TABLE IF NOT EXISTS users (
                 }
                 return null;
             }
+            public int? FindUserIdByCPF(string cpf)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "SELECT id FROM users WHERE cpf = @cpf LIMIT 1";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cpf", cpf);
+
+                        var result = cmd.ExecuteScalar();
+                        if (result != null && int.TryParse(result.ToString(), out int userId))
+                        {
+                            return userId;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+                return null;
+            }
+
 
             public Boolean RegisterNewPassword(User user)
             {
@@ -1666,8 +1699,34 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
                 return pedidos;
             }
+            public bool MudarStatusDoPedidoSaiuPraEntrega(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
 
-            public bool MudarStatusDoPedido(int id)
+                    string sql = "UPDATE pedidos set status = @status WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Saiu para entrega");
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao atualizar produto: " + ex.Message);
+                    return false;
+                }
+            }
+
+            public bool MudarStatusDoPedidoEntregue(int id)
             {
                 try
                 {
@@ -1694,6 +1753,140 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 }
             }
             // string updateSql = "UPDATE users SET hash = @hash, salt = @salt WHERE email = @email";
+
+            //Telegram
+
+            public void createTelegramTable()
+            {
+                string sql = @"
+CREATE TABLE IF NOT EXISTS telegram (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES users(id),
+    chatId BIGINT NOT NULL
+);";
+
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine("Tabela telgram criada com sucesso.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao tentar criar tabela: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public bool RegistrarChatId(int idCliente, long chatId)
+            {
+                Createconnection();
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "INSERT INTO telegram (idCliente, chatId ) VALUES (@idCliente, @chatId)";
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                        cmd.Parameters.AddWithValue("@chatId", chatId);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao registrar chat: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return false;
+            }
+            public long? BuscarChatIdPorUserId(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "SELECT chatId FROM telegram WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return reader.GetInt64("chatId");
+                            }
+                            else
+                            {
+                                return null; 
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            public bool BuscarIdNaTabela(int id)
+            {
+                try
+                {
+                    Createconnection();
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "SELECT id FROM telegram WHERE id = @id";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
 
             //outros
             private static byte[] GetBytesFromReader(MySqlDataReader reader, string columnName)
