@@ -18,6 +18,7 @@ namespace UaiFood.View
         private byte[] imag;
         public TelaEditarPerfilRestaurante()
         {
+
             InitializeComponent();
         }
 
@@ -84,6 +85,7 @@ namespace UaiFood.View
             txtRua.Text = establishment.getAddressEstablishment().getStreet();
             var imageController = new ImageController();
             picturePerfil.Image = imageController.ExibirImage(establishment.getImage());
+            imag = establishment.getImage();
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
