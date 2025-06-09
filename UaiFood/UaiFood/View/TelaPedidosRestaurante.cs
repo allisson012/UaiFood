@@ -165,7 +165,7 @@ namespace UaiFood.View
 
                         btnPedidoConcluido.Click += (s, args) =>
                         {
-                            bd.MudarStatusDoPedidoSaiuPraEntrega(pedido.getId());
+                            bd.MudarStatusDoPedidoEntregue(pedido.getId());
                             MessageBox.Show("Pedido marcado como entregue.");
                             int clientId = pedido.getIdCliente();
                             long? chatId = bd.BuscarChatIdPorUserId(clientId);
