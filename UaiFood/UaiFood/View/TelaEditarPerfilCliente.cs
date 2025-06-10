@@ -61,7 +61,9 @@ namespace UaiFood.View
             string rua = txtRua.Text;
             string numero = txtNumero.Text;
             string cep = txtCep.Text;
+            string cepLimpo = cep.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
             string telefone = txtTelefone.Text;
+            string telefoneLimpo = telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
             string cpf = txtCpf.Text;
             string estado = txtEstado.Text;
             string dataNasc = txtDataNascimento.Text;
@@ -74,21 +76,25 @@ namespace UaiFood.View
             }
             catch (FormatException)
             {
-                System.Diagnostics.Debug.WriteLine("Formato de data inválido.");
+                MessageBox.Show("Formato de data inválido.");
                 return;
             }
             DocumentController documentController = new DocumentController();
             if (!documentController.validateCpf(cpf))
             {
-                MessageBox.Show("Insira um CPF válido!", "CPF inválido!", (MessageBoxButtons)MessageBoxIcon.Warning);
+                MessageBox.Show("Insira um CPF válido!", "CPF inválido!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cep) && !String.IsNullOrEmpty(telefone) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
+            if (!String.IsNullOrEmpty(nome) && !String.IsNullOrEmpty(cidade) && !String.IsNullOrEmpty(rua) && !String.IsNullOrEmpty(numero) && !String.IsNullOrEmpty(cepLimpo) && !String.IsNullOrEmpty(telefoneLimpo) && !String.IsNullOrEmpty(cpf) && !String.IsNullOrEmpty(estado) && data != null && imag != null)
             {
                 var userController = new UserController();
                 // estou setando o id manualmente por que esta tela não esta sendo acessado pela tela principal
                 IdController.SetIdUser(1);
-                userController.createPerfilUser(IdController.GetIdUser(), nome, cpf, rua, estado, cidade, cep, telefone, numero, imag, data);
+                userController.createPerfilUser(IdController.GetIdUser(), nome, cpf, rua, estado, cidade, cepLimpo, telefoneLimpo, numero, imag, data);
+            }
+            else
+            {
+                MessageBox.Show("Insira dados validos!");
             }
         }
     }

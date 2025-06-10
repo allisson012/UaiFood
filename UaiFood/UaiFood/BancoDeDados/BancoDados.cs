@@ -1641,7 +1641,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                 return null;
             }
 
-            public List<Pedido> ListarPedidosCliente(int idCliente)
+            public List<Pedido> listarPedidosCliente(int idCliente)
             {
                 var pedidos = new List<Pedido>();
 
@@ -1675,6 +1675,8 @@ CREATE TABLE IF NOT EXISTS pedidos (
                                 pedido.setIdRestaurante(reader.GetInt32("idRestaurante"));
                                 pedido.setIdCliente(reader.GetInt32("idCliente"));
                                 pedido.setIdProduto(reader.GetInt32("idProduto"));
+                                FormaPagamento pagamento = new FormaPagamento(reader.GetString("forma_pagamento"));
+                                pedido.setPagamento(pagamento);
                                 //pedido.getPagamento().setTipo(reader.GetString("forma_pagamento"));
                                 pedido.setQuantidade(reader.GetInt32("quantidade"));
                                 pedido.setTotal(reader.GetDecimal("total"));
