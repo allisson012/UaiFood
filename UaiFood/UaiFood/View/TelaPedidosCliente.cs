@@ -62,7 +62,7 @@ namespace UaiFood.View
         {
             flowPanelPedidos.Controls.Clear();
 
-            var pedidos = bd.ListarPedidosCliente(IdController.GetIdUser());
+            var pedidos = bd.listarPedidosCliente(IdController.GetIdUser());
 
             total = 0;
             itens = 0;
