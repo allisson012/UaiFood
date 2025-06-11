@@ -63,7 +63,7 @@ namespace UaiFood.View
         private void button1_Click(object sender, EventArgs e)
         {
             ImageController imageController = new ImageController();
-            byte[] imag = imageController.SelectImage();
+            imag = imageController.SelectImage();
             Image i = imageController.ExibirImage(imag);
             if (i != null)
             {
