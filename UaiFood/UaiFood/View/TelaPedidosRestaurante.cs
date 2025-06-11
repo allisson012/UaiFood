@@ -130,8 +130,11 @@ namespace UaiFood.View
                             MessageBox.Show("Pedido marcado como saiu para entrega.");
                             int clientId = pedido.getIdCliente();
                             long? chatId = bd.BuscarChatIdPorUserId(clientId);
-                            TelegramController.EnviarStatusPedidoAsync(chatId.Value, "saiu para entrega");
-                            CarregarPedidos();
+                            if (chatId != null)
+                            {
+                                TelegramController.EnviarStatusPedidoAsync(chatId.Value, "saiu para entrega");
+                            }
+                                CarregarPedidos();
                         };
 
                         Button btnVerDetalhes = new Button
@@ -169,8 +172,11 @@ namespace UaiFood.View
                             MessageBox.Show("Pedido marcado como entregue.");
                             int clientId = pedido.getIdCliente();
                             long? chatId = bd.BuscarChatIdPorUserId(clientId);
-                            TelegramController.EnviarStatusPedidoAsync(chatId.Value, "entregue");
-                            CarregarPedidos();
+                            if (chatId != null)
+                            {
+                                TelegramController.EnviarStatusPedidoAsync(chatId.Value, "entregue");
+                            }
+                                CarregarPedidos();
                         };
 
                         Button btnVerDetalhes = new Button

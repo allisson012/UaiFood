@@ -31,5 +31,13 @@ namespace UaiFood.Controller
         {
             return produtos;
         }
+        public bool limparCarrinho()
+        {
+            produtos.Clear();
+            if(produtos == null){
+                return true;
+            }
+            return false;
+        }
     }
 }

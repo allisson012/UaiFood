@@ -1525,6 +1525,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@idCliente", IdController.GetIdUser());
+                        DeletarTelegram(connection);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -1887,6 +1888,28 @@ CREATE TABLE IF NOT EXISTS telegram (
                 finally
                 {
                     connection.Close();
+                }
+            }
+            public void DeletarTelegram(MySqlConnection connection)
+            {
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        connection.Open();
+                    }
+
+                    string sql = "DELETE FROM telegram WHERE idCliente = @idCliente";
+
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@idCliente", IdController.GetIdUser());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Erro ao deletar telegram: " + ex.Message);
                 }
             }
 
