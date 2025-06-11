@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -104,6 +105,11 @@ namespace UaiFood.View
             if (retorno)
             {
                 MessageBox.Show("Pedido realizado com sucesso!");
+                bool resp = CarrinhoControllerStatic.getInstance().limparCarrinho();
+                if (resp)
+                {
+                    System.Diagnostics.Debug.WriteLine("Carrinho limpo");
+                }
                 TelaPedidosCliente telaPedidosCliente = new TelaPedidosCliente();
                 telaPedidosCliente.Show();
                 this.Close();
