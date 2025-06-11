@@ -10,7 +10,7 @@ namespace UaiFood.Controller
 {
     public static class TelegramController
     {
-        private static readonly string Token = "TOKEN-DO-BOT";
+        private static readonly string Token = "TOKEN_DO_BOT";
         private static TelegramBotClient botClient;
 
         private static ConcurrentDictionary<long, string> estados = new ConcurrentDictionary<long, string>();
