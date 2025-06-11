@@ -34,6 +34,7 @@
             button4 = new Button();
             flowPanelRestaurantes = new FlowLayoutPanel();
             button5 = new Button();
+            flowPanelPedidos = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // button1
@@ -98,8 +99,9 @@
             flowPanelRestaurantes.BackColor = Color.White;
             flowPanelRestaurantes.Location = new Point(-2, 195);
             flowPanelRestaurantes.Name = "flowPanelRestaurantes";
-            flowPanelRestaurantes.Size = new Size(1354, 297);
+            flowPanelRestaurantes.Size = new Size(1354, 281);
             flowPanelRestaurantes.TabIndex = 5;
+            flowPanelRestaurantes.WrapContents = false;
             // 
             // button5
             // 
@@ -117,12 +119,23 @@
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
+            // flowPanelPedidos
+            // 
+            flowPanelPedidos.AutoScroll = true;
+            flowPanelPedidos.BackColor = Color.White;
+            flowPanelPedidos.Location = new Point(-2, 513);
+            flowPanelPedidos.Name = "flowPanelPedidos";
+            flowPanelPedidos.Size = new Size(1354, 215);
+            flowPanelPedidos.TabIndex = 6;
+            flowPanelPedidos.WrapContents = false;
+            // 
             // TelaPrincipalCliente
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackgroundImage = Properties.Resources.TelaPrincipalUsuario;
+            BackgroundImage = Properties.Resources.TelaPrincipalUsuario1;
             ClientSize = new Size(1350, 729);
+            Controls.Add(flowPanelPedidos);
             Controls.Add(button5);
             Controls.Add(flowPanelRestaurantes);
             Controls.Add(button4);
@@ -150,5 +163,6 @@
         private Button button4;
         private FlowLayoutPanel flowPanelRestaurantes;
         private Button button5;
+        private FlowLayoutPanel flowPanelPedidos;
     }
 }

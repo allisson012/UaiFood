@@ -42,6 +42,7 @@ namespace UaiFood.View
             var user = bd.findUserById(userId.Value);
             var userAdress = user.getAddress();
             var restaurantesEncontrados = bd.BuscarRestaurantesProximos(userAdress.getState());
+            var pedidos = bd.listarPedidosCliente(user.getUserId());
             flowPanelRestaurantes.Controls.Clear(); // limpa resultados anteriores
 
             ImageController imgController = new ImageController();
@@ -99,6 +100,60 @@ namespace UaiFood.View
                 restaurantePanel.Controls.Add(nomeLabel);
 
                 flowPanelRestaurantes.Controls.Add(restaurantePanel);
+            }
+
+            if (restaurantesEncontrados.Count == 0)
+            {
+                MessageBox.Show("Nenhum restaurante encontrado.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            foreach (var pedido in pedidos)
+            {
+                var produto = bd.ConsultarProdutoPorId(pedido.getIdProduto());
+
+                Panel pedidoPanel = new Panel();
+                pedidoPanel.Width = 150;
+                pedidoPanel.Height = 185;
+                pedidoPanel.Margin = new Padding(10);
+                pedidoPanel.BackColor = Color.White;
+
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Width = 150;
+                pictureBox.Height = 130; // Reduzido para abrir espaço para o nome logo abaixo
+                pictureBox.Location = new Point(0, 0);
+                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                if (produto.getImagem() != null)
+                {
+                    pictureBox.Image = imgController.ExibirImage(produto.getImagem());
+                }
+                else
+                {
+                    pictureBox.Image = Properties.Resources.restaurante;
+                }
+
+                pictureBox.Tag = produto;
+                pictureBox.Cursor = Cursors.Hand;
+                pictureBox.Click += (s, args) =>
+                {
+                    var pic = s as PictureBox;
+                    var restauranteSelecionado = pic.Tag as Establishment;
+                    TelaExibirProduto tela = new TelaExibirProduto(produto.getId());
+                    tela.Show();
+                };
+
+                Label nomeLabel = new Label();
+                nomeLabel.Text = produto.getNome();
+                nomeLabel.TextAlign = ContentAlignment.MiddleCenter;
+                nomeLabel.Location = new Point(0, 135); // logo abaixo da imagem
+                nomeLabel.Size = new Size(150, 40); // largura igual ao panel
+                nomeLabel.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                nomeLabel.AutoEllipsis = true;
+
+                pedidoPanel.Controls.Add(pictureBox);
+                pedidoPanel.Controls.Add(nomeLabel);
+
+                flowPanelPedidos.Controls.Add(pedidoPanel);
             }
 
             if (restaurantesEncontrados.Count == 0)

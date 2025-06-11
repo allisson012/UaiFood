@@ -423,6 +423,16 @@ namespace UaiFood.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaPrincipalUsuario1 {
+            get {
+                object obj = ResourceManager.GetObject("TelaPrincipalUsuario1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaQrCode {
             get {
                 object obj = ResourceManager.GetObject("TelaQrCode", resourceCulture);
